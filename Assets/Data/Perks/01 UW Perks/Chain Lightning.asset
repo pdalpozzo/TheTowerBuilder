@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e4ea81249c35b4aac3de9b984c5142, type: 3}
+  m_Name: Chain Lightning
+  m_EditorClassIdentifier: 
+  _perkName: Chain Lightning
+  _tooltipMessage: 
+  _prefix: 'Chain Lightning Damage '
+  _middle: 
+  _suffix: 
+  _perkType: 1
+  _baseValue: 2
+  _increment: 0
+  _negativeValue: 0
+  _maxStacks: 1
+  _icon: {fileID: 0}
+  _showValue: 1
+  _showNegValue: 0
+  _isRangedTradeOff: 0
+  _valueOneFormat: 1
+  _valueOneDecimalPlaces: 0
+  _valueTwoFormat: 0
+  _valueTwoDecimalPlaces: 0

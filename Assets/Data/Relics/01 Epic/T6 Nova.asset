@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 005ea0a3456ab7c49a389713943b6296, type: 3}
+  m_Name: T6 Nova
+  m_EditorClassIdentifier: 
+  _relicName: T6 Nova
+  _tooltipMessage: 
+  _rarity: 2
+  _relicType: 4
+  _value: 0.05
+  _icon: {fileID: 21300000, guid: 9c6da8507d014e84ea131fdfa1eb4710, type: 3}
+  _faded: {fileID: 21300000, guid: cf0a660c98e18d24b96e37f4a2810562, type: 3}

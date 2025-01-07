@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e4ea81249c35b4aac3de9b984c5142, type: 3}
+  m_Name: 05 Less Enemy Speed More Enemy Damage
+  m_EditorClassIdentifier: 
+  _perkName: Less Enemy Speed More Enemy Damage
+  _tooltipMessage: 
+  _prefix: 'Enemies Speed '
+  _middle: ', But Enemies Damage '
+  _suffix: 
+  _perkType: 2
+  _baseValue: -0.4
+  _increment: 0
+  _negativeValue: 2.5
+  _maxStacks: 1
+  _icon: {fileID: 21300000, guid: 28ee55fd1c9bd4a40adccfcf622e7cb8, type: 3}
+  _showValue: 1
+  _showNegValue: 1
+  _isRangedTradeOff: 0
+  _valueOneFormat: 3
+  _valueOneDecimalPlaces: 2
+  _valueTwoFormat: 1
+  _valueTwoDecimalPlaces: 1

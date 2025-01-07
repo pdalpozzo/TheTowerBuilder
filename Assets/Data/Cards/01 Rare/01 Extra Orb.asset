@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63b654dd1e522154da31453f886a205a, type: 3}
+  m_Name: 01 Extra Orb
+  m_EditorClassIdentifier: 
+  _cardName: Extra Orb
+  _values:
+  - 0
+  - 0.3
+  - 0.4
+  - 0.5
+  - 0.6
+  - 0.7
+  - 0.8
+  - 0.9
+  _rarity: 1
+  _icon: {fileID: 21300000, guid: a2d4f1760d0e34b4f800b231b431494c, type: 3}
+  _formatType: 0
+  _decimalPlaces: 1
+  _prefix: 'A spinning orb with a speed of '
+  _suffix: ' that destroys enemies on contact (except bosses)'

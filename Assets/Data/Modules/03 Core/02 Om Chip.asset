@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51d3f8b1df82eae408b30c5f75cff29d, type: 3}
+  m_Name: 02 Om Chip
+  m_EditorClassIdentifier: 
+  _moduleName: Om Chip
+  _tooltipMessage: 
+  _baseRarity: 2
+  _uniqueValues:
+  - 3
+  - 2
+  - 1
+  - 0
+  _prefix: 'Spotlight will rotate to focus a boss. This effect can only happen again
+    after '
+  _suffix: ' bosses.'
+  _formatType: 0
+  _decimalPlaces: 0
+  _isNone: 0
+  _isNonEpic: 0
+  _icon: {fileID: 21300000, guid: 2ee04a884c0132740b71dde0560717b2, type: 3}

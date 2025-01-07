@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 005ea0a3456ab7c49a389713943b6296, type: 3}
+  m_Name: T14 Arcane
+  m_EditorClassIdentifier: 
+  _relicName: T14 Arcane
+  _tooltipMessage: 
+  _rarity: 3
+  _relicType: 2
+  _value: 0.1
+  _icon: {fileID: 21300000, guid: 5d1f207197f18a1428388f5dd6d89607, type: 3}
+  _faded: {fileID: 21300000, guid: 138da74ac555f0d4a9bf4c2e812f453a, type: 3}

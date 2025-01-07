@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3801b0754b403ed41911edeca4ddd6c4, type: 3}
+  m_Name: 00 Damage
+  m_EditorClassIdentifier: 
+  _effectName: Damage
+  _tooltipMessage: 
+  _baseValue: 0
+  _valueIncrement: 0
+  _values:
+  - 1.5
+  - 2
+  - 2.57
+  - 3.2
+  - 3.92
+  - 4.74
+  - 5.66
+  - 6.7
+  - 7.88
+  - 9.21
+  - 10.71
+  - 12.41
+  - 14.33
+  - 16.49
+  - 18.94
+  - 21.71
+  - 24.84
+  - 28.37
+  - 32.36
+  - 36.87
+  - 41.97
+  - 47.73
+  - 54.25
+  - 61.6
+  - 69.92
+  - 79.31
+  - 89.93
+  - 101.92
+  - 115.47
+  - 130.79
+  - 148.1
+  _noIncrement: 1
+  _maxLevel: 30
+  _baseLevel: 0
+  _formatType: 1
+  _decimalPlaces: 2

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63b654dd1e522154da31453f886a205a, type: 3}
+  m_Name: 07 Berserk
+  m_EditorClassIdentifier: 
+  _cardName: Berserk
+  _values:
+  - 0
+  - 0.008
+  - 0.009
+  - 0.01
+  - 0.011
+  - 0.012
+  - 0.013
+  - 0.014
+  _rarity: 2
+  _icon: {fileID: 21300000, guid: 8dd24a8e5f2a90542ad284338a4a510c, type: 3}
+  _formatType: 3
+  _decimalPlaces: 2
+  _prefix: 'Increase damage by '
+  _suffix: ' of total damage absorbed this round (max of x8 tower damage)'

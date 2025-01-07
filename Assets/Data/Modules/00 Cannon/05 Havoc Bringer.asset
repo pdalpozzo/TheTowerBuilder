@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51d3f8b1df82eae408b30c5f75cff29d, type: 3}
+  m_Name: 05 Havoc Bringer
+  m_EditorClassIdentifier: 
+  _moduleName: Havoc Bringer
+  _tooltipMessage: 
+  _baseRarity: 2
+  _uniqueValues:
+  - 0.1
+  - 0.13
+  - 0.15
+  - 0.2
+  _prefix: 
+  _suffix: ' chance for rend armor to instantly go to max.'
+  _formatType: 3
+  _decimalPlaces: 0
+  _isNone: 0
+  _isNonEpic: 0
+  _icon: {fileID: 21300000, guid: 52c1269dd072c004e93ac1d652cc84ed, type: 3}

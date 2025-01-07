@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 005ea0a3456ab7c49a389713943b6296, type: 3}
+  m_Name: 1st Birthday
+  m_EditorClassIdentifier: 
+  _relicName: 1st Birthday
+  _tooltipMessage: Tower Damage +2%
+  _rarity: 1
+  _relicType: 2
+  _value: 0.02
+  _icon: {fileID: 21300000, guid: e5b6bdb0ab7381140ac0c1b98fa867c3, type: 3}
+  _faded: {fileID: 21300000, guid: 08f0dfde68bb1c54ba5b8413df0de3da, type: 3}
