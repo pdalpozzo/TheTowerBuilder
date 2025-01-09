@@ -28,7 +28,7 @@ public class Range : Stat
 
         // permanant buffs
         multiplier *= _lab.Value;
-        //multiplier *= (1 + _subEffect.Value);
+        if (_subEffect.IsEquipped) additional += _subEffect.Value;
         if (_rangeCard.IsEquipped) multiplier *= _rangeCard.Value;
         _value = multiplier * (_base + additional);
 

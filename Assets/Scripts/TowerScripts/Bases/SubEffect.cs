@@ -16,6 +16,7 @@ public class SubEffect : MonoBehaviour
     public Rarity ModuleRarity { get { return _currentModuleRarity; } }
     public StringFormatType Format { get { return _data.FormatType; } }
     public ModuleType ModuleType { get { return _data.ModuleType; } }
+    public float Value { get { return _data.GetValue((int)_currentRarity); } }
     public int DecimalPlaces { get { return _data.DecimalPlaces; } }
     public bool IsEquipped { get { return _isEquipped; } }
 
@@ -26,12 +27,12 @@ public class SubEffect : MonoBehaviour
 
     public float GetValue()
     {
-        return _data.GetValue((int)_currentRarity);
+        return Value;
     }
 
     public string GetDescription()
     {
-        return StringFormating.Format(_data.GetValue((int)_currentRarity), Format, DecimalPlaces);
+        return StringFormating.Format(Value, Format, DecimalPlaces);
     }
 
     public void SetEquipped(bool isEquipped)
@@ -50,9 +51,4 @@ public class SubEffect : MonoBehaviour
         if (rarity > _currentModuleRarity) return;
         _currentRarity = rarity;
     }
-
-    //private string GetStringFormat(float value, StringFormatType formatType, int decimalPlaces)
-    //{
-    //    return StringFormating.Format(value, formatType, decimalPlaces);
-    //}
 }

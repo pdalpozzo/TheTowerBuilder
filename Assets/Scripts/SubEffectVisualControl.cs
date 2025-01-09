@@ -33,6 +33,7 @@ public class SubEffectVisualControl : MonoBehaviour
         if ((int)newRarity >= enumCount) newRarity = Rarity.ANCESTRAL;
         _subEffect.ChangeRarity(newRarity);
         UpdateDisplay();
+        SubEffectRarityChange();
     }
 
     public void RarityDown()
@@ -41,11 +42,17 @@ public class SubEffectVisualControl : MonoBehaviour
         if (newRarity < _subEffect.BaseRarity) newRarity = _subEffect.BaseRarity;
         _subEffect.ChangeRarity(newRarity);
         UpdateDisplay();
+        SubEffectRarityChange();
     }
 
     public void ToggleSubEffect()
     {
-        EventManager.SubEffectChange(_subEffect);
+        EventManager.SubEffectEquipChange(_subEffect);
+    }
+
+    private void SubEffectRarityChange()
+    {
+        EventManager.SubEffectRarityChange(_subEffect);
     }
 
     private void SubEffectLimit(ModuleType type, bool isFull)
@@ -61,7 +68,6 @@ public class SubEffectVisualControl : MonoBehaviour
 
     private void UpdateDisplay()
     {
-
         _toggle.SetToggle(_subEffect.IsEquipped);
 
         _effectText.color = RarityColors.GetColor(_subEffect.Rarity);
@@ -79,5 +85,6 @@ public class SubEffectVisualControl : MonoBehaviour
         //if (_moduleSlotsAreFull || (_subEffect.ModuleRarity < _subEffect.BaseRarity))
         if (_fade != null) 
                 _fade.SetActive((_moduleSlotsAreFull && !_subEffect.IsEquipped) || (_subEffect.ModuleRarity < _subEffect.BaseRarity));
+
     }
 }

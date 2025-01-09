@@ -35,7 +35,7 @@ public class DefensePercent : Stat
 
         // permanant buffs
         additional += _lab.Value;
-        //additional += _subEffect.Value;
+        if (_subEffect.IsEquipped) additional += _subEffect.Value;
         if (_extraDefenseCard.IsEquipped) additional += _extraDefenseCard.Value;
         _value = multiplier * (_base + additional);
 

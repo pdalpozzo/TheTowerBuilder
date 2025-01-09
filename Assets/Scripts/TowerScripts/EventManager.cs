@@ -43,8 +43,9 @@ public class EventManager : MonoBehaviour
     public static event Action OnRelicBonusChange;              // triggered by relic manager
 
     // module events
-    public static event Action OnModuleRarityChange;            // triggered by module slot
-    public static event Action<SubEffect> OnSubEffectChange;    // triggered by sub effect visual control
+    public static event Action OnModuleRarityChange;                        // triggered by module slot
+    public static event Action<SubEffect> OnSubEffectEquipChange;           // triggered by sub effect visual control
+    public static event Action<SubEffect> OnSubEffectRarityChange;          // triggered by sub effect visual control
     public static event Action<ModuleType, bool> OnSubEffectLimitChange;    // triggered by module slot
 
     // stat events
@@ -207,10 +208,16 @@ public class EventManager : MonoBehaviour
         OnModuleRarityChange?.Invoke();
     }
 
-    public static void SubEffectChange(SubEffect subEffect)
+    public static void SubEffectEquipChange(SubEffect subEffect)
     {
         //Debug.Log("Sub Effect Change");
-        OnSubEffectChange?.Invoke(subEffect);
+        OnSubEffectEquipChange?.Invoke(subEffect);
+    }
+
+    public static void SubEffectRarityChange(SubEffect subEffect)
+    {
+        //Debug.Log("Sub Effect Rarity Change");
+        OnSubEffectRarityChange?.Invoke(subEffect);
     }
 
     public static void SubEffectLimitChange(ModuleType type, bool isFull)

@@ -15,7 +15,7 @@ public class OrbSpeed : Stat
 
         // permanant buffs
         additional += _lab.Value;
-        //multiplier += _subEffect.Value);
+        if (_subEffect.IsEquipped) additional += _subEffect.Value;
         _value = multiplier * (_base + additional);
 
         // in round buffs
