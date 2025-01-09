@@ -36,7 +36,8 @@ public class CoinBonus : Stat
         EventManager.OnAnyPackChange += UpdateValue;
         EventManager.OnThemeBonusChange += UpdateValue;
         EventManager.OnRelicBonusChange += UpdateValue;
-        //EventManager.OnModuleSlotChange += UpdateValue;
+        EventManager.OnModuleRarityChange += UpdateValue;
+        EventManager.OnSubEffectLimitChange += UpdateValue;
         EventManager.OnAnyStatChange += CoinBonusChanged;
         //EventManager.OnUltimateWeaponStatusChange += UpdateValue;
     }
@@ -49,6 +50,11 @@ public class CoinBonus : Stat
     private void UpdateValue(ModuleSlot slot)
     {
         if (slot == _moduleSlot) UpdateValue();
+    }
+
+    private void UpdateValue(ModuleType type, bool isFull)
+    {
+        if (type == _moduleSlot.ModuleType) UpdateValue();
     }
 
     private void UpdateValue(Perk perk)
@@ -100,9 +106,9 @@ public class CoinBonus : Stat
 
         // permanant buffs
         multiplier *= _enhancement.Value;
-        //multiplier *= (1 + _moduleSlot.Value);
         multiplier *= (1 + _relicManager.CoinBonus);
         multiplier *= (1 + _themeManager.TotalBonus);
+        if (_moduleSlot.EquippedModule != _moduleSlot.ModuleList[0]) multiplier *= _moduleSlot.Value;
         if (_disableAds.IsOn) multiplier *= _disableAds.Value;
         if (_starterPack.IsOn) multiplier *= _starterPack.Value;
         if (_epicPack.IsOn) multiplier *= _epicPack.Value;

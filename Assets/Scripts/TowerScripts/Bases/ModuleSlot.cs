@@ -30,8 +30,9 @@ public class ModuleSlot : MonoBehaviour
     public string Name { get { return _data.Name; } }
     public string ModuleName { get { return _equippedModule.Name; } }
     public string Bonus { get { return _bonusText; } }
-    public int MaxLevel { get { return _levelCaps[_levelCaps.Length - 1]; } }
-    public int BaseLevel { get { return _levelCaps[0]; } }
+    public float Value { get { return _currentValue; } }
+    public int MaxLevel { get { return GetMaxLevel(); } }
+    public int BaseLevel { get { return _levelCaps[(int)Rarity.COMMON]; } }
     public int Level { get { return _currentLevel; } }
     public int SlotUnlocked { get { return _slotsUnlocked; } }
     public bool IsNone { get { return _equippedModule.IsNone; } }
@@ -46,6 +47,7 @@ public class ModuleSlot : MonoBehaviour
     public Module EquippedModule { get { return _equippedModule; } }
     public List<SubEffect> EquippedSubEffects { get { return _equippedSubEffects; } }
     public string Description { get { return CreateDescription(); } }
+
 
     private void Awake()
     {
@@ -75,6 +77,7 @@ public class ModuleSlot : MonoBehaviour
         if (rarity < ModuleBaseRarity) rarity = ModuleBaseRarity;
         if (IsNone) rarity = Rarity.COMMON;
         _currentRarity = rarity;
+        ChangeLevel(_currentLevel);
         SubEffectRarityChange(rarity);
         Trigger_OnModuleRarityChange();
     }
@@ -91,6 +94,12 @@ public class ModuleSlot : MonoBehaviour
         _equippedModule = _modules[index];
 
         ChangeRarity(_currentRarity);
+    }
+
+    private int GetMaxLevel()
+    {
+        if (_currentRarity == Rarity.COMMON) return _levelCaps[(int)Rarity.RARE];
+        return _levelCaps[(int)_currentRarity];
     }
 
     private void Trigger_OnModuleRarityChange()
@@ -138,6 +147,8 @@ public class ModuleSlot : MonoBehaviour
         if (level > MaxLevel) level = MaxLevel;       // check new level is not above max level
         if (level < BaseLevel) level = BaseLevel;     // check new level is not below base level
         _currentLevel = level;
+
+        _currentValue = _data.GetValue(_currentLevel);
 
         for (int i = _levelCaps.Length - 2; i >= 0; i--)
         {

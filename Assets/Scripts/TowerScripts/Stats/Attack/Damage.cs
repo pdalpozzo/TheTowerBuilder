@@ -22,7 +22,8 @@ public class Damage : Stat
         EventManager.OnAnyCardChange += UpdateValue;
         EventManager.OnPerkStatusChange += UpdateValue;
         EventManager.OnRelicBonusChange += UpdateValue;
-        //EventManager.OnModuleSlotChange += UpdateValue;
+        EventManager.OnModuleRarityChange += UpdateValue;
+        EventManager.OnSubEffectLimitChange += UpdateValue;
     }
 
     private void UpdateValue(Card card)
@@ -34,6 +35,11 @@ public class Damage : Stat
     private void UpdateValue(ModuleSlot slot)
     {
         if (slot == _moduleSlot) UpdateValue();
+    }
+
+    private void UpdateValue(ModuleType type, bool isFull)
+    {
+        if (type == _moduleSlot.ModuleType) UpdateValue();
     }
 
     private void UpdateValue(Perk perk)
@@ -53,8 +59,8 @@ public class Damage : Stat
         // permanant buffs
         multiplier *= _enhancement.Value;
         multiplier *= _lab.Value;
-        //multiplier *= _moduleSlot.Value;
         multiplier *= (1 + _relicManager.TowerDamage);
+        if (_moduleSlot.EquippedModule != _moduleSlot.ModuleList[0]) multiplier *= _moduleSlot.Value;
         if (_damageCard.IsEquipped) multiplier *= _damageCard.Value;
         _value = multiplier * (_base + additional);
 

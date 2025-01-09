@@ -121,6 +121,7 @@ public class ModuleVisualControl : MonoBehaviour
 
         _fade.SetActive(_moduleSlot.EquippedModule.IsNone);
 
+        _levelInput.characterLimit = CountMaxLevelCharcters(_moduleSlot.MaxLevel);
         _levelInput.text = (_moduleSlot.Level == 0) ? "" : _moduleSlot.Level.ToString();
         _levelLabelText.color = (_moduleSlot.IsMaxLevel) ? _maxLevelColour : _defaultColour;
         _levelText.color = (_moduleSlot.IsMaxLevel) ? _maxLevelColour : _defaultColour;
