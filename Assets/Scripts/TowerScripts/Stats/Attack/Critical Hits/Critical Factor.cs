@@ -24,8 +24,8 @@ public class CriticalFactor : Stat
         // permanant buffs
         multiplier *= _enhancement.Value;
         multiplier *= _lab.Value;
-        //multiplier *= (1 + _subEffect.Value);
         multiplier *= (1 + _relicManager.CritFactor);
+        if (_subEffect.IsEquipped) additional += _subEffect.Value;
         _value = multiplier * (_base + additional);
 
         // in round buffs

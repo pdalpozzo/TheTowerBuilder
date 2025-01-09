@@ -29,7 +29,7 @@ public class PackageMaxRecovery : Stat
         // permanant buffs
         multiplier *= _recoveryPackageEnhancement.Value;
         additional += _lab.Value;       // potentially incorrect
-        //additional += _subEffect.Value;
+        if (_subEffect.IsEquipped) additional += _subEffect.Value;
         _value = multiplier * (_base + additional);
 
         // in round buffs

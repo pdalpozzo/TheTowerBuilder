@@ -38,8 +38,8 @@ public class DefenseAbsolute : Stat
         // permanant buffs
         multiplier *= _enhancement.Value;
         multiplier *= _lab.Value;
-        //multiplier *= (1 + _subEffect.Value);
         multiplier *= (1 + _relicManager.TowerDamage);
+        if (_subEffect.IsEquipped) additional += _subEffect.Value;
         if (_fortressCard.IsEquipped) multiplier *= _fortressCard.Value;
         _value = multiplier * (_base + additional);
 

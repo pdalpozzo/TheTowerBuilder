@@ -24,7 +24,7 @@ public class DamagePerMeter : Stat
         // permanant buffs
         multiplier *= _enhancement.Value;
         multiplier *= _lab.Value;
-        //multiplier *= (1 + _subEffect.Value);
+        if (_subEffect.IsEquipped) additional += _subEffect.Value;
         multiplier *= (1 + _relicManager.DamagePerMeter);
         _value = multiplier * (_base + additional);
 

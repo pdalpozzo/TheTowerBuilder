@@ -7,13 +7,14 @@ using UnityEngine.UI;
 public class MainPanelControl : MonoBehaviour
 {
     [SerializeField] private GameObject[] _displayPanels;
+    [SerializeField] private PANEL _startPanel = PANEL.WORKSHOP;
 
     public enum PANEL { WORKSHOP, ULTIMATEWEAPONS, LAB, MODULES, CARDS,PERKS, THEMES, BOTSPACKS, RELICS};
     private int _pageSelected = 0;
 
     private void Start()
     {
-        _pageSelected = (int)PANEL.ULTIMATEWEAPONS ;
+        _pageSelected = (int)_startPanel;
         UpdatePanel();
     }
 

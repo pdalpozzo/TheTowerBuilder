@@ -27,7 +27,7 @@ public class CriticalChance : Stat
         float multiplier = 1;
 
         // permanant buffs
-        //additional += _subEffect.Value;
+        if (_subEffect.IsEquipped) additional += _subEffect.Value;
         if (_criticalChanceCard.IsEquipped) additional += _criticalChanceCard.Value;
         _value = multiplier * (_base + additional);
 

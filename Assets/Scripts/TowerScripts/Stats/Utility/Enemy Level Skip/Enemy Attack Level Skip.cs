@@ -29,7 +29,7 @@ public class EnemyAttackLevelSkip : Stat
         // permanant buffs
         multiplier *= _enemyLevelSkip.Value;
         additional += _lab.Value;
-        //additional += _subEffect.Value;
+        if (_subEffect.IsEquipped) additional += _subEffect.Value;
         _value = multiplier * (_base + additional);
 
         // in round buffs

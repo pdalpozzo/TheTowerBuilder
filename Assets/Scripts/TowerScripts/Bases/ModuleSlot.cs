@@ -49,14 +49,13 @@ public class ModuleSlot : MonoBehaviour
 
     private void Awake()
     {
-        EventManager.OnSubEffectChange += EquipSubEffect;    // triggered by sub effect visual control
+        EventManager.OnSubEffectEquipChange += EquipSubEffect;    // triggered by sub effect visual control
         if (_equippedModule == null) ModuleSelection(0);
     }
 
     private void Start()
     {
-        Trigger_OnSubEffectLimitChange();
-        //Trigger_OnModuleRarityChange();
+        SubEffectRarityChange(_currentRarity);
     }
 
     public float GetValue()
@@ -77,9 +76,7 @@ public class ModuleSlot : MonoBehaviour
         if (IsNone) rarity = Rarity.COMMON;
         _currentRarity = rarity;
         SubEffectRarityChange(rarity);
-
-        //Trigger_OnModuleRarityChange();
-        //Trigger_OnSubEffectLimitChange();
+        Trigger_OnModuleRarityChange();
     }
 
     public void ModuleSelection(int index)
@@ -110,30 +107,17 @@ public class ModuleSlot : MonoBehaviour
             //unequip if already equipped
             subEffect.SetEquipped(false);
             _equippedSubEffects.Remove(subEffect);
-            Trigger_OnSubEffectLimitChange();
+            SubEffectRarityChange(_currentRarity);
             return;
         } 
 
-        if (_equippedSubEffects.Count >= _slotsUnlocked)
-        {   
-            // check slots unlocked before equipping
-            //CheckSlotLimit();
-            return;
-        } 
+        if (_equippedSubEffects.Count >= _slotsUnlocked) return;
 
         // free slots to equip sub effect
         subEffect.SetEquipped(true);
         _equippedSubEffects.Add(subEffect);
-        Trigger_OnSubEffectLimitChange();
+        SubEffectRarityChange(_currentRarity);
     }
-
-    //private void UnlockSubEffects()
-    //{
-    //    foreach (var effect in _subEffects)
-    //    {
-    //        //if (!effect.IsEquipped) effect.setlock
-    //    }
-    //}
 
     private void Trigger_OnSubEffectLimitChange()
     {
@@ -147,7 +131,7 @@ public class ModuleSlot : MonoBehaviour
         if (_equippedModule.IsNone) 
         { 
             _slotsUnlocked = 0;
-            Trigger_OnSubEffectLimitChange();
+            SubEffectRarityChange(_currentRarity);
             return; 
         }
 
@@ -160,17 +144,15 @@ public class ModuleSlot : MonoBehaviour
             if (_currentLevel > _levelCaps[i])
             {
                 _slotsUnlocked = 2 + i;
-                //CheckSlotLimit();
-                Trigger_OnSubEffectLimitChange();
+                SubEffectRarityChange(_currentRarity);
                 return;
             }
         }
-        Trigger_OnSubEffectLimitChange();
+        SubEffectRarityChange(_currentRarity);
     }
 
     private void CheckSlotLimit()
     {
-        if (_equippedSubEffects.Count <= _slotsUnlocked) return;
         for (int i = _equippedSubEffects.Count - 1; i >= 0; i--)
         {
             if (i >= _slotsUnlocked) 
@@ -179,7 +161,6 @@ public class ModuleSlot : MonoBehaviour
                 _equippedSubEffects.RemoveAt(i); 
             }
         }
-        //Trigger_OnSubEffectLimitChange();
     }
 
     private void SubEffectRarityChange(Rarity rarity)
@@ -189,7 +170,6 @@ public class ModuleSlot : MonoBehaviour
         {
             effect.SetModuleRarity(rarity);
             if (rarity > effect.Rarity) continue;       // if rarity is higher than sub effect current rarity
-            //if (rarity < effect.BaseRarity) continue;   // if rarity is lower than sub effect base rarity
             effect.ChangeRarity(rarity);
         }
 

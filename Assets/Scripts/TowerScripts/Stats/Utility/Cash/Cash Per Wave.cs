@@ -35,7 +35,7 @@ public class CashPerWave : Stat
 
         // permanant buffs
         multiplier *= _lab.Value;
-        //additional += _subEffect.Value;
+        if (_subEffect.IsEquipped) additional += _subEffect.Value;
         _value = (_base * multiplier + additional) * _cashBonusStat.Value;
 
         // in round buffs

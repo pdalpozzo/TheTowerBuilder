@@ -30,7 +30,7 @@ public class RendArmorMultiMax : Stat
         float multiplier = 1;
 
         // permanant buffs
-        //multiplier *= _subEffect.Value;
+        if (_subEffect.IsEquipped) additional += _subEffect.Value;
         multiplier *= _enhancement.Value;
         _value = multiplier * (_base + additional);
 

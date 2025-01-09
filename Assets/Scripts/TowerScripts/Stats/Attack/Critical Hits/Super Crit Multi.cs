@@ -16,7 +16,7 @@ public class SuperCritMulti : Stat
         // permanant buffs
         multiplier *= _enhancement.Value;
         multiplier *= _lab.Value;
-        //multiplier *= (1 + _subEffect.Value);
+        if (_subEffect.IsEquipped) additional += _subEffect.Value;
         _value = multiplier * (_base + additional);
 
         // in round buffs

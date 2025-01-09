@@ -14,8 +14,8 @@ public class GoldenTowerDuration : Stat
         float multiplier = 1;
 
         // permanant buffs
-        //additional += _subEffect.Value;
         additional += _lab.Value;
+        if (_subEffect.IsEquipped) additional += _subEffect.Value;
         _value = multiplier * (_base + additional);
 
         // in round buffs

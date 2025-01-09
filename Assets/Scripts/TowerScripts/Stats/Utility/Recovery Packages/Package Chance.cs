@@ -27,8 +27,8 @@ public class PackageChance : Stat
         float multiplier = 1;
 
         // permanant buffs
-        //additional += _subEffect.Value;
         additional += _lab.Value; 
+        if (_subEffect.IsEquipped) additional += _subEffect.Value;
         if (_recoveryPackageChanceCard.IsEquipped) additional += _recoveryPackageChanceCard.Value;
         _value = multiplier * (_base + additional);
 

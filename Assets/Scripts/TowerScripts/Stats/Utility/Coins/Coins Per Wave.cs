@@ -28,7 +28,7 @@ public class CoinsPerWave : Stat
 
         // permanant buffs
         multiplier *= _lab.Value;
-        //additional += _subEffect.Value;
+        if (_subEffect.IsEquipped) additional += _subEffect.Value;
         //_value = multiplier * (_base + additional);
         _value = (_base * multiplier + additional) * _coinBonusStat.Value;
 

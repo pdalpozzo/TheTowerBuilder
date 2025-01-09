@@ -42,7 +42,7 @@ public class FreeAttackUpgrades : Stat
 
         // permanant buffs
         multiplier *= _freeUpgradeStat.Value;
-        //additional += _subEffect.Value;
+        if (_subEffect.IsEquipped) additional += _subEffect.Value;
         if (_freeUpgradesCard.IsEquipped) additional += _freeUpgradesCard.Value;
         _value = multiplier * (_base + additional);
 

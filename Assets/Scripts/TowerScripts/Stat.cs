@@ -70,7 +70,12 @@ public class Stat : MonoBehaviour
         if (_lab != null) EventManager.OnAnyLabChange += UpdateValue;
         //if (_relicManager != null) EventManager.OnRelicBonusChange += UpdateValue;
         //if (_moduleSlot != null) EventManager.OnModuleSlotChange += UpdateValue;
-        //if (_subEffect != null) EventManager.OnSubEffectChange += UpdateValue;
+        if (_subEffect != null)
+        {
+            EventManager.OnSubEffectEquipChange += UpdateValue;
+            EventManager.OnSubEffectRarityChange += UpdateValue;
+            EventManager.OnModuleRarityChange += UpdateValue;
+        }
         if (_effect != null) EventManager.OnAnyEffectChange += UpdateValue;
     }
 

@@ -27,7 +27,7 @@ public class SpotlightBonus : Stat
         float multiplier = 1;
 
         // permanant buffs
-        //additional += _subEffect.Value;
+        if (_subEffect.IsEquipped) additional += _subEffect.Value;
         _value = multiplier * (_base + additional);
 
         // in round buffs
