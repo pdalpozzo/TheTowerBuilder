@@ -3,9 +3,6 @@ using UnityEngine.UI;
 
 public class CardMassControl : MonoBehaviour
 {
-    [SerializeField] private Button _resetButton;
-    [SerializeField] private Button _maxButton;
-
     public void ResetCards()
     {
         EventManager.CardForceReset();
@@ -16,4 +13,15 @@ public class CardMassControl : MonoBehaviour
         EventManager.CardForceMax();
     }
 
+    public void SelectedPresetChange(int presetSlot)
+    {
+        if (presetSlot > 5) presetSlot = 5;
+        if (presetSlot < 1) presetSlot = 1;
+        Trigger_PresetChange(presetSlot);
+    }
+
+    private void Trigger_PresetChange(int presetSlot)
+    {
+        EventManager.CardPresetChange(presetSlot);
+    }
 }

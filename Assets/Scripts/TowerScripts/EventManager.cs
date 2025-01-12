@@ -12,6 +12,7 @@ public class EventManager : MonoBehaviour
     public static event Action<Card> OnAnyCardChange;               // triggered by card
     public static event Action OnCardForceReset;                    // triggered by card mass control
     public static event Action OnCardForceMax;                      // triggered by card mass control
+    public static event Action<int> OnCardPresetChange;             // triggered by card mass control
 
     // ultimate weapon events
     public static event Action<UltimateWeaponType, bool> OnUltimateWeaponStatusChange;  // triggered by ultimate weapon
@@ -98,6 +99,12 @@ public class EventManager : MonoBehaviour
     {
         //Debug.Log("Card Force Max");
         OnCardForceMax?.Invoke();
+    }
+
+    public static void CardPresetChange(int presetSlot)
+    {
+        //Debug.Log("Card Force Max");
+        OnCardPresetChange?.Invoke(presetSlot);
     }
 
     public static void UltimateWeaponStatusChange(UltimateWeaponType ultimateWeapon, bool isOn)

@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class CardVisualControl : MonoBehaviour
 {
+    /// <summary>
+    ///  old script
+    /// </summary>
     [SerializeField] private Card _card;
     [SerializeField] private Color _normal;
     [SerializeField] private Color _yellow;
@@ -66,7 +69,7 @@ public class CardVisualControl : MonoBehaviour
     public void UpdateSlotNumber()
     {
         _slot.SetActive(_card.IsEquipped);
-        _slotNumberText.text = (_card.IsEquipped) ? _card.Slot.ToString("N0") : "0";
+        _slotNumberText.text = (_card.IsEquipped) ? (_card.Slot + 1).ToString("N0") : "0";
     }
     
     // trigger when the card UI has been click to assign the card to a slot

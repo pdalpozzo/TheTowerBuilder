@@ -73,7 +73,8 @@ public class LabVisualControl : MonoBehaviour
     // could be in update
     private void UpdateDisplay()
     {
-        _valueText.text = GetStringFormat(_lab.Value, _lab.Format, _lab.DecimalPlaces);
+        //_valueText.text = GetStringFormat(_lab.Value, _lab.Format, _lab.DecimalPlaces);
+        _valueText.text = _lab.DisplayValue;
         _input.placeholder.GetComponent<TextMeshProUGUI>().text = _lab.MaxLevel.ToString();
         _input.text = (_lab.Level == 0) ? "" : _lab.Level.ToString();
         // change text colour if maxed
@@ -84,10 +85,10 @@ public class LabVisualControl : MonoBehaviour
         if (_max != null) _max.interactable = (!_lab.IsMaxLevel);
     }
 
-    private string GetStringFormat(float value, StringFormatType format, int decimalPlaces)
-    {
-        return StringFormating.Format(value, format, decimalPlaces);
-    }
+    //private string GetStringFormat(float value, StringFormatType format, int decimalPlaces)
+    //{
+    //    return StringFormating.Format(value, format, decimalPlaces);
+    //}
 
     private int ValidateInput(int input, int max)
     {

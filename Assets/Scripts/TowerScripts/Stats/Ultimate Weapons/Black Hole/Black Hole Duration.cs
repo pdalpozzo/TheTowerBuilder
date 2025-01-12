@@ -31,8 +31,8 @@ public class BlackHoleDuration : Stat
         _value = multiplier * (_base + additional);
 
         // in round buffs
-        if (!_blackHoleDuration.IsBanned) 
-            multiplier *= _blackHoleDuration.Value;   //check if banned
+        if (!_blackHoleDuration.IsBanned)
+            additional += _blackHoleDuration.Value;   //check if banned
         _inRoundValue = multiplier * (_base + additional);
 
         // conditional buffs

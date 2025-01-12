@@ -9,6 +9,7 @@ public class Lab : MonoBehaviour
 
     public string Name { get { return _data.Name; } }
     //public string TooltipMessage { get { return _data.Tooltip; } }
+    public string DisplayValue { get { return GetStringFormat(_data.Value(_currentLevel), _data.FormatType, _data.DecimalPlaces); } }
     public float Value { get { return _data.Value(_currentLevel); } }
     public float BaseValue { get { return _data.Value(0); } }
     public StringFormatType Format { get { return _data.FormatType; } }
@@ -34,5 +35,10 @@ public class Lab : MonoBehaviour
         if (level > MaxLevel) level = MaxLevel;     // check new level is not above max level
         if (level < BaseLevel) level = BaseLevel;    // check new level is not below base level
         _currentLevel = level;
+    }
+
+    private string GetStringFormat(float value, StringFormatType format, int decimalPlaces)
+    {
+        return StringFormating.Format(value, format, decimalPlaces);
     }
 }

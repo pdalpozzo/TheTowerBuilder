@@ -9,6 +9,12 @@ public class CardManager : MonoBehaviour
     [SerializeField] private int _maxSlots = 19;            // max slots in the game
     [SerializeField] private List<Card> _equippedCards;     // cards equipped
 
+    [SerializeField] private List<Card> _cardsPresetOne;    // cards preset
+    [SerializeField] private List<Card> _cardsPresetTwo;    // cards preset
+    [SerializeField] private List<Card> _cardsPresetThree;  // cards preset
+    [SerializeField] private List<Card> _cardsPresetFour;   // cards preset
+    [SerializeField] private List<Card> _cardsPresetFive;   // cards preset
+
     [SerializeField] private Card _damage;
     [SerializeField] private Card _attackSpeed;
     [SerializeField] private Card _health;
@@ -40,17 +46,19 @@ public class CardManager : MonoBehaviour
     [SerializeField] private Card _ultimateCrit;
     [SerializeField] private Card _nuke;
 
+    private int _selectedPreset = 1;
+
     public int MaxSlots { get { return _maxSlots; } }
     public int UnlockedSlots { get { return _unlockedSlots; } }
 
     private void Awake()
     {
         EventManager.OnCardSelectionChange += AssignCardSlot;   // triggered by card visual control
+        EventManager.OnCardPresetChange += ChangePresetSelection;
     }
 
     private void Start()
     {
-        AddDummyCard();
         Trigger_UnlockedLimitChange();
     }
 
@@ -63,9 +71,9 @@ public class CardManager : MonoBehaviour
 
         if (input < _unlockedSlots)
         {
-            for (int i = _equippedCards.Count - 1; i > input; i--)
+            for (int i = _equippedCards.Count - 1; i > input - 1; i--)
             {
-                _equippedCards[i].AssignSlot(0);    // 0 is assigned when the card does not have a slot, aka is not equipped
+                _equippedCards[i].AssignSlot(-1);    // -1 is assigned when the card does not have a slot, aka is not equipped
                 _equippedCards.RemoveAt(i);
             }
         }
@@ -78,26 +86,18 @@ public class CardManager : MonoBehaviour
     {
         if (card.IsEquipped || card.Level == 0)     // if already equipped, unequip or level changed to 0
         {
-            if (card.Slot != 0) _equippedCards.RemoveAt(card.Slot);
-            card.AssignSlot(0);                     // 0 is assigned when the card does not have a slot, aka is not equipped
+            if (card.Slot != -1) _equippedCards.RemoveAt(card.Slot);
+            card.AssignSlot(-1);                     // -1 is assigned when the card does not have a slot, aka is not equipped
             UpdateEquippedSlotNumbers();
             Trigger_EquippedCardsChange();
             return;
         }
         if (card.Level == 0) return;
-        if (_equippedCards.Count - 1 >= _unlockedSlots) return;
+        if (_equippedCards.Count >= _unlockedSlots) return;
 
         _equippedCards.Add(card);                   // add card
-        card.AssignSlot(_equippedCards.Count - 1);  // minus 1 because of dummy at index 0
+        card.AssignSlot(_equippedCards.Count - 1);      // minus 1 because of dummy at index 0
         Trigger_EquippedCardsChange();
-    }
-
-    private void AddDummyCard()
-    {
-        // add dummy card so all non equipped cards can be set to 0
-        // and the indexes in the list will match to card slot numbers
-        Card dummy = gameObject.AddComponent<Card>();
-        _equippedCards.Add(dummy);
     }
 
     // trigger when the unlocked card limit is changed
@@ -121,14 +121,79 @@ public class CardManager : MonoBehaviour
 
     private void UpdateEquippedSlotNumbers()
     {
-        for (int i = 1; i < _equippedCards.Count; i++)
+        for (int i = 0; i < _equippedCards.Count; i++)
         {
             _equippedCards[i].AssignSlot(i);
         }
     }
 
+    private void ChangePresetSelection(int presetSlot)
+    {
+        if (presetSlot == _selectedPreset) return;
 
+        switch (_selectedPreset)
+        {
+            case 2:
+                TransferCardList(_cardsPresetTwo, _equippedCards);
+                break;
+            case 3:
+                TransferCardList(_cardsPresetThree, _equippedCards);
+                break;
+            case 4:
+                TransferCardList(_cardsPresetFour, _equippedCards);
+                break;
+            case 5:
+                TransferCardList(_cardsPresetFive, _equippedCards);
+                break;
+            default:
+                TransferCardList(_cardsPresetOne, _equippedCards);
+                break;
+        }
 
+        _selectedPreset = presetSlot;
+        List<Card> toEquip = new List<Card>();
+
+        switch (_selectedPreset)
+        {
+            case 2:
+                TransferCardList(toEquip, _cardsPresetTwo);
+                break;
+            case 3:
+                TransferCardList(toEquip, _cardsPresetThree);
+                break;
+            case 4:
+                TransferCardList(toEquip, _cardsPresetFour);
+                break;
+            case 5:
+                TransferCardList(toEquip, _cardsPresetFive);
+                break;
+            default:
+                TransferCardList(toEquip, _cardsPresetOne);
+                break;
+        }
+        TransferCardList(_equippedCards, toEquip, true);
+    }
+
+    private void TransferCardList(List<Card> toList, List<Card> fromList, bool isEquipped = false)
+    {
+        toList.Clear();
+        if (isEquipped)
+        {
+            foreach (Card card in fromList)
+            {
+                AssignCardSlot(card);
+            }
+        }
+        else
+        {
+            foreach (Card card in fromList)
+            {
+                card.ResetSlot();
+                toList.Add(card);
+            }
+            Trigger_EquippedCardsChange();
+        }
+    }
 
 
 

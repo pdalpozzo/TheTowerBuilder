@@ -8,9 +8,6 @@ public class PerkStatusControl : MonoBehaviour
     [SerializeField] private Toggle _banButton;
     [SerializeField] private Toggle _priorityButton;
 
-    [SerializeField] private LabVisualControl _banPerkLab;
-    [SerializeField] private LabVisualControl _autoRankPerkLab;
-
     public void BanButtonClicked()
     {
         if (_banButton.isOn) _priorityButton.isOn = !_banButton.isOn;

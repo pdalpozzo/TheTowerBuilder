@@ -11,7 +11,7 @@ public class CardMasteryVisualControl : MonoBehaviour
 {
 
     [SerializeField] private Card _card;
-    //[SerializeField] private Mastery _mastery;
+    [SerializeField] private CardMastery _mastery;
 
     [SerializeField] private OnOffToggleControl _masteryToggle;
 
@@ -45,7 +45,7 @@ public class CardMasteryVisualControl : MonoBehaviour
     private Color _maxLevelColour;
     private Color _masteryColour;
 
-    private int _masteryLevel = 0;
+    //private int _masteryLevel = 0;
     private int _masteryMax = 9;
     private int _masteryBase = 0;
 
@@ -59,6 +59,7 @@ public class CardMasteryVisualControl : MonoBehaviour
     private void Start()
     {
         _cardNameText.text = _card.Name;
+        _masteryNameText.text = _mastery.Name;
         _icon.sprite = _card.Icon;
         _iconBorder.color = RarityColors.GetColor(_card.Rarity);
         _border.color = RarityColors.GetColor(_card.Rarity);
@@ -92,21 +93,21 @@ public class CardMasteryVisualControl : MonoBehaviour
         UpdateDisplay();
     }
 
-    public void ChangeMasteryLevel()
-    {
-        int input = 0;
-        if (_masteryInput.text != null) input = int.Parse(_masteryInput.text);
-        input = ValidateInput(input, _masteryMax);
-        //_mastery.NewLevel(input);
-        _masteryLevel = input;
-        UpdateDisplay();
-    }
+    //public void ChangeMasteryLevel()
+    //{
+    //    //int input = 0;
+    //    //if (_masteryInput.text != null) input = int.Parse(_masteryInput.text);
+    //    //input = ValidateInput(input, _masteryMax);
+    //    ////_mastery.NewLevel(input);
+    //    //_masteryLevel = input;
+    //    //UpdateDisplay();
+    //}
 
     // could be in update
     public void UpdateSlotNumber()
     {
         _slot.SetActive(_card.IsEquipped);
-        _slotNumberText.text = (_card.IsEquipped) ? _card.Slot.ToString("N0") : "0";
+        _slotNumberText.text = (_card.IsEquipped) ? (_card.Slot + 1).ToString("N0") : "0";
     }
 
     public void ForceMaxCardLevel()
@@ -119,19 +120,20 @@ public class CardMasteryVisualControl : MonoBehaviour
     {
         _card.NewLevel(_card.BaseLevel);
         _masteryToggle.SetToggle(false);
+        //_mastery.SetEnable(false);
         Trigger_CardSelectionChange();
         UpdateDisplay();
     }
 
     public void ForceMaxMasteryLevel()
     {
-        _masteryLevel = _masteryMax;
+        _mastery.Lab.NewLevel(_mastery.Lab.MaxLevel);
         UpdateDisplay();
     }
 
     public void ForceMasteryReset()
     {
-        _masteryLevel = _masteryBase;
+        _mastery.Lab.NewLevel(_mastery.Lab.BaseLevel);
         UpdateDisplay();
     }
 
@@ -155,9 +157,11 @@ public class CardMasteryVisualControl : MonoBehaviour
         _cardDescriptionText.text = _card.Description;
 
 
-        _masteryInput.text = (_masteryLevel == 0) ? "" : _masteryLevel.ToString();
-        _masteryInput.placeholder.GetComponent<TextMeshProUGUI>().text = _masteryMax.ToString();
-        //_masteryDescriptionText.text = _mastery.Description;
+        //_masteryInput.text = (_masteryLevel == 0) ? "" : _masteryLevel.ToString();
+        //_masteryInput.placeholder.GetComponent<TextMeshProUGUI>().text = _masteryMax.ToString();
+        _masteryInput.text = _mastery.Lab.Level.ToString();
+        _masteryInput.placeholder.GetComponent<TextMeshProUGUI>().text = _mastery.Lab.MaxLevel.ToString();
+        _masteryDescriptionText.text = _mastery.Description;
 
         Color assignColour = _defaultColour;
         if (_card.Level == _card.MaxLevel - 1) assignColour = _fiveStarColour;
@@ -179,15 +183,15 @@ public class CardMasteryVisualControl : MonoBehaviour
 
         _cardLevelText.color = assignColour;
 
-        _masteryLevelText.color = (_masteryMax == _masteryLevel) ? _fiveStarColour : _defaultColour;
+        _masteryLevelText.color = (_mastery.Lab.MaxLevel == _mastery.Lab.Level) ? _fiveStarColour : _defaultColour;
 
         if (_cardLevelReset != null) _cardLevelReset.interactable = (_card.BaseLevel != _card.Level);
         if (_cardLevelMax != null) _cardLevelMax.interactable = (_card.MaxLevel != _card.Level);
 
         //_masteryLevelMax.interactable = (_masteryToggle.IsOn && (_masteryLevel != _masteryMax)); // add a check for not max level
         //_masteryLevelReset.interactable = (_masteryToggle.IsOn && (_masteryLevel != _masteryBase)); // add a check for not base level
-        if (_masteryLevelReset != null) _masteryLevelReset.interactable = (_masteryToggle.IsOn && _masteryBase != _masteryLevel);
-        if (_masteryLevelMax != null) _masteryLevelMax.interactable = (_masteryToggle.IsOn && _masteryMax != _masteryLevel);
+        if (_masteryLevelReset != null) _masteryLevelReset.interactable = (_masteryToggle.IsOn && _mastery.Lab.BaseLevel != _mastery.Lab.Level);
+        if (_masteryLevelMax != null) _masteryLevelMax.interactable = (_masteryToggle.IsOn && _mastery.Lab.MaxLevel != _mastery.Lab.Level);
     }
 
     private int ValidateInput(int input, int max)

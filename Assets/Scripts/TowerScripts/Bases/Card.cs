@@ -8,7 +8,7 @@ public class Card : MonoBehaviour
     [SerializeField] private CardScriptableObject _data;
     [SerializeField] private int _currentLevel = 0;
     [SerializeField] private bool _isEquipped = false;
-    [SerializeField] private int _slotNumber = 0;
+    [SerializeField] private int _slotNumber = -1;  // -1 means not assigned
 
     public string Name { get { return _data.Name; } }
     //public string TooltipMessage { get { return _data.Tooltip; } }
@@ -32,8 +32,15 @@ public class Card : MonoBehaviour
 
     public void AssignSlot(int slot)
     {
-        _isEquipped = slot != 0;
+        _isEquipped = slot != -1;
         _slotNumber = slot;
+        EventManager.CardChanged(this);
+    }
+
+    public void ResetSlot()
+    {
+        _isEquipped = false;
+        _slotNumber = -1;
         EventManager.CardChanged(this);
     }
 
