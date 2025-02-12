@@ -13,11 +13,10 @@ MonoBehaviour:
   m_Name: 03 Defense Pct
   m_EditorClassIdentifier: 
   _labName: Defense %
-  _tooltipMessage: 
   _baseValue: 0
   _valueIncrement: 0.002
   _maxLevel: 50
   _baseLevel: 0
-  _decimalPlaces: 2
-  _formatType: 0
+  _decimalPlaces: 1
+  _formatType: 3
   _isUnlockLab: 0

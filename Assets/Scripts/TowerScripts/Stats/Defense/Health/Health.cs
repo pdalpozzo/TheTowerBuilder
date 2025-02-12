@@ -1,26 +1,44 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 public class Health : Stat
 {
     [SerializeField] private Card _healthCard;                      // permanant
+    [SerializeField] private Stat _healthCardValue;                 // permanant
+    [SerializeField] private ModuleSlot _moduleSlot;                // permanant
+
     [SerializeField] private Perk _maxHealthMulti;                  // in round
     [SerializeField] private Perk _moreCoinsLessTowerHealth;        // in round
     [SerializeField] private Perk _moreHealthRegenLessTowerHealth;  // in round
-    [SerializeField] private ModuleSlot _moduleSlot;
-    [SerializeField] private RelicManager _relicManager;
+
+    [SerializeField] private UltimateWeapon _deathWave;             // ultimate weapon
+    [SerializeField] private Stat _deathWaveHealthBonus;            // conditional
 
     private float _base = 0;
 
     private new void Start()
     {
         base.Start();
+        EventManager.OnAnyStatChange += UpdateStat;
+        EventManager.OnUltimateWeaponStatusChange += UpdateValue;
         EventManager.OnAnyCardChange += UpdateValue;
         EventManager.OnPerkStatusChange += UpdateValue;
         EventManager.OnRelicBonusChange += UpdateValue;
         EventManager.OnModuleRarityChange += UpdateValue;
         EventManager.OnSubEffectLimitChange += UpdateValue;
+    }
+
+    protected void UpdateStat(Stat stat)
+    {
+        if (stat == _healthCardValue) UpdateValue();
+        if (stat == _deathWaveHealthBonus) UpdateValue();
+    }
+
+    private void UpdateValue(UltimateWeaponType ultimateWeapon, bool isOn)
+    {
+        if (ultimateWeapon == _deathWave.UltimateWeaponType) UpdateValue();
     }
 
     private void UpdateValue(Card card)
@@ -55,9 +73,9 @@ public class Health : Stat
         // permanant buffs
         multiplier *= _enhancement.Value;
         multiplier *= _lab.Value;
-        multiplier *= (1 + _relicManager.TowerDamage);
+        multiplier *= (1 + _relicManager.TowerHealth);
         if (_moduleSlot.EquippedModule != _moduleSlot.ModuleList[0]) multiplier *= _moduleSlot.Value;
-        if (_healthCard.IsEquipped) multiplier *= _healthCard.Value;
+        if (_healthCard.IsEquipped) multiplier *= _healthCardValue.Value;
         _value = multiplier * (_base + additional);
 
         // in round buffs
@@ -72,6 +90,8 @@ public class Health : Stat
         _inRoundValue = multiplier * (_base + additional);
 
         // conditional buffs
+        if (_deathWave.IsOn) // FIX
+            multiplier *= 12.5f;
         _conditionalValue = multiplier * (_base + additional);
 
         CreateDescriptions();

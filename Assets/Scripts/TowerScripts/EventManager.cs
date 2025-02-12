@@ -13,6 +13,7 @@ public class EventManager : MonoBehaviour
     public static event Action OnCardForceReset;                    // triggered by card mass control
     public static event Action OnCardForceMax;                      // triggered by card mass control
     public static event Action<int> OnCardPresetChange;             // triggered by card mass control
+    public static event Action<CardMastery> OnAnyMasteryChange;     // triggered by card mastery
 
     // ultimate weapon events
     public static event Action<UltimateWeaponType, bool> OnUltimateWeaponStatusChange;  // triggered by ultimate weapon
@@ -65,6 +66,10 @@ public class EventManager : MonoBehaviour
     // effect events
     public static event Action<Effect> OnAnyEffectChange;       // triggered by ???
 
+    // bot events
+    public static event Action<Bot> OnAnyBotChange;             // triggered by bot
+
+
     public static void CardUnlockedLimitChange(int max, int unlocked)
     {
         //Debug.Log("Card Unlock Limit Change");
@@ -105,6 +110,12 @@ public class EventManager : MonoBehaviour
     {
         //Debug.Log("Card Force Max");
         OnCardPresetChange?.Invoke(presetSlot);
+    }
+
+    public static void MasteryChange(CardMastery mastery)
+    {
+        //Debug.Log("Card Mastery Change");
+        OnAnyMasteryChange?.Invoke(mastery);
     }
 
     public static void UltimateWeaponStatusChange(UltimateWeaponType ultimateWeapon, bool isOn)
@@ -269,4 +280,9 @@ public class EventManager : MonoBehaviour
         OnAnyEffectChange?.Invoke(effect);
     }
 
+    public static void BotChanged(Bot bot)
+    {
+        //Debug.Log("Effect Changed");
+        OnAnyBotChange?.Invoke(bot);
+    }
 }

@@ -43,6 +43,7 @@ public class WorkshopEnhancementDisplay : MonoBehaviour
 
     public void ToggleEnhancement()
     {
+        _stat.Enhancement.SetUnlock(_toggle.IsOn);
         _levelInput.enabled = _toggle.IsOn;
         _levelInput.GetComponent<Image>().color = _enabledColor;
         if (!_toggle.IsOn)

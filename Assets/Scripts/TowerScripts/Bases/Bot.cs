@@ -21,6 +21,7 @@ public class Bot : MonoBehaviour
     public void ChangeActive(bool isOn)
     {
         _isOn = isOn;
+        EventManager.BotChanged(this);
     }
 
     public float GetEffectValue(EffectSlot effectSlot)

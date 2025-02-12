@@ -26,5 +26,6 @@ MonoBehaviour:
   _icon: {fileID: 21300000, guid: 3196d8a03b770fd4dbaa3527da3b10d4, type: 3}
   _formatType: 1
   _decimalPlaces: 2
-  _prefix: 'The tower becomes super for 30 sec,tower damage increased by '
-  _suffix: 
+  _noSymbol: 0
+  _prefix: 'The tower becomes super for 15s, tower damage increased by '
+  _suffix: ' cooldown.'

@@ -8,7 +8,7 @@ public class StringFormating : MonoBehaviour
 {
     private static string[] _thousandSymbols = { "", "K", "M", "B", "T", "q", "Q", "s", "S", "o", "n", "d", "u", "D" };
 
-    public static string Format(float value, StringFormatType formatType, int decimalPlaces)
+    public static string Format(float value, StringFormatType formatType, int decimalPlaces, bool noSymbols = false)
     {
         switch (formatType)
         {
@@ -21,6 +21,7 @@ public class StringFormating : MonoBehaviour
             case StringFormatType.TIME:
                 return FormatTime(value, decimalPlaces);
             default:
+                if (noSymbols) return FormatBasicNoSymbols(value, decimalPlaces);
                 return FormatBasic(value, decimalPlaces);
         }
     }
@@ -94,6 +95,19 @@ public class StringFormating : MonoBehaviour
                 return value.ToString("N1") + _thousandSymbols[counter];
             default:
                 return value.ToString("N2") + _thousandSymbols[counter];
+        }
+    }
+
+    private static string FormatBasicNoSymbols(float value, int decimalPlaces)
+    {
+        switch (decimalPlaces)
+        {
+            case 0:
+                return value.ToString("N0");
+            case 1:
+                return value.ToString("N1");
+            default:
+                return value.ToString("N2");
         }
     }
 }

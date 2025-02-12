@@ -4,7 +4,26 @@ using UnityEngine;
 
 public class SuperCritChance : Stat
 {
+    [SerializeField] private Card _criticalChanceCard;                  // permanant
+    [SerializeField] private CardMastery _criticalChanceCardMastery;    // permanant
+
     private float _base = 0;
+
+    private new void Start()
+    {
+        base.Start();
+        EventManager.OnAnyCardChange += UpdateValue;
+        EventManager.OnAnyMasteryChange += UpdateValue;
+    }
+    private void UpdateValue(Card card)
+    {
+        if (card == _criticalChanceCard) UpdateValue();
+    }
+
+    private void UpdateValue(CardMastery mastery)
+    {
+        if (mastery == _criticalChanceCardMastery) UpdateValue();
+    }
 
     protected override void UpdateValue()
     {
@@ -16,6 +35,8 @@ public class SuperCritChance : Stat
         // permanant buffs
         additional += _lab.Value;
         if (_subEffect.IsEquipped) additional += _subEffect.Value;
+        if (_criticalChanceCard.IsEquipped && _criticalChanceCardMastery.Enabled) 
+            additional += _criticalChanceCardMastery.Value;
         _value = multiplier * (_base + additional);
 
         // in round buffs
@@ -30,6 +51,7 @@ public class SuperCritChance : Stat
 
     private void UpdateBase()
     {
-        _base = _upgrade.Value;
+        _base = (_upgrade.IsUnlocked) ? _upgrade.Value : _base;
+        //_base = _upgrade.Value;
     }
 }

@@ -9,11 +9,12 @@ public class Card : MonoBehaviour
     [SerializeField] private int _currentLevel = 0;
     [SerializeField] private bool _isEquipped = false;
     [SerializeField] private int _slotNumber = -1;  // -1 means not assigned
+    [SerializeField] private Stat _stat;
+    [SerializeField] private bool _isSuperTower;
 
     public string Name { get { return _data.Name; } }
-    //public string TooltipMessage { get { return _data.Tooltip; } }
-    public float Value { get { return _data.Value(_currentLevel); } }
-    public float BaseValue { get { return _data.Value(0); } }
+    public float Value { get { return CalculateValue(_currentLevel); } }
+    public float BaseValue { get { return CalculateValue(0); } }
     public int Level { get { return _currentLevel; } }
     public int Slot { get { return _slotNumber; } }
     public bool IsEquipped { get { return _isEquipped; } }
@@ -21,7 +22,7 @@ public class Card : MonoBehaviour
     public Sprite Icon { get { return _data.Icon; } }
     public int MaxLevel { get { return _data.MaxLevel; } }
     public int BaseLevel { get { return _data.BaseLevel; } }
-    public string ValueDisplay { get { return _data.ValueDisplay(_currentLevel); } }
+    public string ValueDisplay { get { return CreateValueDisplay(_currentLevel); } }
     public string Description { get { return CreateDescription(); } }
 
     public void NewLevel(int level)
@@ -51,11 +52,41 @@ public class Card : MonoBehaviour
 
     private string CreateDescription()
     {
+        float value = _data.Value(_currentLevel);
+        if (_stat != null) value = _stat.Value;
+
         string description = string.Empty;
         description += _data.Prefix;
-        description += _data.ValueDisplay(_currentLevel);
+        description += CreateValueDisplay(value);
         description += _data.Suffix;
 
+        if (_isSuperTower)
+        {
+            description = string.Empty;
+            description += _data.Prefix;
+            description += CreateValueDisplay(_data.Value(_currentLevel));
+            description += ". ";
+            description += CreateValueDisplay(value, true);
+            description += _data.Suffix;
+        }
+
         return description;
+    }
+
+    private float CalculateValue(int level)
+    {
+        float value = _data.Value(level);
+        return value;
+    }
+
+    private string CreateValueDisplay(float value, bool isStat = false)
+    {
+        StringFormatType format = (isStat) ? _stat.FormatType : _data.FormatType;
+        int decimalPlaces = (isStat) ? _stat.DecimalPlaces : _data.DecimalPlaces;
+        bool noSymbol = (isStat) ? _stat.NoSymbol : _data.NoSymbol;
+
+        string valueDisplay = string.Empty;
+        valueDisplay = StringFormating.Format(value, format, decimalPlaces, noSymbol);
+        return valueDisplay;
     }
 }

@@ -27,17 +27,17 @@ public class GoldenTowerMultiplier : Stat
         float multiplier = 1;
 
         // permanant buffs
-        multiplier *= _lab.Value;
+        additional += _lab.Value;
         if (_subEffect.IsEquipped) additional += _subEffect.Value;
-        _value = multiplier * (_base + additional);
+        _value = (multiplier * _base) + additional;
 
         // in round buffs
         if (!_goldenTowerMultiplier.IsBanned)
             multiplier *= _goldenTowerMultiplier.Value;   //check if banned
-        _inRoundValue = multiplier * (_base + additional);
+        _inRoundValue = (multiplier * _base) + additional;
 
         // conditional buffs
-        _conditionalValue = multiplier * (_base + additional);
+        _conditionalValue = (multiplier * _base) + additional;
 
         CreateDescriptions();
         EventManager.StatChanged(this);

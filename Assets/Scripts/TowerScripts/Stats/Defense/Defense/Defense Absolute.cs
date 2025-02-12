@@ -6,7 +6,6 @@ public class DefenseAbsolute : Stat
 {
     [SerializeField] private Card _fortressCard;        // permanant
     [SerializeField] private Perk _defenseAbsMulti;     // in round
-    [SerializeField] private RelicManager _relicManager;
 
     private float _base = 0;
 
@@ -39,7 +38,7 @@ public class DefenseAbsolute : Stat
         multiplier *= _enhancement.Value;
         multiplier *= _lab.Value;
         multiplier *= (1 + _relicManager.TowerDamage);
-        if (_subEffect.IsEquipped) additional += _subEffect.Value;
+        if (_subEffect.IsEquipped) multiplier *= 1 + _subEffect.Value;
         if (_fortressCard.IsEquipped) multiplier *= _fortressCard.Value;
         _value = multiplier * (_base + additional);
 
@@ -56,6 +55,6 @@ public class DefenseAbsolute : Stat
 
     private void UpdateBase()
     {
-        _base = _upgrade.Value;
+        _base = (_upgrade.IsUnlocked) ? _upgrade.Value : _base;
     }
 }

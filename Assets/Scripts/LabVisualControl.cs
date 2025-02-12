@@ -85,11 +85,6 @@ public class LabVisualControl : MonoBehaviour
         if (_max != null) _max.interactable = (!_lab.IsMaxLevel);
     }
 
-    //private string GetStringFormat(float value, StringFormatType format, int decimalPlaces)
-    //{
-    //    return StringFormating.Format(value, format, decimalPlaces);
-    //}
-
     private int ValidateInput(int input, int max)
     {
         if (input < 0) input = 0;

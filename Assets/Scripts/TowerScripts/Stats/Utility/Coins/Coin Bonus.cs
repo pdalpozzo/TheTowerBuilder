@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 
 public class CoinBonus : Stat
 {
     [SerializeField] private Card _coinsCard;                   // permanant
+    [SerializeField] private Stat _coinsCardValue;              // permanant
     [SerializeField] private ThemeManager _themeManager;        // permanant
-    [SerializeField] private Perk _allCoinsBonusMulti;          // in round
-    [SerializeField] private Perk _moreCoinsLessTowerHealth;    // in round
     [SerializeField] private Pack _disableAds;                  // permanant
     [SerializeField] private Pack _starterPack;                 // permanant
     [SerializeField] private Pack _epicPack;                    // permanant
     [SerializeField] private ModuleSlot _moduleSlot;            // permanant
-    [SerializeField] private RelicManager _relicManager;        // permanant
+
+    [SerializeField] private Perk _allCoinsBonusMulti;          // in round
+    [SerializeField] private Perk _moreCoinsLessTowerHealth;    // in round
 
     // Ultimate Weapon Bonuses
     [SerializeField] private Stat _blackHoleCoinBonus;
@@ -31,15 +33,20 @@ public class CoinBonus : Stat
     private new void Start()
     {
         base.Start();
+        EventManager.OnAnyStatChange += UpdateStat;
         EventManager.OnAnyCardChange += UpdateValue;
         EventManager.OnPerkStatusChange += UpdateValue;
         EventManager.OnAnyPackChange += UpdateValue;
         EventManager.OnThemeBonusChange += UpdateValue;
-        EventManager.OnRelicBonusChange += UpdateValue;
         EventManager.OnModuleRarityChange += UpdateValue;
         EventManager.OnSubEffectLimitChange += UpdateValue;
         EventManager.OnAnyStatChange += CoinBonusChanged;
         //EventManager.OnUltimateWeaponStatusChange += UpdateValue;
+    }
+
+    protected void UpdateStat(Stat stat)
+    {
+        if (stat == _coinsCardValue) UpdateValue();
     }
 
     private void UpdateValue(Card card)
@@ -112,7 +119,7 @@ public class CoinBonus : Stat
         if (_disableAds.IsOn) multiplier *= _disableAds.Value;
         if (_starterPack.IsOn) multiplier *= _starterPack.Value;
         if (_epicPack.IsOn) multiplier *= _epicPack.Value;
-        if (_coinsCard.IsEquipped) multiplier *= _coinsCard.Value;
+        if (_coinsCard.IsEquipped) multiplier *= _coinsCardValue.Value;
 
         _value = multiplier * (_base + additional);
 

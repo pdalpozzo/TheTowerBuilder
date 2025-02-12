@@ -12,6 +12,7 @@ public class CardMasteryVisualControl : MonoBehaviour
 
     [SerializeField] private Card _card;
     [SerializeField] private CardMastery _mastery;
+    [SerializeField] private Stat _stat;
 
     [SerializeField] private OnOffToggleControl _masteryToggle;
 
@@ -46,14 +47,15 @@ public class CardMasteryVisualControl : MonoBehaviour
     private Color _masteryColour;
 
     //private int _masteryLevel = 0;
-    private int _masteryMax = 9;
-    private int _masteryBase = 0;
+    //private int _masteryMax = 9;
+    //private int _masteryBase = 0;
 
     private void Awake()
     {
         EventManager.OnEquippedCardsChange += UpdateSlotNumber; // triggered by cards holder
         EventManager.OnCardForceReset += ForceCardReset;        // triggered by cards mass control
         EventManager.OnCardForceMax += ForceMaxCardLevel;       // triggered by cards mass control
+        EventManager.OnAnyMasteryChange += UpdateValue;
     }
 
     private void Start()
@@ -93,16 +95,6 @@ public class CardMasteryVisualControl : MonoBehaviour
         UpdateDisplay();
     }
 
-    //public void ChangeMasteryLevel()
-    //{
-    //    //int input = 0;
-    //    //if (_masteryInput.text != null) input = int.Parse(_masteryInput.text);
-    //    //input = ValidateInput(input, _masteryMax);
-    //    ////_mastery.NewLevel(input);
-    //    //_masteryLevel = input;
-    //    //UpdateDisplay();
-    //}
-
     // could be in update
     public void UpdateSlotNumber()
     {
@@ -120,13 +112,14 @@ public class CardMasteryVisualControl : MonoBehaviour
     {
         _card.NewLevel(_card.BaseLevel);
         _masteryToggle.SetToggle(false);
-        //_mastery.SetEnable(false);
+        _mastery.SetEnable(false);
         Trigger_CardSelectionChange();
         UpdateDisplay();
     }
 
     public void ForceMaxMasteryLevel()
     {
+        _mastery.SetEnable(true);
         _mastery.Lab.NewLevel(_mastery.Lab.MaxLevel);
         UpdateDisplay();
     }
@@ -139,6 +132,7 @@ public class CardMasteryVisualControl : MonoBehaviour
 
     public void ToggleMastery()
     {
+        _mastery.SetEnable(_masteryToggle.IsOn);
         UpdateDisplay();
     }
 
@@ -146,6 +140,11 @@ public class CardMasteryVisualControl : MonoBehaviour
     private void Trigger_CardSelectionChange()
     {
         EventManager.CardSelectionChange(_card);
+    }
+
+    private void UpdateValue(CardMastery mastery)
+    {
+        if (mastery == _mastery) UpdateDisplay();
     }
 
     // could be in update
@@ -156,9 +155,6 @@ public class CardMasteryVisualControl : MonoBehaviour
         _cardInput.placeholder.GetComponent<TextMeshProUGUI>().text = _card.MaxLevel.ToString();
         _cardDescriptionText.text = _card.Description;
 
-
-        //_masteryInput.text = (_masteryLevel == 0) ? "" : _masteryLevel.ToString();
-        //_masteryInput.placeholder.GetComponent<TextMeshProUGUI>().text = _masteryMax.ToString();
         _masteryInput.text = _mastery.Lab.Level.ToString();
         _masteryInput.placeholder.GetComponent<TextMeshProUGUI>().text = _mastery.Lab.MaxLevel.ToString();
         _masteryDescriptionText.text = _mastery.Description;
@@ -188,8 +184,6 @@ public class CardMasteryVisualControl : MonoBehaviour
         if (_cardLevelReset != null) _cardLevelReset.interactable = (_card.BaseLevel != _card.Level);
         if (_cardLevelMax != null) _cardLevelMax.interactable = (_card.MaxLevel != _card.Level);
 
-        //_masteryLevelMax.interactable = (_masteryToggle.IsOn && (_masteryLevel != _masteryMax)); // add a check for not max level
-        //_masteryLevelReset.interactable = (_masteryToggle.IsOn && (_masteryLevel != _masteryBase)); // add a check for not base level
         if (_masteryLevelReset != null) _masteryLevelReset.interactable = (_masteryToggle.IsOn && _mastery.Lab.BaseLevel != _mastery.Lab.Level);
         if (_masteryLevelMax != null) _masteryLevelMax.interactable = (_masteryToggle.IsOn && _mastery.Lab.MaxLevel != _mastery.Lab.Level);
     }
@@ -200,10 +194,4 @@ public class CardMasteryVisualControl : MonoBehaviour
         if (input > max) input = max;
         return input;
     }
-
-
-
-
-
-
 }

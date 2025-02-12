@@ -59,6 +59,7 @@ public class WorkshopUpgradeDisplay : MonoBehaviour
 
     private void ToggleUpgrade()
     {
+        _stat.Upgrade.SetUnlock(_toggle.IsOn);
         _levelInput.enabled = _toggle.IsOn;
         _levelInput.GetComponent<Image>().color = _enabledColor;
         if (!_toggle.IsOn)
@@ -78,6 +79,7 @@ public class WorkshopUpgradeDisplay : MonoBehaviour
 
     public void UnlockGroup()
     {
+        _stat.Upgrade.SetUnlock(_toggle.IsOn);
         EventManager.UpgradeUnlock(_category, _toggle.IsOn);
     }
 

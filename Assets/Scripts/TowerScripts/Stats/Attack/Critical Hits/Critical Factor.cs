@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class CriticalFactor : Stat
 {
-    [SerializeField] private RelicManager _relicManager;
-
     private float _base = 0;
 
     private new void Start()

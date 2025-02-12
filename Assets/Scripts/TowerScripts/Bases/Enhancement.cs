@@ -6,7 +6,8 @@ using static UnityEngine.Rendering.DebugUI;
 public class Enhancement : MonoBehaviour
 {
     [SerializeField] private EnhanceScriptableObject _data;
-    private int _currentLevel = 0;
+    private int _currentLevel = 0; 
+    private bool _isUnlocked = false;
 
     public string ValueDisplay { get { return CreateDescription(); } }
     public float Value { get { return _data.Value(_currentLevel); } }
@@ -14,6 +15,7 @@ public class Enhancement : MonoBehaviour
     public int MaxLevel { get { return _data.MaxLevel; } }
     public int BaseLevel { get { return _data.BaseLevel; } }
     public bool IsMaxLevel { get { return (_currentLevel == MaxLevel); } }
+    public bool IsUnlocked { get { return _isUnlocked; } }
 
     public void NewLevel(int level)
     {
@@ -24,6 +26,11 @@ public class Enhancement : MonoBehaviour
     //{
     //    ChangeLevel(BaseLevel);
     //}
+
+    public void SetUnlock(bool isUnlocked)
+    {
+        _isUnlocked = isUnlocked;
+    }
 
     private string CreateDescription()
     {

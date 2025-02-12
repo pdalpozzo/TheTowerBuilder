@@ -4,7 +4,22 @@ using UnityEngine;
 
 public class WallRegen : Stat
 {
+    [SerializeField] private Stat _healthRegen;             // base
+    [SerializeField] private Stat _wallRegenMultiplier;     // permanant
+
     private float _base = 0;
+
+    private new void Start()
+    {
+        base.Start();
+        EventManager.OnAnyStatChange += UpdateStat;
+    }
+
+    protected void UpdateStat(Stat stat)
+    {
+        if (stat == _healthRegen) UpdateValue();
+        if (stat == _wallRegenMultiplier) UpdateValue();
+    }
 
     protected override void UpdateValue()
     {
@@ -14,12 +29,16 @@ public class WallRegen : Stat
         float multiplier = 1;
 
         // permanant buffs
+        _base = _healthRegen.Value;
+        multiplier *= _wallRegenMultiplier.Value;
         _value = multiplier * (_base + additional);
 
         // in round buffs
+        _base = _healthRegen.InRoundValue;
         _inRoundValue = multiplier * (_base + additional);
 
         // conditional buffs
+        _base = _healthRegen.ConditionalValue;
         _conditionalValue = multiplier * (_base + additional);
 
         CreateDescriptions();
@@ -28,6 +47,6 @@ public class WallRegen : Stat
 
     private void UpdateBase()
     {
-        _base = _lab.Value;
+        _base = 0;
     }
 }

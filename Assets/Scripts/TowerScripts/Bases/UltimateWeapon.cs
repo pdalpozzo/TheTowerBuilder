@@ -24,6 +24,7 @@ public class UltimateWeapon : MonoBehaviour
     public bool IsPlusAvailable { get { return _isPlusAvailable; } }
     public bool IsPlusUnlocked { get { return _isPlusUnlocked; } }
     public Sprite Icon { get { return _icon; } }
+    public UltimateWeaponType UltimateWeaponType { get { return _uwType; } }
 
     private void Awake()
     {

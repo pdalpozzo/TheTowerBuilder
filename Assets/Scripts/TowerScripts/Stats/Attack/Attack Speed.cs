@@ -1,12 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 public class AttackSpeed : Stat
 {
-    [SerializeField] private Card _attackSpeedCard;     // permanant
-    [SerializeField] private Stat _rapidFireMultiplier; // conditional
+    [SerializeField] private Card _attackSpeedCard;         // permanant
+    [SerializeField] private Stat _attackSpeedCardValue;    // permanant
+
+    [SerializeField] private Stat _rapidFireMultiplier;     // conditional
     
     private float _base = 0;
 
@@ -18,7 +17,14 @@ public class AttackSpeed : Stat
     private new void Start()
     {
         base.Start();
+        EventManager.OnAnyStatChange += UpdateStat;
         EventManager.OnAnyCardChange += UpdateValue;
+    }
+
+    protected void UpdateStat(Stat stat)
+    {
+        if (stat == _attackSpeedCardValue) UpdateValue();
+        if (stat == _rapidFireMultiplier) UpdateValue();
     }
 
     private void UpdateValue(Card card)
@@ -36,8 +42,9 @@ public class AttackSpeed : Stat
         // permanant buffs
         multiplier *= _enhancement.Value;
         multiplier *= _lab.Value;
+        //multiplier *= (1 + _relicManager.AttackSpeed);
         if (_subEffect.IsEquipped) additional += _subEffect.Value;
-        if (_attackSpeedCard.IsEquipped) multiplier *= _attackSpeedCard.Value;
+        if (_attackSpeedCard.IsEquipped) multiplier *= _attackSpeedCardValue.Value;
         _value = multiplier * (_base + additional);
 
         // in round buffs

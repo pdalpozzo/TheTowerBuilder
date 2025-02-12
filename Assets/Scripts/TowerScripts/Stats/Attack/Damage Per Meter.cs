@@ -4,14 +4,26 @@ using UnityEngine;
 
 public class DamagePerMeter : Stat
 {
-    [SerializeField] private RelicManager _relicManager;
+    [SerializeField] private Card _rangeCard;               // permanant
+    [SerializeField] private CardMastery _rangeCardMastery; // permanant
 
     private float _base = 0;
 
     private new void Start()
     {
         base.Start();
-        EventManager.OnRelicBonusChange += UpdateValue;
+        EventManager.OnAnyCardChange += UpdateValue;
+        EventManager.OnAnyMasteryChange += UpdateValue;
+    }
+
+    private void UpdateValue(Card card)
+    {
+        if (card == _rangeCard) UpdateValue();
+    }
+
+    private void UpdateValue(CardMastery mastery)
+    {
+        if (mastery == _rangeCardMastery) UpdateValue();
     }
 
     protected override void UpdateValue()
@@ -26,6 +38,8 @@ public class DamagePerMeter : Stat
         multiplier *= _lab.Value;
         if (_subEffect.IsEquipped) additional += _subEffect.Value;
         multiplier *= (1 + _relicManager.DamagePerMeter);
+        if (_rangeCard.IsEquipped && _rangeCardMastery.Enabled)
+            additional += _rangeCardMastery.Value;
         _value = multiplier * (_base + additional);
 
         // in round buffs
@@ -40,6 +54,6 @@ public class DamagePerMeter : Stat
 
     private void UpdateBase()
     {
-        _base = _upgrade.Value;
+        _base = (_upgrade.IsUnlocked) ? _upgrade.Value : _base;
     }
 }

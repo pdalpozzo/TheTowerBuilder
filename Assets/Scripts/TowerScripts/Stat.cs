@@ -17,9 +17,13 @@ public class Stat : MonoBehaviour
     //[SerializeField] protected ModuleSlot _moduleSlot;
     [SerializeField] protected SubEffect _subEffect;
     [SerializeField] protected Effect _effect;
+    [SerializeField] protected RelicManager _relicManager;
+
+    [SerializeField] private bool _displayInCalculations = false;
 
     [SerializeField] private StringFormatType _formatType;
     [SerializeField] private int _decimalPlaces = 2;
+    [SerializeField] private bool _noSymbol = false;
 
     public string Name { get { return _name; } }
     public Upgrade Upgrade { get { return _upgrade; } }
@@ -28,6 +32,9 @@ public class Stat : MonoBehaviour
     //public ModuleSlot ModuleSlot { get { return _moduleSlot; } }
     public SubEffect SubEffect { get { return _subEffect; } }
     public Effect Effect { get { return _effect; } }
+    public StringFormatType FormatType { get { return _formatType; } }
+    public int DecimalPlaces { get { return _decimalPlaces; } }
+    public bool NoSymbol { get { return _noSymbol; } }
 
     /*
      * === VALUE MEANINGS ===
@@ -68,7 +75,7 @@ public class Stat : MonoBehaviour
     {
         if (_upgrade != null || _enhancement != null) EventManager.OnWorkshopChange += UpdateValue;
         if (_lab != null) EventManager.OnAnyLabChange += UpdateValue;
-        //if (_relicManager != null) EventManager.OnRelicBonusChange += UpdateValue;
+        if (_relicManager != null) EventManager.OnRelicBonusChange += UpdateValue;
         //if (_moduleSlot != null) EventManager.OnModuleSlotChange += UpdateValue;
         if (_subEffect != null)
         {

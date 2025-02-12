@@ -50,6 +50,6 @@ public class Lifesteal : Stat
 
     private void UpdateBase()
     {
-        _base = _upgrade.Value;
+        _base = (_upgrade.IsUnlocked) ? _upgrade.Value : _base;
     }
 }

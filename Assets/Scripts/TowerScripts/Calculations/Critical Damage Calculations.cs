@@ -6,7 +6,7 @@ public class CriticalDamageCalculations : MonoBehaviour
 {
     [SerializeField] protected string _name;
 
-    [SerializeField] private DamagePerMeterDamage _damagePerMeterDamage;    // permanant
+    //[SerializeField] private DamagePerMeterDamage _damagePerMeterDamage;    // permanant
     [SerializeField] private Stat _criticalChance;                          // permanant
     [SerializeField] private Stat _criticalFactor;                          // permanant
     [SerializeField] private Stat _superCriticalChance;                     // permanant
@@ -79,26 +79,31 @@ public class CriticalDamageCalculations : MonoBehaviour
         // calculate value
         UpdateBase();
 
-        // base chance for each type of hit
-        _critChance = _criticalChance.Value;
-        _superCritChance = _superCriticalChance.Value;
+        //// base chance for each type of hit
+        //_critChance = _criticalChance.Value;
+        //_superCritChance = _superCriticalChance.Value;
 
-        // base hit is reduce by the percent that is critical
-        _effectiveBasicHitChance = 1 - _critChance;
-        // some critical hits turn into super critical hits
-        _effectiveSuperCritChance = _critChance * _superCriticalChance.Value;
-        // new critical hit is reduce by the percent that is super critical
-        _effectiveCritChance = _critChance - _effectiveSuperCritChance;
+        //// base hit is reduce by the percent that is critical
+        //_effectiveBasicHitChance = 1 - _critChance;
+        //// some critical hits turn into super critical hits
+        //_effectiveSuperCritChance = _critChance * _superCriticalChance.Value;
+        //// new critical hit is reduce by the percent that is super critical
+        //_effectiveCritChance = _critChance - _effectiveSuperCritChance;
 
-        // damage for each type of hit if not 0% chance
-        _basicHitDamage = _maxRangeBase;
-        _critDamage = (_effectiveCritChance > 0) ? _maxRangeBase * _criticalFactor.Value: 0;
-        _superCritDamage = (_effectiveSuperCritChance > 0 && _effectiveCritChance > 0) ? _critDamage * _superCriticalMulti.Value : 0f;
+        // 10% super crit, 70% crit
+        // effective base hit 30%
+        // effective super crit 10% of 70% = 7%
+        // effective crit 100% - eff base hit - eff super crit = 100% - 30% - 7% = 63%
 
-        _noRangeAverageHit = Calculate(_noRangeBase);
-        _maxRangeAverageHit = Calculate(_maxRangeBase);
-        _superTowerAverageHit = Calculate(_superTowerBase);
-        CreateDescriptions();
+        //// damage for each type of hit if not 0% chance
+        //_basicHitDamage = _maxRangeBase;
+        //_critDamage = (_effectiveCritChance > 0) ? _maxRangeBase * _criticalFactor.Value: 0;
+        //_superCritDamage = (_effectiveSuperCritChance > 0 && _effectiveCritChance > 0) ? _critDamage * _superCriticalMulti.Value : 0f;
+
+        //_noRangeAverageHit = Calculate(_noRangeBase);
+        //_maxRangeAverageHit = Calculate(_maxRangeBase);
+        //_superTowerAverageHit = Calculate(_superTowerBase);
+        //CreateDescriptions();
     }
 
     private float Calculate(float damage)
@@ -113,9 +118,9 @@ public class CriticalDamageCalculations : MonoBehaviour
 
     private void UpdateBase()
     {
-        _noRangeBase = _damagePerMeterDamage.BaseDamage;
-        _maxRangeBase = _damagePerMeterDamage.MaxRangeDamage;
-        _superTowerBase = _damagePerMeterDamage.SuperTowerDamage;
+        //_noRangeBase = _damagePerMeterDamage.BaseDamage;
+        //_maxRangeBase = _damagePerMeterDamage.MaxRangeDamage;
+        //_superTowerBase = _damagePerMeterDamage.SuperTowerDamage;
     }
 
     private void CreateDescriptions()

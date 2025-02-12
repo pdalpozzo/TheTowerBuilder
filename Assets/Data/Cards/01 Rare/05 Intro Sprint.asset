@@ -16,16 +16,17 @@ MonoBehaviour:
   _values:
   - 0
   - 20
-  - 25
   - 30
-  - 35
   - 40
-  - 45
   - 50
+  - 60
+  - 80
+  - 100
   _rarity: 1
   _icon: {fileID: 21300000, guid: 5e56e2e4a10864b4591722ed431194b8, type: 3}
   _formatType: 0
   _decimalPlaces: 0
+  _noSymbol: 1
   _prefix: 'Waves Increases by 10 each time, for the first '
   _suffix: ' waves or up to your highest wave. A Boss spawns every waves and no coins
     are earned during Intro Sprint.'
