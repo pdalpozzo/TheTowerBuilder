@@ -19,10 +19,9 @@ public class OnOffToggleControl : MonoBehaviour
     private void Start()
     {
         _isUnlocked = true;
-        UpdateVisuals();
     }
 
-    private void UpdateVisuals()
+    private void Update()
     {
         _label.text = (_isOn) ? "ON" : "OFF";
         if (_on != null) _on.gameObject.SetActive(_isOn);
@@ -33,24 +32,17 @@ public class OnOffToggleControl : MonoBehaviour
     {
         if (!_isUnlocked) return;
         _isOn = _toggle.isOn;
-        UpdateVisuals();
     }
 
     public void SetToggle(bool value)
     {
         _isOn = value;
         _toggle.isOn = value;
-        UpdateVisuals();
     }
 
     public void SetUnlock(bool value)
     {
-        //if (_isUnlocked != value) _toggle.isOn = false;
         _isUnlocked = value;
-        //if (!value) _isOn = false;
-        //_toggle.isOn = false;
-        //_isOn = false;
-        //UpdateVisuals();
         SetToggle(false);
     }
 }

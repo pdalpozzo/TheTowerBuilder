@@ -38,12 +38,7 @@ public class ThemeManager : MonoBehaviour
     public float SongBonus { get { return _songBonus; } }
     public float TotalBonus { get { return (_towerBonus + _backgroundBonus + _songBonus); } }
 
-    private void Awake()
-    {
-        EventManager.OnThemeStatusChange += UpdateCounts;   // triggered by theme
-    }
-
-    private void UpdateCounts()
+    private void Update()
     {
         _activeBackgrounds = 0;
         foreach (Theme theme in _backgroundThemes)
@@ -72,19 +67,16 @@ public class ThemeManager : MonoBehaviour
     public void SetAdditionalTowers(int towers)
     {
         _additionalTowers = towers;
-        UpdateCounts();
     }
 
     public void SetAdditionalBackgrounds(int backgrounds)
     {
         _additionalBackgrounds = backgrounds;
-        UpdateCounts();
     }
 
     public void SetAdditionalSongs(int songs)
     {
         _additionalSongs = songs;
-        UpdateCounts();
     }
 
     public void ForceAll(bool isOn)

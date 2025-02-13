@@ -15,7 +15,7 @@ public class ProjectileDamage : Stat
     {
         base.Start();
         _isLightSpeed = _lab.IsMaxLevel;
-        EventManager.OnAnyStatChange += UpdateValue;
+        EventManager.OnAnyStatChange += UpdateStat;
         EventManager.OnAnyCardChange += UpdateValue;
     }
 
@@ -25,7 +25,7 @@ public class ProjectileDamage : Stat
         return value;
     }
 
-    protected override void UpdateValue(Stat stat)
+    protected void UpdateStat(Stat stat)
     {
         if (stat == _damageStat) UpdateValue();
     }

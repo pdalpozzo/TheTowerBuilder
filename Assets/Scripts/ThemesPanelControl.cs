@@ -21,15 +21,9 @@ public class ThemesPanelControl : MonoBehaviour
     [SerializeField] private TMP_InputField _additionalBackgroundInput;
     [SerializeField] private TMP_InputField _additionalSongInput;
 
-    private void Awake()
-    {
-        EventManager.OnThemeStatusChange += UpdateBonuses;   // triggered by theme
-    }
-
     private void Start()
     {
         ToggleThemes();
-        UpdateBonuses();
     }
 
     public void ToggleThemes()
@@ -39,7 +33,7 @@ public class ThemesPanelControl : MonoBehaviour
         _songThemes.SetActive(_songButton.isOn);
     }
 
-    private void UpdateBonuses()
+    private void Update()
     {
         _totalCoinBonus.text = "+" + _themes.TotalBonus.ToString("P1");
     }
@@ -61,7 +55,6 @@ public class ThemesPanelControl : MonoBehaviour
         if (input < 0) input = 0;
         _additionalTowersInput.text = input.ToString();
         _themes.SetAdditionalTowers(input);
-        UpdateBonuses();
     }
 
     public void SetAdditionalBackgrounds()
@@ -71,7 +64,6 @@ public class ThemesPanelControl : MonoBehaviour
         if (input < 0) input = 0;
         _additionalBackgroundInput.text = input.ToString();
         _themes.SetAdditionalBackgrounds(input);
-        UpdateBonuses();
     }
 
     public void SetAdditionalSongs()
@@ -81,6 +73,5 @@ public class ThemesPanelControl : MonoBehaviour
         if (input < 0) input = 0;
         _additionalSongInput.text = input.ToString();
         _themes.SetAdditionalSongs(input);
-        UpdateBonuses();
     }
 }

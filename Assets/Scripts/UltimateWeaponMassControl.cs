@@ -25,7 +25,6 @@ public class UltimateWeaponMassControl : MonoBehaviour
         _poisonSwamp.ForceOnUltimateWeapon();
         _smartMissiles.ForceOnUltimateWeapon();
         _spotlight.ForceOnUltimateWeapon();
-
     }
 
     public void AllOff() 

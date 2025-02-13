@@ -8,32 +8,21 @@ public class ThemeVisualControl : MonoBehaviour
 {
     [SerializeField] private Theme _theme;
     [SerializeField] private TextMeshProUGUI _nameText;
-    [SerializeField] private Toggle _mainToggle;
-    [SerializeField] private Image _icon;
-    [SerializeField] private Image _fade;
-
-    private void Awake()
-    {
-        EventManager.OnThemeStatusChange += UpdateVisual;   // triggered by theme
-    }
+    [SerializeField] private OnOffToggleControl _toggle;
 
     // Start is called before the first frame update
     private void Start()
     {
-        _nameText.text = _theme.Name;
-        _icon.sprite = _theme.Icon;
-        UpdateVisual();
+        if (_nameText != null) _nameText.text = _theme.Name;
     }
 
     public void ToggleTheme()
     {
-        _theme.ChangeActive(_mainToggle.isOn);
-        UpdateVisual();
+        _theme.ChangeActive(_toggle.IsOn);
     }
 
-    private void UpdateVisual()
+    private void Update()
     {
-        if (_mainToggle.isOn != _theme.IsOn) _mainToggle.isOn = _theme.IsOn;
-        _fade.gameObject.SetActive(!_mainToggle.isOn);
+        if (_toggle.IsOn != _theme.IsOn) _toggle.SetToggle(_theme.IsOn);
     }
 }
