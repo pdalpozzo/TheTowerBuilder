@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UltimateWeaponManager : MonoBehaviour
@@ -17,17 +15,6 @@ public class UltimateWeaponManager : MonoBehaviour
     [SerializeField] private UltimateWeapon _poisonSwamp;
     [SerializeField] private UltimateWeapon _smartMissiles;
     [SerializeField] private UltimateWeapon _spotlight;
-
-    public int UnlockedCount {  get { return _unlockedCount; } }
-    public UltimateWeapon BlackHole { get { return _blackHole; } }
-    public UltimateWeapon ChainLightning { get { return _chainLightning; } }
-    public UltimateWeapon ChronoField { get { return _chronoField; } }
-    public UltimateWeapon DeathWave { get { return _deathWave; } }
-    public UltimateWeapon GoldenTower { get { return _goldenTower; } }
-    public UltimateWeapon InnerLandMines { get { return _innerLandMines; } }
-    public UltimateWeapon PoisonSwamp { get { return _poisonSwamp; } }
-    public UltimateWeapon SmartMissles { get { return _smartMissiles; } }
-    public UltimateWeapon Spotlight { get { return _spotlight; } }
 
     private void Awake()
     {

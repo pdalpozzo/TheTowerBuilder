@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Windows;
 
 public class RelicMassControl : MonoBehaviour
 {
@@ -38,17 +35,7 @@ public class RelicMassControl : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _botRangeText;
     [SerializeField] private TextMeshProUGUI _ultimateDamageText;
 
-    private void Awake()
-    {
-        EventManager.OnRelicBonusChange += UpdateVisuals;   // triggered by relic manager
-    }
-
-    private void Start()
-    {
-        UpdateVisuals();
-    }
-
-    private void UpdateVisuals()
+    private void Update()
     {
         int decimals = 0;
         StringFormatType format = StringFormatType.PERCENT;
@@ -93,22 +80,6 @@ public class RelicMassControl : MonoBehaviour
     {
         _relics.ForceAll(false);
     }
-
-    //private float GetInput(TMP_InputField inputField)
-    //{
-    //    int input = 0;
-    //    if (inputField.text != null) input = int.Parse(inputField.text);
-    //    if (input < 0) input = 0;
-    //    inputField.text = input.ToString();
-    //    float percent = (float)input / 100;
-    //    return percent;
-    //}
-
-    //public void SetAdditionalLabSpeed()
-    //{
-    //    float input = GetInput(_additionalLabSpeedInput);
-    //    _relics.SetAdditionalLabSpeed(input);
-    //}
 
     private string GetStringFormat(float value, StringFormatType format, int decimalPlaces)
     {

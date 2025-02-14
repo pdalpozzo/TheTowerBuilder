@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum Rarity { COMMON, RARE, EPIC, LEGENDARY, MYTHIC, ANCESTRAL }; 
@@ -19,7 +17,6 @@ public class RarityColors : MonoBehaviour
 
     public static Color GetColor(Rarity rarity)
     {
-        // new way to do switch statements?
         return rarity switch
         {
             Rarity.COMMON => _common,

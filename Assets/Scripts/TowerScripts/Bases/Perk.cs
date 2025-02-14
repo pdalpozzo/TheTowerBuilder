@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 public enum PerkType { COMMON, UWPERK, TRADEOFF };
@@ -21,34 +18,15 @@ public class Perk : MonoBehaviour
     [SerializeField] private Stat _tradeOffPerkBonus;      // lab
 
     public float Value { get { return _currentValue; } }
-
-    public string Name { get { return _data.Name; } }
-    public string Tooltip { get { return _data.Tooltip; } }
-    public string Prefix { get { return _data.Prefix; } }
-    public string Middle { get { return _data.Middle; } }
-    public string Suffix { get { return _data.Suffix; } }
     public PerkType PerkType { get {  return _data.PerkType; } }
-    public float BaseValue { get { return _data.BaseValue; } }
-    public float Increment { get { return _data.Increment; } }
     public float NegativeValue { get { return _data.NegativeValue; } }
-    public int MaxStacks { get { return _data.MaxStacks; } }
     public Sprite Icon { get { return _data.Icon; } }
     public StringFormatType ValueOneFormat { get { return _data.ValueOneFormat; } }
-    public StringFormatType ValueTwoFormat { get { return _data.ValueTwoFormat; } }
     public int ValueOneDecimalPlaces { get { return _data.ValueOneDecimalPlaces; } }
-    public int ValueTwoDecimalPlaces { get { return _data.ValueTwoDecimalPlaces; } }
-    public bool ShowValue { get { return _data.ShowValue; } }
-    public bool ShowNegValue { get { return _data.ShowNegValue; } }
-    public bool IsRangedTradeOff { get { return _data.IsRangedTradeOff; } }
 
     public bool IsBanned { get { return _isBanned; } }
     public bool IsPriority { get { return _isPriority; } }
     public bool IsInteractive { get { return _isInteractive; } }
-
-    private void Awake()
-    {
-
-    }
 
     private void Start()
     {
@@ -64,17 +42,11 @@ public class Perk : MonoBehaviour
         if (stat == _tradeOffPerkBonus) SetTradeOffMultiplier(stat.Value);
     }
 
-    public float GetValue()
-    {
-        return _currentValue;
-    }
-
     public string GetStacksInfo()
     {
-        if (MaxStacks <= 1) return string.Empty;
-        string stackValue = GetStringFormat(Increment, ValueOneFormat, ValueOneDecimalPlaces);
-        //string value = _currentValue.ToString("N0");
-        string text = MaxStacks.ToString("N0") + " Stacks. Each: " + stackValue;
+        if (_data.MaxStacks <= 1) return string.Empty;
+        string stackValue = GetStringFormat(_data.Increment * (1 + _standardMultiplier), ValueOneFormat, ValueOneDecimalPlaces);
+        string text = _data.MaxStacks.ToString("N0") + " Stacks. Each: " + stackValue;
         return text;
     }
 
@@ -137,36 +109,36 @@ public class Perk : MonoBehaviour
 
     private void CalculatingValues()
     {
-        if (PerkType == PerkType.UWPERK) _currentValue = BaseValue;
-        if (PerkType == PerkType.TRADEOFF)
+        if (_data.PerkType == PerkType.UWPERK) _currentValue = _data.BaseValue;
+        if (_data.PerkType == PerkType.TRADEOFF)
         {
-            _currentValue = (BaseValue * MaxStacks) * (1f + _tradeOffMultiplier);
+            _currentValue = (_data.BaseValue * _data.MaxStacks) * (1f + _tradeOffMultiplier);
             return;
         }
 
-        _currentValue = (BaseValue + (Increment * MaxStacks)) * (1f + _standardMultiplier);
+        _currentValue = (_data.BaseValue + (_data.Increment * _data.MaxStacks)) * (1f + _standardMultiplier);
     }
 
     private void CreateDescription()
     {
         string value = "";
-        string text = Prefix;
+        string text = _data.Prefix;
 
-        if (ShowValue)
+        if (_data.ShowValue)
         {
-            value = GetStringFormat(_currentValue, ValueOneFormat, ValueOneDecimalPlaces);
+            value = GetStringFormat(_currentValue, _data.ValueOneFormat, _data.ValueOneDecimalPlaces);
             text += value;
         }
-        text += Middle;
+        text += _data.Middle;
 
-        if (PerkType == PerkType.TRADEOFF)
+        if (_data.PerkType == PerkType.TRADEOFF)
         {
-            if (ShowNegValue)
+            if (_data.ShowNegValue)
             {
-                value = GetStringFormat(NegativeValue, ValueTwoFormat, ValueTwoDecimalPlaces);
+                value = GetStringFormat(_data.NegativeValue, _data.ValueTwoFormat, _data.ValueTwoDecimalPlaces);
                 text += value;
             }
-            text += Suffix;
+            text += _data.Suffix;
         }
         _currentDescription = text;
     }
@@ -175,5 +147,4 @@ public class Perk : MonoBehaviour
     {
         return StringFormating.Format(value, formatType, decimalPlaces);
     }
-
 }

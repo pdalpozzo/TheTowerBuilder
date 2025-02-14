@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum RelicType { DAMAGE, ATTACK_SPEED, CRIT_CHANCE, CRIT_FACTOR, RANGE, DAMAGE_PER_METER, SUPER_CRIT_CHANCE, SUPER_CRIT_MULTI,
@@ -10,7 +8,6 @@ public enum RelicType { DAMAGE, ATTACK_SPEED, CRIT_CHANCE, CRIT_FACTOR, RANGE, D
 
 public class Relic : MonoBehaviour
 {
-
     [SerializeField] private RelicScriptableObject _data;
     [SerializeField] private bool _isOn = false;
     private string _tooltipMessage;
@@ -19,10 +16,7 @@ public class Relic : MonoBehaviour
     public string TooltipMessage { get { return _tooltipMessage; } }
     public bool IsOn { get { return _isOn; } }
     public RelicType Type { get { return _data.RelicType; } }
-    public Rarity Rarity { get { return _data.Rarity; } }
     public float Value { get { return _data.Value; } }
-    public StringFormatType Format { get { return _data.FormatType; } }
-    public int DecimalPlaces { get { return _data.DecimalPlaces; } }
 
     private void Awake()
     {
@@ -56,7 +50,7 @@ public class Relic : MonoBehaviour
     private string MessageString()
     {
         string message = string.Empty;
-        switch (Type)
+        switch (_data.RelicType)
         {
             case RelicType.DAMAGE:
                 message = "Increase tower damage by ";

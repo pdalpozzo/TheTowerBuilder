@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Perk", menuName = "ScriptableObjects/Perk")]
@@ -26,8 +24,6 @@ public class PerkScriptableObject : ScriptableObject
     [SerializeField] private StringFormatType _valueTwoFormat;
     [SerializeField] private int _valueTwoDecimalPlaces = 0;
 
-    public string Name { get { return _perkName; } }
-    public string Tooltip { get { return _tooltipMessage; } }
     public string Prefix { get { return _prefix; } }
     public string Middle { get { return _middle; } }
     public string Suffix { get { return _suffix; } }
@@ -43,5 +39,4 @@ public class PerkScriptableObject : ScriptableObject
     public int ValueTwoDecimalPlaces { get { return _valueTwoDecimalPlaces; } }
     public bool ShowValue { get { return _showValue; } }
     public bool ShowNegValue { get { return _showNegValue; } }
-    public bool IsRangedTradeOff { get { return _isRangedTradeOff; } }
 }

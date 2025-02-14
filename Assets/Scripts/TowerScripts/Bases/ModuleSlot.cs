@@ -1,8 +1,5 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 
 public class ModuleSlot : MonoBehaviour
 {
@@ -10,7 +7,6 @@ public class ModuleSlot : MonoBehaviour
     [SerializeField] private int _currentLevel = 1;
     [SerializeField] private float _currentValue;
     [SerializeField] private Rarity _currentRarity = Rarity.COMMON;
-    //[SerializeField] private ModuleType _type;
     [SerializeField] private float _valueIncrement;
     [SerializeField] private StringFormatType _formatType;
     [SerializeField] private int _decimalPlaces = 2;
@@ -28,7 +24,6 @@ public class ModuleSlot : MonoBehaviour
     [SerializeField] private int _slotsUnlocked = 0;
 
     public string Name { get { return _data.Name; } }
-    public string ModuleName { get { return _equippedModule.Name; } }
     public string Bonus { get { return _bonusText; } }
     public float Value { get { return _currentValue; } }
     public int MaxLevel { get { return GetMaxLevel(); } }
@@ -43,9 +38,7 @@ public class ModuleSlot : MonoBehaviour
     public Rarity ModuleBaseRarity { get { return _equippedModule.BaseRarity; } }
     public Rarity Rarity { get { return _currentRarity; } }
     public List<Module> ModuleList { get { return _modules; } }
-    public List<SubEffect> SubEffectsList { get { return _subEffects; } }
     public Module EquippedModule { get { return _equippedModule; } }
-    public List<SubEffect> EquippedSubEffects { get { return _equippedSubEffects; } }
     public string Description { get { return CreateDescription(); } }
 
 

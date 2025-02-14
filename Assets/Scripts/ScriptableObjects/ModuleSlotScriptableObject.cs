@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum ModuleType { CANNON, ARMOR, GENERATOR, CORE };
@@ -8,7 +6,6 @@ public enum ModuleType { CANNON, ARMOR, GENERATOR, CORE };
 public class ModuleSlotScriptableObject : ScriptableObject
 {
     [SerializeField] private string _slotName;
-    [SerializeField] private string _suffix;
     [SerializeField] private ModuleType _type;
     [SerializeField] private StringFormatType _formatType;
     [SerializeField] private int _decimalPlaces = 3;
@@ -16,7 +13,6 @@ public class ModuleSlotScriptableObject : ScriptableObject
     [SerializeField] private float _increment = 0;
 
     public string Name { get { return _slotName; } }
-    public string Suffix { get { return _suffix; } }
     public ModuleType ModuleType { get { return _type; } }
     public int DecimalPlaces { get { return _decimalPlaces; } }
     public StringFormatType FormatType { get { return _formatType; } }

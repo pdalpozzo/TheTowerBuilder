@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 [CreateAssetMenu (fileName ="Upgrade", menuName = "ScriptableObjects/Upgrade")]
@@ -35,8 +32,6 @@ public class UpgradeScriptableObject : ScriptableObject
 
     private float IncrementalValue(int level)
     {
-        //float value = _baseValue;
-        //value += (_valueIncrement * level);
         return (_baseValue + (_valueIncrement * level));
     }
 
@@ -54,7 +49,7 @@ public class UpgradeScriptableObject : ScriptableObject
 
     private float AllValues(int level)
     {
-        if (_valueIncrements.Count() < level) return 0;
+        if (_valueIncrements.Length < level) return 0;
         return _valueIncrements[level];
     }
 

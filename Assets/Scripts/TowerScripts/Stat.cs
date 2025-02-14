@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Stat : MonoBehaviour
@@ -28,9 +26,6 @@ public class Stat : MonoBehaviour
     public string Name { get { return _name; } }
     public Upgrade Upgrade { get { return _upgrade; } }
     public Enhancement Enhancement { get { return _enhancement; } }
-    public Lab Lab { get { return _lab; } }
-    //public ModuleSlot ModuleSlot { get { return _moduleSlot; } }
-    public SubEffect SubEffect { get { return _subEffect; } }
     public Effect Effect { get { return _effect; } }
     public StringFormatType FormatType { get { return _formatType; } }
     public int DecimalPlaces { get { return _decimalPlaces; } }
@@ -95,12 +90,6 @@ public class Stat : MonoBehaviour
     {
         if (lab == _lab) UpdateValue();
     }
-
-    //private void UpdateValue(ModuleSlot slot)
-    //private void UpdateValue(ModuleSlot slot)
-    //{
-    //    if (slot == _moduleSlot) UpdateValue();
-    //}
 
     private void UpdateValue(SubEffect subEffect)
     {

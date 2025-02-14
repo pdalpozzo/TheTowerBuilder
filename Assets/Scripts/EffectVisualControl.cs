@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.CullingGroup;
 
 public class EffectVisualControl : MonoBehaviour
 {
@@ -33,16 +30,14 @@ public class EffectVisualControl : MonoBehaviour
         _maxLevelColour = RarityColors.GetMax();
 
         _nameText.text = _stat.Effect.Name;
-        UpdateVisuals();
     }
 
     private void StatChanged(Stat stat)
     {
         if (stat != _stat) return;
-        UpdateVisuals();
     }
 
-    private void UpdateVisuals()
+    private void Update()
     {
         _downTen.interactable = _stat.Effect.Level > _stat.Effect.BaseLevel;
         _downOne.interactable = _stat.Effect.Level > _stat.Effect.BaseLevel;
@@ -60,13 +55,11 @@ public class EffectVisualControl : MonoBehaviour
     public void SetInteraction(bool interact)
     {
         _canInteract = interact;
-        UpdateVisuals();
     }
 
     public void LevelChange(int levelChange)
     {
         if (!_canInteract) return;
         _stat.Effect.SetLevel(levelChange);
-        UpdateVisuals();
     }
 }

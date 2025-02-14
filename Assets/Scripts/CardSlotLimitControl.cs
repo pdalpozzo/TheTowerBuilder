@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class CardSlotLimitControl : MonoBehaviour
 {
-
     [SerializeField] private TMP_InputField _unlockedSlotInput;
 
     private void Awake()
@@ -18,6 +15,4 @@ public class CardSlotLimitControl : MonoBehaviour
         _unlockedSlotInput.placeholder.GetComponent<TextMeshProUGUI>().text = max.ToString();
         _unlockedSlotInput.text = (unlocked == 0) ? "" : unlocked.ToString();
     }
-
-
 }

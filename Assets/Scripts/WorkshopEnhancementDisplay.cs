@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class WorkshopEnhancementDisplay : MonoBehaviour
@@ -22,7 +20,6 @@ public class WorkshopEnhancementDisplay : MonoBehaviour
 
     private void Awake()
     {
-        EventManager.OnAnyStatChange += StatChanged;
         EventManager.OnEnhancementForceReset += ForceEnhancementReset;
         EventManager.OnEnhancementForceUnlock += ForceEnhancementUnlock;
 
@@ -51,6 +48,7 @@ public class WorkshopEnhancementDisplay : MonoBehaviour
             _levelInput.GetComponent<Image>().color = _disabledColor;
             _stat.Enhancement.NewLevel(0);
         }
+        UpdateInputField();
         EventManager.WorkshopChange(_stat);
     }
 
@@ -71,22 +69,21 @@ public class WorkshopEnhancementDisplay : MonoBehaviour
         int input = 0;
         if (_levelInput.text != null) input = int.Parse(_levelInput.text);
         input = ValidateInput(input, _stat.Enhancement.MaxLevel);
-        _stat.Enhancement.NewLevel(input);
+        _stat.Enhancement.NewLevel(input); 
+        UpdateInputField();
         EventManager.WorkshopChange(_stat);
     }
 
-    private void StatChanged(Stat stat)
+    private void UpdateInputField()
     {
-        if (stat != _stat) return;
-        EnchanceDisplayText();
+        _levelInput.text = (_stat.Enhancement.Level == 0) ? "" : _stat.Enhancement.Level.ToString();
     }
 
-    private void EnchanceDisplayText()
+    private void Update()
     {
         string placeholder = (_toggle.IsOn) ? _stat.Enhancement.MaxLevel.ToString() : "";
         _placeholderText.text = placeholder;
         _valueText.text = _stat.Enhancement.ValueDisplay;
-        _levelInput.text = (_stat.Enhancement.Level == 0) ? "" : _stat.Enhancement.Level.ToString();
         _valueText.color = (_stat.Enhancement.IsMaxLevel) ? _maxLevelColour : _defaultColour;
         _levelText.color = (_stat.Enhancement.IsMaxLevel) ? _maxLevelColour : _defaultColour;
         _nameText.color = (_stat.Enhancement.IsMaxLevel) ? _maxLevelColour : _defaultColour;

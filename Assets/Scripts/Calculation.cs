@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public enum DisplayCalc { BASIC, IN_ROUND, CONDITIONAL }
 
@@ -13,8 +10,6 @@ public class Calculation : MonoBehaviour
     [SerializeField] private Stat _stat;
 
     private DisplayCalc _displayCalc = DisplayCalc.BASIC;
-
-    //public TextMeshProUGUI Value { get { return _value; } set { _value = value; } }
 
     private void Start()
     {

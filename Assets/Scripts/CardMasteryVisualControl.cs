@@ -1,15 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.Presets;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Windows;
 
 public class CardMasteryVisualControl : MonoBehaviour
 {
-
     [SerializeField] private Card _card;
     [SerializeField] private CardMastery _mastery;
     [SerializeField] private Stat _stat;
@@ -46,16 +40,10 @@ public class CardMasteryVisualControl : MonoBehaviour
     private Color _maxLevelColour;
     private Color _masteryColour;
 
-    //private int _masteryLevel = 0;
-    //private int _masteryMax = 9;
-    //private int _masteryBase = 0;
-
     private void Awake()
     {
-        EventManager.OnEquippedCardsChange += UpdateSlotNumber; // triggered by cards holder
         EventManager.OnCardForceReset += ForceCardReset;        // triggered by cards mass control
         EventManager.OnCardForceMax += ForceMaxCardLevel;       // triggered by cards mass control
-        EventManager.OnAnyMasteryChange += UpdateValue;
     }
 
     private void Start()
@@ -71,8 +59,8 @@ public class CardMasteryVisualControl : MonoBehaviour
         _maxLevelColour = RarityColors.GetColor(Rarity.EPIC);
         _masteryColour = RarityColors.GetColor(Rarity.ANCESTRAL);
 
-        UpdateDisplay();
-        UpdateSlotNumber();
+        _cardInput.placeholder.GetComponent<TextMeshProUGUI>().text = _card.MaxLevel.ToString();
+        _masteryInput.placeholder.GetComponent<TextMeshProUGUI>().text = _mastery.Lab.MaxLevel.ToString();
     }
 
     public void EquipChange()
@@ -92,20 +80,13 @@ public class CardMasteryVisualControl : MonoBehaviour
             Trigger_CardSelectionChange();
         }
 
-        UpdateDisplay();
-    }
-
-    // could be in update
-    public void UpdateSlotNumber()
-    {
-        _slot.SetActive(_card.IsEquipped);
-        _slotNumberText.text = (_card.IsEquipped) ? (_card.Slot + 1).ToString("N0") : "0";
+        UpdateInputField();
     }
 
     public void ForceMaxCardLevel()
     {
         _card.NewLevel(_card.MaxLevel);
-        UpdateDisplay();
+        UpdateInputField();
     }
 
     public void ForceCardReset()
@@ -114,26 +95,23 @@ public class CardMasteryVisualControl : MonoBehaviour
         _masteryToggle.SetToggle(false);
         _mastery.SetEnable(false);
         Trigger_CardSelectionChange();
-        UpdateDisplay();
+        UpdateInputField();
     }
 
     public void ForceMaxMasteryLevel()
     {
         _mastery.SetEnable(true);
         _mastery.Lab.NewLevel(_mastery.Lab.MaxLevel);
-        UpdateDisplay();
     }
 
     public void ForceMasteryReset()
     {
         _mastery.Lab.NewLevel(_mastery.Lab.BaseLevel);
-        UpdateDisplay();
     }
 
     public void ToggleMastery()
     {
         _mastery.SetEnable(_masteryToggle.IsOn);
-        UpdateDisplay();
     }
 
     // trigger when the card UI has been click to assign the card to a slot
@@ -142,21 +120,19 @@ public class CardMasteryVisualControl : MonoBehaviour
         EventManager.CardSelectionChange(_card);
     }
 
-    private void UpdateValue(CardMastery mastery)
+    private void UpdateInputField()
     {
-        if (mastery == _mastery) UpdateDisplay();
+        _cardInput.text = (_card.Level == 0) ? "" : _card.Level.ToString();
+        _masteryInput.text = _mastery.Lab.Level.ToString();
     }
 
-    // could be in update
-    private void UpdateDisplay()
+    private void Update()
     {
-        _fade.SetActive((_card.Level == 0));
-        _cardInput.text = (_card.Level == 0) ? "" : _card.Level.ToString();
-        _cardInput.placeholder.GetComponent<TextMeshProUGUI>().text = _card.MaxLevel.ToString();
-        _cardDescriptionText.text = _card.Description;
+        _slot.SetActive(_card.IsEquipped);
+        _slotNumberText.text = (_card.IsEquipped) ? (_card.Slot + 1).ToString("N0") : "0";
 
-        _masteryInput.text = _mastery.Lab.Level.ToString();
-        _masteryInput.placeholder.GetComponent<TextMeshProUGUI>().text = _mastery.Lab.MaxLevel.ToString();
+        _fade.SetActive((_card.Level == 0));
+        _cardDescriptionText.text = _card.Description;
         _masteryDescriptionText.text = _mastery.Description;
 
         Color assignColour = _defaultColour;

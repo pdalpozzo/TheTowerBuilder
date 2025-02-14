@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bot : MonoBehaviour
@@ -23,57 +21,4 @@ public class Bot : MonoBehaviour
         _isOn = isOn;
         EventManager.BotChanged(this);
     }
-
-    public float GetEffectValue(EffectSlot effectSlot)
-    {
-        return SelectEffectSlot(effectSlot).Value;
-    }
-
-    public string GetEffectValueString(EffectSlot effectSlot)
-    {
-        return SelectEffectSlot(effectSlot).ValueString();
-    }
-
-    public string GetEffectName(EffectSlot effectSlot)
-    {
-        return SelectEffectSlot(effectSlot).Name;
-    }
-
-    public int GetEffectLevel(EffectSlot effectSlot)
-    {
-        return SelectEffectSlot(effectSlot).Level;
-    }
-
-    public int GetEffectMaxLevel(EffectSlot effectSlot)
-    {
-        return SelectEffectSlot(effectSlot).MaxLevel;
-    }
-
-    public int GetEffectBaseLevel(EffectSlot effectSlot)
-    {
-        return SelectEffectSlot(effectSlot).BaseLevel;
-    }
-
-    public bool GetEffectIsMax(EffectSlot effectSlot)
-    {
-        return SelectEffectSlot(effectSlot).IsMaxLevel;
-    }
-
-    public void ChangeEffectLevel(EffectSlot effectSlot, int levelChange)
-    {
-        SelectEffectSlot(effectSlot).SetLevel(levelChange);
-    }
-
-    private Effect SelectEffectSlot(EffectSlot effectSlot)
-    {
-        return effectSlot switch
-        {
-            EffectSlot.ONE => _one,
-            EffectSlot.TWO => _two,
-            EffectSlot.THREE => _three,
-            EffectSlot.FOUR => _four,
-            _ => _one,
-        };
-    }
-
 }

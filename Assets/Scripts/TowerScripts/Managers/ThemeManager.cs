@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ThemeManager : MonoBehaviour
@@ -27,15 +25,6 @@ public class ThemeManager : MonoBehaviour
     private int _additionalBackgrounds = 0;
     private int _additionalSongs = 0;
 
-    public int BackgroundCount { get { return _backgroundThemes.Length; } }
-    public int TowerCount { get { return _towerThemes.Length; } }
-    public int SongCount { get { return _songThemes.Length; } }
-    public int ActiveBackgrounds { get { return _activeBackgrounds; } }
-    public int ActiveTowers { get { return _activeTowers; } }
-    public int ActiveSongs { get { return _activeSongs; } }
-    public float BackgroundBonus { get { return _backgroundBonus; } }
-    public float TowerBonus { get { return _towerBonus; } }
-    public float SongBonus { get { return _songBonus; } }
     public float TotalBonus { get { return (_towerBonus + _backgroundBonus + _songBonus); } }
 
     private void Update()

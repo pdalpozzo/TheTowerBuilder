@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
-public enum EffectSlot { ONE, TWO, THREE, FOUR, PLUS };
 
 public class Effect : MonoBehaviour
 {
@@ -15,21 +11,6 @@ public class Effect : MonoBehaviour
     public int Level { get { return _currentLevel; } }
     public float Value { get { return _data.GetValue(_currentLevel); } }
     public bool IsMaxLevel { get { return (_currentLevel == MaxLevel); } }
-
-    public string ValueString() 
-    {
-        return _data.GetStringFormat(Value);
-    }
-
-    //public int GetLevel()
-    //{
-    //    return _level;
-    //}
-
-    //public float GetValue(int level)
-    //{
-    //    return _levelValues.GetValue(level);
-    //}
 
     public void SetLevel(int levelChange)
     {

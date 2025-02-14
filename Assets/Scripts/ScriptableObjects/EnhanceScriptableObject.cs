@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 [CreateAssetMenu(fileName = "Enhancement", menuName = "ScriptableObjects/Enhancement")]
 public class EnhanceScriptableObject : ScriptableObject
@@ -14,7 +11,6 @@ public class EnhanceScriptableObject : ScriptableObject
 
     public int BaseLevel { get { return _baseLevel; } }
     public int MaxLevel { get { return _maxLevel; } }
-
 
     public float Value(int level)
     {

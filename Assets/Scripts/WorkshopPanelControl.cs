@@ -101,5 +101,4 @@ public class WorkshopPanelControl : MonoBehaviour
             if (upgrade.Category >= category) upgrade.ForceUpgradeReset();
         }
     }
-
 }

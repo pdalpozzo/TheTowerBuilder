@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,7 +19,6 @@ public class SubEffectVisualControl : MonoBehaviour
 
     private void Start()
     {
-        //EventManager.OnModuleRarityChange += UpdateDisplay;     // triggered by module slot
         EventManager.OnSubEffectLimitChange += SubEffectLimit;    // triggered by module slot
     }
 
@@ -32,7 +28,6 @@ public class SubEffectVisualControl : MonoBehaviour
         int enumCount = Enum.GetNames(typeof(Rarity)).Length;
         if ((int)newRarity >= enumCount) newRarity = Rarity.ANCESTRAL;
         _subEffect.ChangeRarity(newRarity);
-        UpdateDisplay();
         SubEffectRarityChange();
     }
 
@@ -41,7 +36,6 @@ public class SubEffectVisualControl : MonoBehaviour
         Rarity newRarity = _subEffect.Rarity - 1;
         if (newRarity < _subEffect.BaseRarity) newRarity = _subEffect.BaseRarity;
         _subEffect.ChangeRarity(newRarity);
-        UpdateDisplay();
         SubEffectRarityChange();
     }
 
@@ -63,10 +57,9 @@ public class SubEffectVisualControl : MonoBehaviour
         {
             if(!_subEffect.IsEquipped) _toggle.SetUnlock(false);
         }
-        UpdateDisplay();
     }
 
-    private void UpdateDisplay()
+    private void Update()
     {
         _toggle.SetToggle(_subEffect.IsEquipped);
 
@@ -82,9 +75,7 @@ public class SubEffectVisualControl : MonoBehaviour
         _up.interactable = (_subEffect.Rarity != Rarity.ANCESTRAL);
         _down.interactable = (_subEffect.Rarity != _subEffect.BaseRarity);
 
-        //if (_moduleSlotsAreFull || (_subEffect.ModuleRarity < _subEffect.BaseRarity))
-        if (_fade != null) 
-                _fade.SetActive((_moduleSlotsAreFull && !_subEffect.IsEquipped) || (_subEffect.ModuleRarity < _subEffect.BaseRarity));
-
+        if (_fade != null)
+            _fade.SetActive((_moduleSlotsAreFull && !_subEffect.IsEquipped) || (_subEffect.ModuleRarity < _subEffect.BaseRarity));
     }
 }

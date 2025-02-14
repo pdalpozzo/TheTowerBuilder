@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 public class Card : MonoBehaviour
 {
@@ -14,7 +11,6 @@ public class Card : MonoBehaviour
 
     public string Name { get { return _data.Name; } }
     public float Value { get { return CalculateValue(_currentLevel); } }
-    public float BaseValue { get { return CalculateValue(0); } }
     public int Level { get { return _currentLevel; } }
     public int Slot { get { return _slotNumber; } }
     public bool IsEquipped { get { return _isEquipped; } }
@@ -22,7 +18,6 @@ public class Card : MonoBehaviour
     public Sprite Icon { get { return _data.Icon; } }
     public int MaxLevel { get { return _data.MaxLevel; } }
     public int BaseLevel { get { return _data.BaseLevel; } }
-    public string ValueDisplay { get { return CreateValueDisplay(_currentLevel); } }
     public string Description { get { return CreateDescription(); } }
 
     public void NewLevel(int level)

@@ -1,12 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Windows;
 
 public class ModuleVisualControl : MonoBehaviour
 {
@@ -48,18 +44,13 @@ public class ModuleVisualControl : MonoBehaviour
         _levelInput.placeholder.GetComponent<TextMeshProUGUI>().text = _moduleSlot.MaxLevel.ToString();
     }
 
-    private void Start()
-    {
-        UpdateDisplay();
-    }
-
     public void LevelChange()
     {
         int input = 0;
         if (_levelInput.text != null) input = int.Parse(_levelInput.text);
         input = ValidateInput(input, _moduleSlot.MaxLevel);
         _moduleSlot.NewLevel(input);
-        UpdateDisplay();
+        UpdateInputField();
     }
 
     public void RarityUp()
@@ -69,7 +60,7 @@ public class ModuleVisualControl : MonoBehaviour
         if ((int)newRarity >= enumCount) newRarity = Rarity.ANCESTRAL;
 
         _moduleSlot.ChangeRarity(newRarity);
-        UpdateDisplay();
+        UpdateInputField();
     }
 
     public void RarityDown()
@@ -78,13 +69,12 @@ public class ModuleVisualControl : MonoBehaviour
         if (newRarity < Rarity.COMMON) newRarity = Rarity.COMMON;
 
         _moduleSlot.ChangeRarity(newRarity);
-        UpdateDisplay();
+        UpdateInputField();
     }
 
     public void ModuleSelection(int index)
     {
         _moduleSlot.ModuleSelection(index);
-        UpdateDisplay();
     }
 
     private int CountMaxLevelCharcters(int max)
@@ -98,13 +88,14 @@ public class ModuleVisualControl : MonoBehaviour
         return count;
     }
 
-    // could be in update
-    private void UpdateDisplay()
+    private void UpdateInputField()
     {
-        foreach (var module in _icons)
-        {
-            module.UpdateDisplay();
-        }
+        _levelInput.characterLimit = CountMaxLevelCharcters(_moduleSlot.MaxLevel);
+        _levelInput.text = (_moduleSlot.Level == 0) ? "" : _moduleSlot.Level.ToString();
+    }
+
+    private void Update()
+    {
         _moduleNameText.color = RarityColors.GetColor(_moduleSlot.Rarity);
         _rarityText.color = RarityColors.GetColor(_moduleSlot.Rarity);
         _rarityBorder.color = RarityColors.GetColor(_moduleSlot.Rarity);
@@ -121,8 +112,6 @@ public class ModuleVisualControl : MonoBehaviour
 
         _fade.SetActive(_moduleSlot.EquippedModule.IsNone);
 
-        _levelInput.characterLimit = CountMaxLevelCharcters(_moduleSlot.MaxLevel);
-        _levelInput.text = (_moduleSlot.Level == 0) ? "" : _moduleSlot.Level.ToString();
         _levelLabelText.color = (_moduleSlot.IsMaxLevel) ? _maxLevelColour : _defaultColour;
         _levelText.color = (_moduleSlot.IsMaxLevel) ? _maxLevelColour : _defaultColour;
 

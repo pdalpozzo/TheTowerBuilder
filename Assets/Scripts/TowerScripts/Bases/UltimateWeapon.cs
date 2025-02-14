@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum UltimateWeaponType { BLACK_HOLE, CHAIN_LIGHTNING, CHRONO_FIELD, DEATH_WAVE, GOLDEN_TOWER, INNER_LAND_MINES, POISON_SWAMP, SMART_MISSILES, SPOTLIGHT};
@@ -22,7 +20,6 @@ public class UltimateWeapon : MonoBehaviour
     public string TooltipMessage { get { return tooltipMessage; } }
     public bool IsOn { get { return _isOn; } }
     public bool IsPlusAvailable { get { return _isPlusAvailable; } }
-    public bool IsPlusUnlocked { get { return _isPlusUnlocked; } }
     public Sprite Icon { get { return _icon; } }
     public UltimateWeaponType UltimateWeaponType { get { return _uwType; } }
 

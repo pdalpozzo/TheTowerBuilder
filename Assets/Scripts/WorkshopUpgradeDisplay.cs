@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Windows;
 
 public enum UnlockCategory { START, RANGE, MULTISHOT, RAPID_FIRE, BOUNCE_SHOT, SUPER_CRIT, REND, 
     DEFENSE, THORNS, LIFESTEAL, KNOCKBACK, ORBS, SHOCKWAVE, LANDMINE, DEATH_DEFY, WALL, 
@@ -30,7 +27,6 @@ public class WorkshopUpgradeDisplay : MonoBehaviour
 
     private void Awake()
     {
-        EventManager.OnAnyStatChange += StatChanged;
         EventManager.OnUpgradeForceReset += ForceUpgradeReset;
         EventManager.OnUpgradeForceUnlock += ForceUpgradeUnlock;
         EventManager.OnUpgradeForceMax += ForceUpgradeMax;
@@ -52,8 +48,6 @@ public class WorkshopUpgradeDisplay : MonoBehaviour
             _toggle.SetToggle(true);
             _toggle.gameObject.SetActive(false);
         }
-
-        UpgradeDisplayText();
         ToggleUpgrade();
     }
 
@@ -67,12 +61,12 @@ public class WorkshopUpgradeDisplay : MonoBehaviour
             _levelInput.GetComponent<Image>().color = _disabledColor;
             _stat.Upgrade.NewLevel(0);
         }
+        UpdateInputField();
         EventManager.WorkshopChange(_stat);
     }
 
     private void ForceUpgradeMax()
     {
-        //if (!_toggle.IsOn) return;
         _stat.Upgrade.NewLevel(_stat.Upgrade.MaxLevel);
         ToggleUpgrade();
     }
@@ -102,21 +96,19 @@ public class WorkshopUpgradeDisplay : MonoBehaviour
         if (_levelInput.text != null) input = int.Parse(_levelInput.text);
         input = ValidateInput(input, _stat.Upgrade.MaxLevel);
         _stat.Upgrade.NewLevel(input);
+        UpdateInputField();
         EventManager.WorkshopChange(_stat);
-        //ToggleUpgrade();
     }
 
-    private void StatChanged(Stat stat)
+    private void UpdateInputField()
     {
-        if (stat != _stat) return;
-        UpgradeDisplayText();
+        _levelInput.text = (_stat.Upgrade.Level == 0) ? "" : _stat.Upgrade.Level.ToString();
     }
 
-    private void UpgradeDisplayText()
+    private void Update()
     {
         string placeholder = (_toggle.IsOn) ? _stat.Upgrade.MaxLevel.ToString() : "";
         _valueText.text = _stat.ValueDisplay;
-        _levelInput.text = (_stat.Upgrade.Level == 0) ? "" : _stat.Upgrade.Level.ToString();
         _placeholderText.text = placeholder;
         _valueText.color = (_stat.Upgrade.IsMaxLevel) ? _maxLevelColour : _defaultColour;
         _levelText.color = (_stat.Upgrade.IsMaxLevel) ? _maxLevelColour : _defaultColour;

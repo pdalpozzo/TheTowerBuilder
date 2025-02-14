@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Windows;
 
 public class LabVisualControl : MonoBehaviour
 {
@@ -30,7 +27,7 @@ public class LabVisualControl : MonoBehaviour
 
         _nameText.text = _lab.Name;
         _input.characterLimit = CountMaxLevelCharcters(_lab.MaxLevel);
-        UpdateDisplay();
+        _input.placeholder.GetComponent<TextMeshProUGUI>().text = _lab.MaxLevel.ToString();
     }
 
     public void LevelChange()
@@ -39,19 +36,19 @@ public class LabVisualControl : MonoBehaviour
         if (_input.text != null) input = int.Parse(_input.text);
         input = ValidateInput(input, _lab.MaxLevel);
         _lab.NewLevel(input);
-        UpdateDisplay();
+        UpdateInputField();
     }
 
     public void ForceMaxLevel()
     {
         _lab.NewLevel(_lab.MaxLevel);
-        UpdateDisplay();
+        UpdateInputField();
     }
 
     public void ForceReset()
     {
         _lab.NewLevel(_lab.BaseLevel);
-        UpdateDisplay();
+        UpdateInputField();
     }
 
     private int CountMaxLevelCharcters(int max)
@@ -67,17 +64,18 @@ public class LabVisualControl : MonoBehaviour
 
     private void UpdateValue(Lab lab)
     {
-        if (lab == _lab) UpdateDisplay();
+        if (lab == _lab) UpdateInputField();
     }
 
-    // could be in update
-    private void UpdateDisplay()
+    private void UpdateInputField()
     {
-        //_valueText.text = GetStringFormat(_lab.Value, _lab.Format, _lab.DecimalPlaces);
-        _valueText.text = _lab.DisplayValue;
-        _input.placeholder.GetComponent<TextMeshProUGUI>().text = _lab.MaxLevel.ToString();
         _input.text = (_lab.Level == 0) ? "" : _lab.Level.ToString();
-        // change text colour if maxed
+    }
+
+    private void Update()
+    {
+        _valueText.text = _lab.DisplayValue;
+
         _nameText.color = (_lab.IsMaxLevel) ? _maxLevelColour : _defaultColour;
         _valueText.color = (_lab.IsMaxLevel) ? _maxLevelColour : _defaultColour;
         _levelText.color = (_lab.IsMaxLevel) ? _maxLevelColour : _defaultColour;

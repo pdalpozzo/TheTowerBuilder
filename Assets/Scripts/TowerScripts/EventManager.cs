@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System;
+using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
@@ -24,7 +22,6 @@ public class EventManager : MonoBehaviour
     public static event Action<Perk> OnPerkPriorityChange;      // triggered by perk status control
     public static event Action<Perk> OnPerkStatusChange;        // triggered by perk
     public static event Action<int> OnPerkPresetChange;         // triggered by perk status control
-    public static event Action OnPerkPresetUpdate;              // triggered by perk manager
     
     // upgrade events
     public static event Action OnUpgradeForceUnlock;                    // triggered by workshop panel control
@@ -37,7 +34,6 @@ public class EventManager : MonoBehaviour
     public static event Action OnEnhancementForceReset;         // triggered by workshop panel control
     
     // theme events
-    public static event Action OnThemeStatusChange;             // triggered by theme
     public static event Action OnThemeBonusChange;              // triggered by theme manager
 
     // relic events
@@ -54,9 +50,6 @@ public class EventManager : MonoBehaviour
     public static event Action<Stat> OnAnyStatChange;           // triggered by devirved stats
     public static event Action<Stat> OnWorkshopChange;          // triggered by workshop upgrade visual
 
-    // calculation events
-    public static event Action OnCalculationChange;             // triggered by any calculation
-
     // lab events
     public static event Action<Lab> OnAnyLabChange;             // triggered by lab
 
@@ -72,217 +65,166 @@ public class EventManager : MonoBehaviour
 
     public static void CardUnlockedLimitChange(int max, int unlocked)
     {
-        //Debug.Log("Card Unlock Limit Change");
         OnCardUnlockedLimitChange?.Invoke(max, unlocked);
     }
 
     public static void EquippedCardsChange()
     {
-        //Debug.Log("Equipped Cards Change");
         OnEquippedCardsChange?.Invoke();
     }
 
     public static void CardSelectionChange(Card card)
     {
-        //Debug.Log("Card Selection Change");
         OnCardSelectionChange?.Invoke(card);
     }
 
     public static void CardChanged(Card card)
     {
-        //Debug.Log("Card Changed");
         OnAnyCardChange?.Invoke(card);
     }
 
     public static void CardForceReset()
     {
-        //Debug.Log("Card Force Reset");
         OnCardForceReset?.Invoke();
     }
 
     public static void CardForceMax()
     {
-        //Debug.Log("Card Force Max");
         OnCardForceMax?.Invoke();
     }
 
     public static void CardPresetChange(int presetSlot)
     {
-        //Debug.Log("Card Force Max");
         OnCardPresetChange?.Invoke(presetSlot);
     }
 
     public static void MasteryChange(CardMastery mastery)
     {
-        //Debug.Log("Card Mastery Change");
         OnAnyMasteryChange?.Invoke(mastery);
     }
 
     public static void UltimateWeaponStatusChange(UltimateWeaponType ultimateWeapon, bool isOn)
     {
-        //Debug.Log("Ultimate Weapon Status Change");
         OnUltimateWeaponStatusChange?.Invoke(ultimateWeapon, isOn);
     }
 
     public static void UltimateWeaponPlusAvailable(bool available)
     {
-        //Debug.Log("Ultimate Weapon Plus Available");
         OnUltimateWeaponPlusAvailable?.Invoke(available);
     }
 
     public static void PerkBanChange(Perk perk)
     {
-        //Debug.Log("Perk Ban Change");
         OnPerkBanChange?.Invoke(perk);
     }
 
     public static void PerkPriorityChange(Perk perk)
     {
-        //Debug.Log("Perk Priority Change");
         OnPerkPriorityChange?.Invoke(perk);
     }
 
     public static void PerkStatusChange(Perk perk)
     {
-        //Debug.Log("Perk Status Change");
         OnPerkStatusChange?.Invoke(perk);
     }
 
     public static void PerkPresetChange(int presetSlot)
     {
-        //Debug.Log("Perk Preset Change");
         OnPerkPresetChange?.Invoke(presetSlot);
-    }
-
-    public static void PerkPresetUpdate()
-    {
-        //Debug.Log("Perk Preset Update");
-        OnPerkPresetUpdate?.Invoke();
     }
 
     public static void UpgradeForceUnlock()
     {
-        //Debug.Log("Upgrade Force Unlock");
         OnUpgradeForceUnlock?.Invoke();
     }
 
     public static void UpgradeForceReset()
     {
-        //Debug.Log("Upgrade Force Reset");
         OnUpgradeForceReset?.Invoke();
     }
 
     public static void UpgradeUnlock(UnlockCategory group, bool isUnlocked)
     {
-        //Debug.Log("Upgrade Unlock");
         OnUpgradeUnlock?.Invoke(group, isUnlocked);
     }
 
     public static void UpgradeForceMax()
     {
-        //Debug.Log("Upgrade Force Max");
         OnUpgradeForceMax?.Invoke();
     }
 
     public static void EnhancementForceUnlock()
     {
-        //Debug.Log("Enhancement Force Unlock");
         OnEnhancementForceUnlock?.Invoke();
     }
 
     public static void EnhancementForceReset()
     {
-        //Debug.Log("Enhancement Force Reset");
         OnEnhancementForceReset?.Invoke();
-    }
-
-    public static void ThemeStatusChange()
-    {
-        //Debug.Log("Theme Status Change");
-        OnThemeStatusChange?.Invoke();
     }
 
     public static void ThemeBonusChange()
     {
-        //Debug.Log("Theme Bonus Change");
         OnThemeBonusChange?.Invoke();
     }
 
     public static void RelicStatusChange()
     {
-        //Debug.Log("Relic Status Change");
         OnRelicStatusChange?.Invoke();
     }
 
     public static void RelicBonusChange()
     {
-        //Debug.Log("Relic Bonus Change");
         OnRelicBonusChange?.Invoke();
     }
 
     public static void ModuleSlotRarityChange()
     {
-        //Debug.Log("Module Slot Rarity Change");
         OnModuleRarityChange?.Invoke();
     }
 
     public static void SubEffectEquipChange(SubEffect subEffect)
     {
-        //Debug.Log("Sub Effect Change");
         OnSubEffectEquipChange?.Invoke(subEffect);
     }
 
     public static void SubEffectRarityChange(SubEffect subEffect)
     {
-        //Debug.Log("Sub Effect Rarity Change");
         OnSubEffectRarityChange?.Invoke(subEffect);
     }
 
     public static void SubEffectLimitChange(ModuleType type, bool isFull)
     {
-        //Debug.Log("Sub Effect Limit Change: " + type + isFull);
         OnSubEffectLimitChange?.Invoke(type, isFull);
     }
 
     public static void StatChanged(Stat stat)
     {
-        //Debug.Log("Stat Changed");
         OnAnyStatChange?.Invoke(stat); 
     }
 
     public static void WorkshopChange(Stat stat)
     {
-        //Debug.Log("Workshop Change");
         OnWorkshopChange?.Invoke(stat);
-    }
-
-    public static void CalculationChanged()
-    {
-        //Debug.Log("Calculation Changed");
-        OnCalculationChange?.Invoke(); 
     }
 
     public static void LabChanged(Lab lab)
     {
-        //Debug.Log("Lab Changed");
         OnAnyLabChange?.Invoke(lab);
     }
 
     public static void PackChanged(Pack pack)
     {
-        //Debug.Log("Pack Changed");
         OnAnyPackChange?.Invoke(pack);
     }
 
     public static void EffectChanged(Effect effect)
     {
-        //Debug.Log("Effect Changed");
         OnAnyEffectChange?.Invoke(effect);
     }
 
     public static void BotChanged(Bot bot)
     {
-        //Debug.Log("Effect Changed");
         OnAnyBotChange?.Invoke(bot);
     }
 }

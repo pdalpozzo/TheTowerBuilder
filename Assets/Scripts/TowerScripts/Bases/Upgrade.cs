@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Upgrade : MonoBehaviour
@@ -21,11 +19,6 @@ public class Upgrade : MonoBehaviour
         ChangeLevel(level);
     }
 
-    public void Reset()
-    {
-        ChangeLevel(BaseLevel);
-    }
-
     public void SetUnlock(bool isUnlocked)
     {
         _isUnlocked = isUnlocked;
@@ -33,8 +26,8 @@ public class Upgrade : MonoBehaviour
 
     private void ChangeLevel(int level)
     {
-        if (level > MaxLevel) level = MaxLevel;       // check new level is not above max level
-        if (level < BaseLevel) level = BaseLevel;     // check new level is not below base level
+        if (level > _data.MaxLevel) level = _data.MaxLevel;       // check new level is not above max level
+        if (level < _data.BaseLevel) level = _data.BaseLevel;     // check new level is not below base level
         _currentLevel = level;
     }
 
