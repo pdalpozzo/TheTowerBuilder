@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: The Fly
   m_EditorClassIdentifier: 
   _relicName: The Fly
-  _tooltipMessage: 
   _rarity: 2
-  _relicType: 4
+  _relicType: 10
   _value: 0.05
-  _icon: {fileID: 21300000, guid: 586541cbd1b3d2b4ebc726f74414421a, type: 3}
-  _faded: {fileID: 21300000, guid: fe69c578a2d57764cac93bb36a9546cc, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

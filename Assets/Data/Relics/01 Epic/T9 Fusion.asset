@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: T9 Fusion
   m_EditorClassIdentifier: 
   _relicName: T9 Fusion
-  _tooltipMessage: 
   _rarity: 2
-  _relicType: 5
+  _relicType: 8
   _value: 0.05
-  _icon: {fileID: 21300000, guid: 88249d2b316e62b4cb5f40e3891c4b94, type: 3}
-  _faded: {fileID: 21300000, guid: 1cbc210dc545caa42bd4f75cc44988c3, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

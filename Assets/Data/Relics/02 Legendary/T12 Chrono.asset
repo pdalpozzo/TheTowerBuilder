@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: T12 Chrono
   m_EditorClassIdentifier: 
   _relicName: T12 Chrono
-  _tooltipMessage: 
   _rarity: 3
-  _relicType: 6
+  _relicType: 23
   _value: 0.1
-  _icon: {fileID: 21300000, guid: e88990083cde2854cb99fd7cabce718b, type: 3}
-  _faded: {fileID: 21300000, guid: d169acbb02bf0ad449dfed499dd79beb, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

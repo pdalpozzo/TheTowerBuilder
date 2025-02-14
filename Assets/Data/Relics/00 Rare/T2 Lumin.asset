@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: T2 Lumin
   m_EditorClassIdentifier: 
   _relicName: T2 Lumin
-  _tooltipMessage: 
   _rarity: 1
-  _relicType: 6
+  _relicType: 23
   _value: 0.015
-  _icon: {fileID: 21300000, guid: c13bc45a7240a0145906816f01166872, type: 3}
-  _faded: {fileID: 21300000, guid: dc431a826f3f08a44a56778010ed8f4d, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

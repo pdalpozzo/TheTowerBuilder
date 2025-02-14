@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Space Sundial
   m_EditorClassIdentifier: 
   _relicName: Space Sundial
-  _tooltipMessage: 
   _rarity: 2
-  _relicType: 2
+  _relicType: 0
   _value: 0.05
-  _icon: {fileID: 21300000, guid: 70988eca2a8d0bd44acd3ac76569b358, type: 3}
-  _faded: {fileID: 21300000, guid: d2baae850dba51f46896df57638fa972, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

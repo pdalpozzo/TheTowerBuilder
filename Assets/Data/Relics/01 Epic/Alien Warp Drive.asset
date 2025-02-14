@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Alien Warp Drive
   m_EditorClassIdentifier: 
   _relicName: Alien Warp Drive
-  _tooltipMessage: 
   _rarity: 2
-  _relicType: 3
+  _relicType: 5
   _value: 0.05
-  _icon: {fileID: 21300000, guid: e6e35dc0f9657ea45920fdc7ffea7a28, type: 3}
-  _faded: {fileID: 21300000, guid: a1e2a81d97db17f4383144331d6b01fe, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Illuminati
   m_EditorClassIdentifier: 
   _relicName: Illuminati
-  _tooltipMessage: 
   _rarity: 2
-  _relicType: 4
+  _relicType: 10
   _value: 0.05
-  _icon: {fileID: 21300000, guid: 529ace7af8cf45442b086ce0ec089089, type: 3}
-  _faded: {fileID: 21300000, guid: dd7a58030c402f84a876e969e4fdc7d9, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

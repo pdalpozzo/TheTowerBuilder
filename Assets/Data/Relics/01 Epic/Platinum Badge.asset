@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Platinum Badge
   m_EditorClassIdentifier: 
   _relicName: Platinum Badge
-  _tooltipMessage: 
   _rarity: 2
-  _relicType: 6
+  _relicType: 23
   _value: 0.04
-  _icon: {fileID: 21300000, guid: 8be7bdfc3ba9a0c47b6eacebd8af9ccf, type: 3}
-  _faded: {fileID: 21300000, guid: 4cdf068376ab19d4a854df34c4ef6e97, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

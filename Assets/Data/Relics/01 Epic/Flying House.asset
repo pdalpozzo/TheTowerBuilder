@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Flying House
   m_EditorClassIdentifier: 
   _relicName: Flying House
-  _tooltipMessage: 
   _rarity: 2
-  _relicType: 2
+  _relicType: 0
   _value: 0.05
-  _icon: {fileID: 21300000, guid: b206cf1c94ed2074f89a27b8f3e6043b, type: 3}
-  _faded: {fileID: 21300000, guid: 77947e599c976a74788e3c4377fbe913, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

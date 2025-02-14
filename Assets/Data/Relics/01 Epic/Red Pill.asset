@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Red Pill
   m_EditorClassIdentifier: 
   _relicName: Red Pill
-  _tooltipMessage: 
   _rarity: 2
-  _relicType: 5
+  _relicType: 8
   _value: 0.05
-  _icon: {fileID: 21300000, guid: ec0f10784e0c2004698bd9a5c37cb25d, type: 3}
-  _faded: {fileID: 21300000, guid: 223f52e7572d6f8419346358d564134b, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

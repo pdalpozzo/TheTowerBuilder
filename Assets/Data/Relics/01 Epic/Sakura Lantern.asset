@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Sakura Lantern
   m_EditorClassIdentifier: 
   _relicName: Sakura Lantern
-  _tooltipMessage: 
   _rarity: 2
-  _relicType: 0
+  _relicType: 14
   _value: 0.05
-  _icon: {fileID: 21300000, guid: 0794d359185131a4ca10165f384c3a39, type: 3}
-  _faded: {fileID: 21300000, guid: 0aedac8bae9edbc41af57cb8fa98755f, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

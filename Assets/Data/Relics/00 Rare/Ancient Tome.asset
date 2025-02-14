@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Ancient Tome
   m_EditorClassIdentifier: 
   _relicName: Ancient Tome
-  _tooltipMessage: 
   _rarity: 1
-  _relicType: 6
+  _relicType: 23
   _value: 0.015
-  _icon: {fileID: 21300000, guid: e9875678e73802b41b354d736817cee6, type: 3}
-  _faded: {fileID: 21300000, guid: 203a442c743979b49a414817ec26b55a, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

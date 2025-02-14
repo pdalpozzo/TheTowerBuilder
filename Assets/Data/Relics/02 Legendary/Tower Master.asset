@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Tower Master
   m_EditorClassIdentifier: 
   _relicName: Tower Master
-  _tooltipMessage: 
   _rarity: 3
-  _relicType: 5
+  _relicType: 8
   _value: 0.1
-  _icon: {fileID: 21300000, guid: a2e62ed5905ea4a4ebeb9fab970ed721, type: 3}
-  _faded: {fileID: 21300000, guid: d6d9b055e444b36488718913497496ce, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

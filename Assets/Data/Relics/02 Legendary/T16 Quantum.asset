@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: T16 Quantum
   m_EditorClassIdentifier: 
   _relicName: T16 Quantum
-  _tooltipMessage: 
   _rarity: 3
-  _relicType: 5
+  _relicType: 8
   _value: 0.1
-  _icon: {fileID: 0}
-  _faded: {fileID: 0}
+  _decimalPlaces: 0
+  _formatType: 3

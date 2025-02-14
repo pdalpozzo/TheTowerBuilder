@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Spooky Bat
   m_EditorClassIdentifier: 
   _relicName: Spooky Bat
-  _tooltipMessage: 
   _rarity: 1
-  _relicType: 1
+  _relicType: 3
   _value: 0.02
-  _icon: {fileID: 21300000, guid: f3ec9d003ee56734a84947fa7770e3de, type: 3}
-  _faded: {fileID: 21300000, guid: 7d7fe36d90bf3b1409e9ef94768b4519, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

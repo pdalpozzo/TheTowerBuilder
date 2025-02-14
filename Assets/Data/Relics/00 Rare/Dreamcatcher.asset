@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Dreamcatcher
   m_EditorClassIdentifier: 
   _relicName: Dreamcatcher
-  _tooltipMessage: 
   _rarity: 1
-  _relicType: 0
+  _relicType: 14
   _value: 0.02
-  _icon: {fileID: 21300000, guid: 1f0c9198325cec14b93e07d69c887b7c, type: 3}
-  _faded: {fileID: 21300000, guid: 09d72de765f54114999ff86e97e64afc, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

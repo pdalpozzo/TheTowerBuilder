@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: T6 Nova
   m_EditorClassIdentifier: 
   _relicName: T6 Nova
-  _tooltipMessage: 
   _rarity: 2
   _relicType: 4
   _value: 0.05
-  _icon: {fileID: 21300000, guid: 9c6da8507d014e84ea131fdfa1eb4710, type: 3}
-  _faded: {fileID: 21300000, guid: cf0a660c98e18d24b96e37f4a2810562, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

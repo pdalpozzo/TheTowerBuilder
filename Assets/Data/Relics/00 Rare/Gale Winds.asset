@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Gale Winds
   m_EditorClassIdentifier: 
   _relicName: Gale Winds
-  _tooltipMessage: 
   _rarity: 1
-  _relicType: 0
+  _relicType: 14
   _value: 0.02
-  _icon: {fileID: 21300000, guid: e5b9a5b8fbcaa9342bc1243b443d1bc4, type: 3}
-  _faded: {fileID: 21300000, guid: c7f8df6bb45df914bb8239b9529c9c5d, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

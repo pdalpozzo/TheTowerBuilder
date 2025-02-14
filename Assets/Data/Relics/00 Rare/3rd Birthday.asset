@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: 3rd Birthday
   m_EditorClassIdentifier: 
   _relicName: 3rd Birthday
-  _tooltipMessage: 
   _rarity: 1
-  _relicType: 3
+  _relicType: 5
   _value: 0.02
-  _icon: {fileID: 0}
-  _faded: {fileID: 0}
+  _decimalPlaces: 0
+  _formatType: 3

@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Barnacle
   m_EditorClassIdentifier: 
   _relicName: Barnacle
-  _tooltipMessage: 
   _rarity: 1
-  _relicType: 5
+  _relicType: 8
   _value: 0.02
-  _icon: {fileID: 21300000, guid: 607d99f78eda62c40b33e2a066b7f363, type: 3}
-  _faded: {fileID: 21300000, guid: 11e587afd7e939f41bad6be8bf70e1e6, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

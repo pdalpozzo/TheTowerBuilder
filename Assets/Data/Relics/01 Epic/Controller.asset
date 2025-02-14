@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Controller
   m_EditorClassIdentifier: 
   _relicName: Controller
-  _tooltipMessage: 
   _rarity: 2
-  _relicType: 1
+  _relicType: 3
   _value: 0.05
-  _icon: {fileID: 21300000, guid: 7a6fcfe36e926324d90cdd736780d275, type: 3}
-  _faded: {fileID: 21300000, guid: ea4aea9975e84e849b01011f776dad19, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

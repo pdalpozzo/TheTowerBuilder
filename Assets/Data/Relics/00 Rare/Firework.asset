@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Firework
   m_EditorClassIdentifier: 
   _relicName: Firework
-  _tooltipMessage: 
   _rarity: 1
-  _relicType: 5
+  _relicType: 8
   _value: 0.02
-  _icon: {fileID: 21300000, guid: bd7e9bbc1fe40244b81b5a03a4ad891b, type: 3}
-  _faded: {fileID: 21300000, guid: 376792f286d5cf7478c2672a4fff4233, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

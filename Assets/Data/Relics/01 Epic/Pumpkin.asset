@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Pumpkin
   m_EditorClassIdentifier: 
   _relicName: Pumpkin
-  _tooltipMessage: 
   _rarity: 2
-  _relicType: 6
+  _relicType: 23
   _value: 0.04
-  _icon: {fileID: 21300000, guid: a52fda038a5dc3b48a9f7638f5753463, type: 3}
-  _faded: {fileID: 21300000, guid: 0e136e0ddcd86b4469f5d5ebe9f84d95, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

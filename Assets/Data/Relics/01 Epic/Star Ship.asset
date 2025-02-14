@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Star Ship
   m_EditorClassIdentifier: 
   _relicName: Star Ship
-  _tooltipMessage: 
   _rarity: 2
-  _relicType: 6
+  _relicType: 23
   _value: 0.04
-  _icon: {fileID: 21300000, guid: 3df6771dd0a12ed438cc0bf66436059f, type: 3}
-  _faded: {fileID: 21300000, guid: 07fbf8546125d934a9987a61abd5c4cd, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

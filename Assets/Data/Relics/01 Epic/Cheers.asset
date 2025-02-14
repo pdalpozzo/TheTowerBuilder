@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Cheers
   m_EditorClassIdentifier: 
   _relicName: Cheers
-  _tooltipMessage: 
   _rarity: 2
-  _relicType: 4
+  _relicType: 10
   _value: 0.05
-  _icon: {fileID: 21300000, guid: ab3e649fe9daddc448bd8d48f59ddeff, type: 3}
-  _faded: {fileID: 21300000, guid: 77fe26d89ad7c364298908ce16b2cade, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

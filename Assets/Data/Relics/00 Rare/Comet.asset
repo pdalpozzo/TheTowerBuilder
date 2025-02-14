@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Comet
   m_EditorClassIdentifier: 
   _relicName: Comet
-  _tooltipMessage: 
   _rarity: 1
-  _relicType: 2
+  _relicType: 0
   _value: 0.02
-  _icon: {fileID: 0}
-  _faded: {fileID: 0}
+  _decimalPlaces: 0
+  _formatType: 3

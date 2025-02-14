@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Dark Sight
   m_EditorClassIdentifier: 
   _relicName: Dark Sight
-  _tooltipMessage: 
   _rarity: 1
-  _relicType: 3
+  _relicType: 5
   _value: 0.02
-  _icon: {fileID: 21300000, guid: 9487bf48ecfbfa442bc9b4bcdc653809, type: 3}
-  _faded: {fileID: 21300000, guid: a86a4d6afb5cf794c8e5d6ec264451ff, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

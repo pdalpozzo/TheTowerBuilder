@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Refraction Array
   m_EditorClassIdentifier: 
   _relicName: Refraction Array
-  _tooltipMessage: 
   _rarity: 1
-  _relicType: 0
+  _relicType: 14
   _value: 0.02
-  _icon: {fileID: 21300000, guid: b31beeba134bc314aade34e59d08939d, type: 3}
-  _faded: {fileID: 21300000, guid: d47615a313d03bb4f8caf8717192dd64, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

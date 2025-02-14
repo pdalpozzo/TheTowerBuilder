@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Plasma Arc
   m_EditorClassIdentifier: 
   _relicName: Plasma Arc
-  _tooltipMessage: 
   _rarity: 2
-  _relicType: 6
+  _relicType: 23
   _value: 0.04
-  _icon: {fileID: 21300000, guid: 7fd62aa12d77d4a45a27817737f053e4, type: 3}
-  _faded: {fileID: 21300000, guid: 738b4b89f9ae02b4bbc94996c1287aef, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

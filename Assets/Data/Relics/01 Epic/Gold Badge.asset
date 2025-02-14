@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Gold Badge
   m_EditorClassIdentifier: 
   _relicName: Gold Badge
-  _tooltipMessage: 
   _rarity: 2
-  _relicType: 1
+  _relicType: 3
   _value: 0.05
-  _icon: {fileID: 21300000, guid: 4d2443e4abcb15a4ea123778803a14d2, type: 3}
-  _faded: {fileID: 21300000, guid: e9977db6edd6da64db8451d3f2219a66, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: No Spoon
   m_EditorClassIdentifier: 
   _relicName: No Spoon
-  _tooltipMessage: 
   _rarity: 1
-  _relicType: 4
+  _relicType: 10
   _value: 0.02
-  _icon: {fileID: 21300000, guid: 94d37611a6e694948a4b8c5882b31397, type: 3}
-  _faded: {fileID: 21300000, guid: 9389ada717d82924ab0f046b5e31cdcf, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

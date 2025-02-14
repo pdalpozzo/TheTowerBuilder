@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Rabies
   m_EditorClassIdentifier: 
   _relicName: Rabies
-  _tooltipMessage: 
   _rarity: 1
-  _relicType: 6
+  _relicType: 23
   _value: 0.02
-  _icon: {fileID: 0}
-  _faded: {fileID: 0}
+  _decimalPlaces: 0
+  _formatType: 3

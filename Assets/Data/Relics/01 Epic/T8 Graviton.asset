@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: T8 Graviton
   m_EditorClassIdentifier: 
   _relicName: T8 Graviton
-  _tooltipMessage: 
   _rarity: 2
-  _relicType: 3
+  _relicType: 5
   _value: 0.05
-  _icon: {fileID: 21300000, guid: d93d202e6973b9d428962fc8f6752832, type: 3}
-  _faded: {fileID: 21300000, guid: 8630d46dff8377b43af78e108e8e8bfc, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

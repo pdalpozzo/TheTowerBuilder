@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: T4 Harmonic
   m_EditorClassIdentifier: 
   _relicName: T4 Harmonic
-  _tooltipMessage: 
   _rarity: 1
-  _relicType: 2
+  _relicType: 0
   _value: 0.02
-  _icon: {fileID: 21300000, guid: c79d629f377277c4fbb4c2d364a5b557, type: 3}
-  _faded: {fileID: 21300000, guid: 0bbaaf2ae8db67c4c8faddf5ef8bd88d, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Pizza
   m_EditorClassIdentifier: 
   _relicName: Pizza
-  _tooltipMessage: 
   _rarity: 1
-  _relicType: 2
+  _relicType: 0
   _value: 0.02
-  _icon: {fileID: 21300000, guid: c210fcbc5d8375348ba68c8544d3863d, type: 3}
-  _faded: {fileID: 21300000, guid: c8bf8b2301b767449b5fdecff49de167, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

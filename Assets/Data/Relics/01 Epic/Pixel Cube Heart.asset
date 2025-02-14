@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Pixel Cube Heart
   m_EditorClassIdentifier: 
   _relicName: Pixel Cube Heart
-  _tooltipMessage: 
   _rarity: 2
-  _relicType: 5
+  _relicType: 8
   _value: 0.05
-  _icon: {fileID: 21300000, guid: b785e588697ca3e49ac68aeb250ae346, type: 3}
-  _faded: {fileID: 21300000, guid: 50fdc19d195eac445b02d695992b35c6, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

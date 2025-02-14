@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Neuron
   m_EditorClassIdentifier: 
   _relicName: Neuron
-  _tooltipMessage: 
   _rarity: 2
-  _relicType: 5
+  _relicType: 8
   _value: 0.05
-  _icon: {fileID: 21300000, guid: f5942bad7829b6445905200cc0c94eb0, type: 3}
-  _faded: {fileID: 21300000, guid: fb309a1d8bc628a40bc48377c468795a, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

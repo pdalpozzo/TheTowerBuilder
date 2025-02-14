@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Copper Badge
   m_EditorClassIdentifier: 
   _relicName: Copper Badge
-  _tooltipMessage: 
   _rarity: 1
-  _relicType: 2
+  _relicType: 0
   _value: 0.02
-  _icon: {fileID: 21300000, guid: d699541df7d2dc2419f78b5fe39120f3, type: 3}
-  _faded: {fileID: 21300000, guid: 814c11bb531f805408569e39c94b0e45, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: T10 Plasma
   m_EditorClassIdentifier: 
   _relicName: T10 Plasma
-  _tooltipMessage: 
   _rarity: 2
-  _relicType: 3
+  _relicType: 5
   _value: 0.05
-  _icon: {fileID: 21300000, guid: c1ac0f83682cab645bee7eb33dfea6fe, type: 3}
-  _faded: {fileID: 21300000, guid: 3ef4b876c3e764e4d8c611214da49a3a, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

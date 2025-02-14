@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: T18 Singularity
   m_EditorClassIdentifier: 
   _relicName: T18 Singularity
-  _tooltipMessage: 
   _rarity: 3
-  _relicType: 6
+  _relicType: 23
   _value: 0.1
-  _icon: {fileID: 0}
-  _faded: {fileID: 0}
+  _decimalPlaces: 0
+  _formatType: 3

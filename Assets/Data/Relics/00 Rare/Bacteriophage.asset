@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Bacteriophage
   m_EditorClassIdentifier: 
   _relicName: Bacteriophage
-  _tooltipMessage: 
   _rarity: 1
-  _relicType: 2
+  _relicType: 0
   _value: 0.02
-  _icon: {fileID: 21300000, guid: 33db3d55a287bac40824a7a3e7be094d, type: 3}
-  _faded: {fileID: 21300000, guid: 1518bb78201a69d408fa8a953d14c91c, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

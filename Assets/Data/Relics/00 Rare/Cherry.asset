@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Cherry
   m_EditorClassIdentifier: 
   _relicName: Cherry
-  _tooltipMessage: 
   _rarity: 1
-  _relicType: 4
+  _relicType: 10
   _value: 0.02
-  _icon: {fileID: 21300000, guid: 0e9aae86e4f466a408d9650798adbf6b, type: 3}
-  _faded: {fileID: 21300000, guid: b4779da70c92d474d9d307662c523ce1, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

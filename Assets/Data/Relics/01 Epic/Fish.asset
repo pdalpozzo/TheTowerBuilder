@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Fish
   m_EditorClassIdentifier: 
   _relicName: Fish
-  _tooltipMessage: 
   _rarity: 2
-  _relicType: 4
+  _relicType: 10
   _value: 0.05
-  _icon: {fileID: 21300000, guid: a6c5ca3191675994f92be2adcc2f01ef, type: 3}
-  _faded: {fileID: 21300000, guid: c3527b33b22d562469622bc327c59b9d, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

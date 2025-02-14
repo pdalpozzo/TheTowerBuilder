@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Man Skull
   m_EditorClassIdentifier: 
   _relicName: Man Skull
-  _tooltipMessage: 
   _rarity: 2
-  _relicType: 5
+  _relicType: 8
   _value: 0.05
-  _icon: {fileID: 21300000, guid: dc38578b2a31e9748a8dfbf61e4c2b18, type: 3}
-  _faded: {fileID: 21300000, guid: 4ecea77681a30e34faf7f90073de246e, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

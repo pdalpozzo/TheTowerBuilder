@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Warp Gate
   m_EditorClassIdentifier: 
   _relicName: Warp Gate
-  _tooltipMessage: 
   _rarity: 1
-  _relicType: 0
+  _relicType: 14
   _value: 0.02
-  _icon: {fileID: 21300000, guid: ebcef1cd5c6445c48a4bdea1388d05e1, type: 3}
-  _faded: {fileID: 21300000, guid: 8c995aaf9902f4f40aab7cd70259ec99, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

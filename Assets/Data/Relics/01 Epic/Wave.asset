@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Wave
   m_EditorClassIdentifier: 
   _relicName: Wave
-  _tooltipMessage: 
   _rarity: 2
-  _relicType: 1
+  _relicType: 3
   _value: 0.05
-  _icon: {fileID: 21300000, guid: af1859a7d53f81b4b8316fd1d5f58417, type: 3}
-  _faded: {fileID: 21300000, guid: 036b271617311334dbcc5827bec75f89, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

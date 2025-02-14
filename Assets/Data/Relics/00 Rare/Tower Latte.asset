@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Tower Latte
   m_EditorClassIdentifier: 
   _relicName: Tower Latte
-  _tooltipMessage: 
   _rarity: 1
-  _relicType: 3
+  _relicType: 5
   _value: 0.02
-  _icon: {fileID: 21300000, guid: b0fab5a6c4feadc4fa38b96632f8106e, type: 3}
-  _faded: {fileID: 21300000, guid: aa493c10885cb504fb91d3a95d23cefb, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

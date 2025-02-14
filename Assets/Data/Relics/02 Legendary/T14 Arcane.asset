@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: T14 Arcane
   m_EditorClassIdentifier: 
   _relicName: T14 Arcane
-  _tooltipMessage: 
   _rarity: 3
-  _relicType: 2
+  _relicType: 0
   _value: 0.1
-  _icon: {fileID: 21300000, guid: 5d1f207197f18a1428388f5dd6d89607, type: 3}
-  _faded: {fileID: 21300000, guid: 138da74ac555f0d4a9bf4c2e812f453a, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

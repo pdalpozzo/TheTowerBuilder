@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Prismatic Shard
   m_EditorClassIdentifier: 
   _relicName: Prismatic Shard
-  _tooltipMessage: 
   _rarity: 2
-  _relicType: 3
+  _relicType: 5
   _value: 0.05
-  _icon: {fileID: 21300000, guid: 607bd22f0a2792e40b27f05bf2d564a0, type: 3}
-  _faded: {fileID: 21300000, guid: 1c360e2fe19c53b438f053be84f5053b, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

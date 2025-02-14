@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Honey Drop
   m_EditorClassIdentifier: 
   _relicName: Honey Drop
-  _tooltipMessage: 
   _rarity: 1
-  _relicType: 2
+  _relicType: 0
   _value: 0.02
-  _icon: {fileID: 21300000, guid: 0111d00d5f04b6b46a490ca8dc4eff20, type: 3}
-  _faded: {fileID: 21300000, guid: ad052e2bd80e73045948ee6a7bffd79c, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

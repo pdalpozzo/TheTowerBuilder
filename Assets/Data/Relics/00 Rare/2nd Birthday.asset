@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: 2nd Birthday
   m_EditorClassIdentifier: 
   _relicName: 2nd Birthday
-  _tooltipMessage: Damage / Meter +2%
   _rarity: 1
-  _relicType: 3
+  _relicType: 0
   _value: 0.02
-  _icon: {fileID: 0}
-  _faded: {fileID: 0}
+  _decimalPlaces: 0
+  _formatType: 3

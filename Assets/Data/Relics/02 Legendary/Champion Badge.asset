@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Champion Badge
   m_EditorClassIdentifier: 
   _relicName: Champion Badge
-  _tooltipMessage: 
   _rarity: 3
-  _relicType: 3
+  _relicType: 5
   _value: 0.1
-  _icon: {fileID: 21300000, guid: 3717149fe617fea458613a532e4a0372, type: 3}
-  _faded: {fileID: 21300000, guid: e6f8ae2e031acbc4aa525ff8c2443bf6, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

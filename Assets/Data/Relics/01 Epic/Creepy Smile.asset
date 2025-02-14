@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Creepy Smile
   m_EditorClassIdentifier: 
   _relicName: Creepy Smile
-  _tooltipMessage: 
   _rarity: 2
-  _relicType: 2
+  _relicType: 0
   _value: 0.05
-  _icon: {fileID: 21300000, guid: 261baecbfd851cd4ead383e6a307f34f, type: 3}
-  _faded: {fileID: 21300000, guid: 9a8df7516bc941241ba4859a0ed0bc56, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

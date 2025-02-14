@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: T15 Celestial
   m_EditorClassIdentifier: 
   _relicName: T15 Celestial
-  _tooltipMessage: 
   _rarity: 3
-  _relicType: 1
+  _relicType: 3
   _value: 0.1
-  _icon: {fileID: 21300000, guid: d6dee6b87d31e7849a728eaa487db94a, type: 3}
-  _faded: {fileID: 21300000, guid: ee469c0cfc4254243a124722a048634d, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

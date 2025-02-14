@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Submarine
   m_EditorClassIdentifier: 
   _relicName: Submarine
-  _tooltipMessage: 
   _rarity: 1
-  _relicType: 1
+  _relicType: 3
   _value: 0.02
-  _icon: {fileID: 21300000, guid: 344ca29acd19f9242bad56d1a27ba730, type: 3}
-  _faded: {fileID: 21300000, guid: 8ba059b71e971c548a1e7fad6071d5c9, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

@@ -10,8 +10,6 @@ public class Theme : MonoBehaviour
     [SerializeField] private bool _isOn = false;
 
     public string Name { get { return _data.Name; } }
-    //public string TooltipMessage { get { return _data.Tooltip; } }
-    //public Sprite Icon { get { return _data.Icon; } }
     public bool IsOn { get { return _isOn; } }
     public ThemeType Type { get { return _data.ThemeType; } }
 

@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Silver Badge
   m_EditorClassIdentifier: 
   _relicName: Silver Badge
-  _tooltipMessage: 
   _rarity: 1
-  _relicType: 0
+  _relicType: 14
   _value: 0.05
-  _icon: {fileID: 21300000, guid: a513acb4954f0a44992aaf6b0f35b9c3, type: 3}
-  _faded: {fileID: 21300000, guid: c86a1e412bf601349ab317a3b9cce337, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

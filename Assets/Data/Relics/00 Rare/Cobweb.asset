@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Cobweb
   m_EditorClassIdentifier: 
   _relicName: Cobweb
-  _tooltipMessage: 
   _rarity: 1
-  _relicType: 5
+  _relicType: 8
   _value: 0.02
-  _icon: {fileID: 21300000, guid: 8479ece04677e574fab4bd2013dccf6e, type: 3}
-  _faded: {fileID: 21300000, guid: fd7a71e39172b4c42b010e37ebb17461, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

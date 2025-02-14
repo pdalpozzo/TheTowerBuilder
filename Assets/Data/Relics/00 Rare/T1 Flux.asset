@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: T1 Flux
   m_EditorClassIdentifier: 
   _relicName: T1 Flux
-  _tooltipMessage: Coin Bonus +2%
   _rarity: 1
-  _relicType: 0
+  _relicType: 14
   _value: 0.02
-  _icon: {fileID: 21300000, guid: 703d57afd86cac444b21d5a69f03bc09, type: 3}
-  _faded: {fileID: 21300000, guid: 4db91d805bf25fe478bad5a4a2e73dce, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

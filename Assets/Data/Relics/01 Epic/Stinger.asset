@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Stinger
   m_EditorClassIdentifier: 
   _relicName: Stinger
-  _tooltipMessage: 
   _rarity: 2
-  _relicType: 1
+  _relicType: 3
   _value: 0.05
-  _icon: {fileID: 21300000, guid: b5220491b901b244caaa7b9456aa4bcb, type: 3}
-  _faded: {fileID: 21300000, guid: e7adb60e0a22fcb4d9671f77bc03d465, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

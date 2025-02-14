@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Alien Head
   m_EditorClassIdentifier: 
   _relicName: Alien Head
-  _tooltipMessage: 
   _rarity: 1
-  _relicType: 0
+  _relicType: 14
   _value: 0.02
-  _icon: {fileID: 21300000, guid: c4b7c3d48e87d2342bbe132ce54ac3f0, type: 3}
-  _faded: {fileID: 21300000, guid: 0243342e1365849498c9160fbe9367b5, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

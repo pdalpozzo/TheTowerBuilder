@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: 1st Birthday
   m_EditorClassIdentifier: 
   _relicName: 1st Birthday
-  _tooltipMessage: Tower Damage +2%
   _rarity: 1
-  _relicType: 2
+  _relicType: 0
   _value: 0.02
-  _icon: {fileID: 21300000, guid: e5b6bdb0ab7381140ac0c1b98fa867c3, type: 3}
-  _faded: {fileID: 21300000, guid: 08f0dfde68bb1c54ba5b8413df0de3da, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Holy Joystick
   m_EditorClassIdentifier: 
   _relicName: Holy Joystick
-  _tooltipMessage: 
   _rarity: 1
-  _relicType: 2
+  _relicType: 0
   _value: 0.02
-  _icon: {fileID: 21300000, guid: e3ea102e24ac4fa47ad6d04aade0a593, type: 3}
-  _faded: {fileID: 21300000, guid: 6f87fd63b1d9fab4fa73f03c607ab420, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

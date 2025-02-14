@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Contained Ions
   m_EditorClassIdentifier: 
   _relicName: Contained Ions
-  _tooltipMessage: 
   _rarity: 2
-  _relicType: 4
+  _relicType: 10
   _value: 0.05
-  _icon: {fileID: 21300000, guid: a268bd3ec9410f943a107ef5e0b99b67, type: 3}
-  _faded: {fileID: 21300000, guid: 2b0de752b70615146b224ae15722c6d5, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Ionized Plasma
   m_EditorClassIdentifier: 
   _relicName: Ionized Plasma
-  _tooltipMessage: 
   _rarity: 1
-  _relicType: 4
+  _relicType: 10
   _value: 0.02
-  _icon: {fileID: 21300000, guid: fc57dfdb72187df4ebd82c2b5a54eab4, type: 3}
-  _faded: {fileID: 21300000, guid: 0339afc66c8e0f04c84192fa92c218c3, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

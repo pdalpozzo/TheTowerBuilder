@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: The Kraken
   m_EditorClassIdentifier: 
   _relicName: The Kraken
-  _tooltipMessage: 
   _rarity: 2
-  _relicType: 4
+  _relicType: 10
   _value: 0.05
-  _icon: {fileID: 21300000, guid: 3bae2f60500a26243b41993597d63d3d, type: 3}
-  _faded: {fileID: 21300000, guid: 97be4fabbae7589499dfbc187d8c5abf, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3

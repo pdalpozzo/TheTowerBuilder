@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: T11 Resonance
   m_EditorClassIdentifier: 
   _relicName: T11 Resonance
-  _tooltipMessage: 
   _rarity: 3
-  _relicType: 4
+  _relicType: 10
   _value: 0.1
-  _icon: {fileID: 21300000, guid: 6917a9f8abd004e44b11fa6055bde9d6, type: 3}
-  _faded: {fileID: 21300000, guid: 7c56143b84b144c42ab052e9cb3ccbf1, type: 3}
+  _decimalPlaces: 0
+  _formatType: 3
