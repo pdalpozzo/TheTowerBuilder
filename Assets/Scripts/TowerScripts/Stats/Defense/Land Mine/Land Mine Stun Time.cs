@@ -1,46 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LandMineStunTime : Stat
 {
     [SerializeField] private Card _landMineStunCard;        // permanant
 
-    private float _base = 0;
-
-    private new void Start()
+    private void Update()
     {
-        base.Start();
-        EventManager.OnAnyCardChange += UpdateValue;
-    }
-
-    private void UpdateValue(Card card)
-    {
-        if (card == _landMineStunCard) UpdateValue();
-    }
-
-    protected override void UpdateValue()
-    {
-        // calculate value
+        ResetValues();
         UpdateBase();
-        float additional = 0;
-        float multiplier = 1;
-
-        // permanant buffs
-        _value = multiplier * (_base + additional);
-
-        // in round buffs
-        _inRoundValue = multiplier * (_base + additional);
-
-        // conditional buffs
-        _conditionalValue = multiplier * (_base + additional);
-
+        PermanentBuffs();
+        InRoundBuffs();
+        ConditionalBuffs();
         CreateDescriptions();
-        EventManager.StatChanged(this);
+    }
+
+    private void PermanentBuffs()
+    {
+        CreateValue();
+    }
+
+    private void InRoundBuffs()
+    {
+        CreateInRoundValue();
+    }
+
+    private void ConditionalBuffs()
+    {
+        CreateConditionalValue();
     }
 
     private void UpdateBase()
     {
-        _base = _landMineStunCard.Value;
+        _newbase = _landMineStunCard.Value;
+    }
+
+    protected override void UpdateValue()
+    {
     }
 }

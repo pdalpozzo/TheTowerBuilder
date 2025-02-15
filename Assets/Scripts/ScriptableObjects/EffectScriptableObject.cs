@@ -11,8 +11,8 @@ public class EffectScriptableObject : ScriptableObject
     [SerializeField] private int _maxLevel = 30;
     [SerializeField] private int _baseLevel = 0;
 
-    [SerializeField] private StringFormatType _formatType;
-    [SerializeField] private int _decimalPlaces = 0;
+    //[SerializeField] private StringFormatType _formatType;
+    //[SerializeField] private int _decimalPlaces = 0;
 
     public string Name { get { return _effectName; } }
     public int BaseLevel { get { return _baseLevel; } }

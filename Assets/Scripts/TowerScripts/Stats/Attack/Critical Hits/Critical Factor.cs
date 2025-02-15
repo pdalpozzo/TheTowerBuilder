@@ -1,43 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class CriticalFactor : Stat
 {
-    private float _base = 0;
-
-    private new void Start()
+    private void Update()
     {
-        base.Start();
-        EventManager.OnRelicBonusChange += UpdateValue;
+        ResetValues();
+        UpdateBase();
+        PermanentBuffs();
+        InRoundBuffs();
+        ConditionalBuffs();
+        CreateDescriptions();
     }
 
-    protected override void UpdateValue()
+    private void PermanentBuffs()
     {
-        // calculate value
-        UpdateBase();
-        float additional = 0;
-        float multiplier = 1;
+        _multiplier *= _enhancement.Value;
+        _multiplier *= _lab.Value;
+        _multiplier *= (1 + _relicManager.CritFactor);
+        if (_subEffect.IsEquipped) _additional += _subEffect.Value;
+        CreateValue();
+    }
 
-        // permanant buffs
-        multiplier *= _enhancement.Value;
-        multiplier *= _lab.Value;
-        multiplier *= (1 + _relicManager.CritFactor);
-        if (_subEffect.IsEquipped) additional += _subEffect.Value;
-        _value = multiplier * (_base + additional);
+    private void InRoundBuffs()
+    {
+        CreateInRoundValue();
+    }
 
-        // in round buffs
-        _inRoundValue = multiplier * (_base + additional);
-
-        // conditional buffs
-        _conditionalValue = multiplier * (_base + additional);
-
-        CreateDescriptions();
-        EventManager.StatChanged(this);
+    private void ConditionalBuffs()
+    {
+        CreateConditionalValue();
     }
 
     private void UpdateBase()
     {
-        _base = _upgrade.Value;
+        _newbase = _upgrade.Value;
+    }
+
+    protected override void UpdateValue()
+    {
     }
 }

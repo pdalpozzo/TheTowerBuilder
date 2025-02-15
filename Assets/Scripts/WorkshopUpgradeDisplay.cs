@@ -56,10 +56,10 @@ public class WorkshopUpgradeDisplay : MonoBehaviour
         _stat.Upgrade.SetUnlock(_toggle.IsOn);
         _levelInput.enabled = _toggle.IsOn;
         _levelInput.GetComponent<Image>().color = _enabledColor;
-        if (!_toggle.IsOn)
+        if (!_stat.Upgrade.IsUnlocked)
         {
             _levelInput.GetComponent<Image>().color = _disabledColor;
-            _stat.Upgrade.NewLevel(0);
+            _stat.Upgrade.NewLevel(_stat.Upgrade.BaseLevel);
         }
         UpdateInputField();
         EventManager.WorkshopChange(_stat);

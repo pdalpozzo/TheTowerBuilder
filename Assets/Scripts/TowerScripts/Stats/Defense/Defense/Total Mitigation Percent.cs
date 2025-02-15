@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TotalMitigationPercent : Stat
@@ -12,52 +10,29 @@ public class TotalMitigationPercent : Stat
     [SerializeField] private UltimateWeapon _chainLightning;                // ultimate weapon
     [SerializeField] private Stat _chainLightningThunderDamageReduction;    // conditional
 
-    private float _base = 0;
-
-    private new void Start()
+    private void Update()
     {
-        base.Start();
-        EventManager.OnAnyStatChange += UpdateStat;
-        EventManager.OnUltimateWeaponStatusChange += UpdateValue;
-        EventManager.OnAnyBotChange += UpdateValue;
-    }
-
-    protected void UpdateStat(Stat stat)
-    {
-        if (stat == _defensePercent) UpdateValue();
-        if (stat == _chronoFieldDamageReduction) UpdateValue();
-        if (stat == _flameBotDamageReduction) UpdateValue();
-        if (stat == _chainLightningThunderDamageReduction) UpdateValue();
-    }
-
-    private void UpdateValue(UltimateWeaponType ultimateWeapon, bool isOn)
-    {
-        if (ultimateWeapon == _chronoField.UltimateWeaponType) UpdateValue();
-    }
-
-    private void UpdateValue(Bot bot)
-    {
-        if (bot == _flameBot) UpdateValue();
-    }
-
-    protected override void UpdateValue()
-    {
-        // calculate value
+        ResetValues();
         UpdateBase();
-        float additional = 0;
-        float multiplier = 1;
+        PermanentBuffs();
+        InRoundBuffs();
+        ConditionalBuffs();
+        CreateDescriptions();
+    }
 
-        // permanant buffs
-        _base = (_defensePercent.Upgrade.IsUnlocked) ? _defensePercent.Value : _base;
-        _value = multiplier * (_base + additional);
+    private void PermanentBuffs()
+    {
+        CreateValue();
+    }
 
-        // in round buffs
-        _base = (_defensePercent.Upgrade.IsUnlocked) ? _defensePercent.InRoundValue : _base;
-        _inRoundValue = multiplier * (_base + additional);
+    private void InRoundBuffs()
+    {
+        CreateInRoundValue();
+    }
 
-        // conditional buffs
-        _base = (_defensePercent.Upgrade.IsUnlocked) ? _defensePercent.ConditionalValue : _base;
-        float subTotal = multiplier * (_base + additional);
+    private void ConditionalBuffs()
+    {
+        float subTotal = _multiplier * (_newbase + _additional);
 
         if (_chronoField.IsOn)
             subTotal += (1 - subTotal) * _chronoFieldDamageReduction.Value;
@@ -66,13 +41,14 @@ public class TotalMitigationPercent : Stat
             subTotal += (1 - subTotal) * _flameBotDamageReduction.Value;
 
         _conditionalValue = subTotal;
-
-        CreateDescriptions();
-        EventManager.StatChanged(this);
     }
 
     private void UpdateBase()
     {
-        _base = 0;
+        _newbase = (_defensePercent.Upgrade.IsUnlocked) ? _defensePercent.ConditionalValue : 0;
+    }
+
+    protected override void UpdateValue()
+    {
     }
 }

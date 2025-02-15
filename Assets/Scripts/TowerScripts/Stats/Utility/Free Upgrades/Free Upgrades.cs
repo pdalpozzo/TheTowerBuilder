@@ -1,34 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class FreeUpgrades : Stat
 {
-    private float _base = 1;
-
-    protected override void UpdateValue()
+    private void Update()
     {
-        // calculate value
+        ResetValues();
         UpdateBase();
-        float additional = 0;
-        float multiplier = 1;
-
-        // permanant buffs
-        multiplier *= _enhancement.Value;
-        _value = multiplier * (_base + additional);
-
-        // in round buffs
-        _inRoundValue = multiplier * (_base + additional);
-
-        // conditional buffs
-        _conditionalValue = multiplier * (_base + additional);
-
+        PermanentBuffs();
+        InRoundBuffs();
+        ConditionalBuffs();
         CreateDescriptions();
-        EventManager.StatChanged(this);
+    }
+
+    private void PermanentBuffs()
+    {
+        _multiplier *= _enhancement.Value;
+        CreateValue();
+    }
+
+    private void InRoundBuffs()
+    {
+        CreateInRoundValue();
+    }
+
+    private void ConditionalBuffs()
+    {
+        CreateConditionalValue();
     }
 
     private void UpdateBase()
     {
-        _base = 1;
+        _newbase = 1;
+    }
+
+    protected override void UpdateValue()
+    {
     }
 }

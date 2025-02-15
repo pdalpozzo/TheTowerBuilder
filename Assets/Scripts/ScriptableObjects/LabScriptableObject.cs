@@ -17,6 +17,7 @@ public class LabScriptableObject : ScriptableObject
     public int MaxLevel { get { return _maxLevel; } }
     public int DecimalPlaces { get { return _decimalPlaces; } }
     public StringFormatType FormatType { get { return _formatType; } }
+    public bool IsUnlockedLab {  get { return _isUnlockLab; } }
 
     public float Value(int level)
     {

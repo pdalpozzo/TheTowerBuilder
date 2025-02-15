@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CashBonus : Stat
@@ -7,52 +5,42 @@ public class CashBonus : Stat
     [SerializeField] private Card _cashCard;                            // permanant
     [SerializeField] private Perk _cashBonusMulti;                      // in round
 
-    private float _base = 0;
-
-    private new void Start()
+    private void Update()
     {
-        base.Start();
-        EventManager.OnAnyCardChange += UpdateValue;
-        EventManager.OnPerkStatusChange += UpdateValue;
-    }
-
-    private void UpdateValue(Card card)
-    {
-        if (card == _cashCard) UpdateValue();
-    }
-
-    private void UpdateValue(Perk perk)
-    {
-        if (perk == _cashBonusMulti) UpdateValue();
-    }
-
-    protected override void UpdateValue()
-    {
-        // calculate value
+        ResetValues();
         UpdateBase();
-        float additional = 0;
-        float multiplier = 1;
-
-        // permanant buffs
-        multiplier *= _enhancement.Value;
-        multiplier *= _lab.Value;
-        if (_subEffect.IsEquipped) additional += _subEffect.Value;
-        if (_cashCard.IsEquipped) multiplier *= _cashCard.Value;
-        _value = multiplier * (_base + additional);
-
-        // in round buffs
-        if (!_cashBonusMulti.IsBanned) multiplier *= _cashBonusMulti.Value;   //check if banned
-        _inRoundValue = multiplier * (_base + additional);
-
-        // conditional buffs
-        _conditionalValue = multiplier * (_base + additional);
-
+        PermanentBuffs();
+        InRoundBuffs();
+        ConditionalBuffs();
         CreateDescriptions();
-        EventManager.StatChanged(this);
+    }
+
+    private void PermanentBuffs()
+    {
+        _multiplier *= _enhancement.Value;
+        _multiplier *= _lab.Value;
+        if (_subEffect.IsEquipped) _additional += _subEffect.Value;
+        if (_cashCard.IsEquipped) _multiplier *= _cashCard.Value;
+        CreateValue();
+    }
+
+    private void InRoundBuffs()
+    {
+        if (!_cashBonusMulti.IsBanned) _multiplier *= _cashBonusMulti.Value;   //check if banned
+        CreateInRoundValue();
+    }
+
+    private void ConditionalBuffs()
+    {
+        CreateConditionalValue();
     }
 
     private void UpdateBase()
     {
-        _base = (_upgrade.IsUnlocked) ? _upgrade.Value : _base;
+        _newbase = (_upgrade.IsUnlocked) ? _upgrade.Value : 0;
+    }
+
+    protected override void UpdateValue()
+    {
     }
 }

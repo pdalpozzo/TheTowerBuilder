@@ -31,6 +31,10 @@ public class Stat : MonoBehaviour
     public int DecimalPlaces { get { return _decimalPlaces; } }
     public bool NoSymbol { get { return _noSymbol; } }
 
+    protected float _newbase = 0;
+    protected float _additional = 0;
+    protected float _multiplier = 1;
+
     /*
      * === VALUE MEANINGS ===
      * value - permanant buffs (upgrade, enhancements, simple cards, module)
@@ -59,6 +63,27 @@ public class Stat : MonoBehaviour
         _valueDisplay = StringFormating.Format(_value, _formatType, _decimalPlaces);
         _inRoundDisplay = StringFormating.Format(_inRoundValue, _formatType, _decimalPlaces);
         _conditionalDisplay = StringFormating.Format(_conditionalValue, _formatType, _decimalPlaces);
+    }
+
+    protected void ResetValues()
+    {
+        _additional = 0;
+        _multiplier = 1;
+    }
+
+    protected void CreateValue()
+    {
+        _value = _multiplier * (_newbase + _additional);
+    }
+
+    protected void CreateInRoundValue()
+    {
+        _inRoundValue = _multiplier * (_newbase + _additional);
+    }
+
+    protected void CreateConditionalValue()
+    {
+        _conditionalValue = _multiplier * (_newbase + _additional);
     }
 
     private void Awake()
@@ -106,4 +131,8 @@ public class Stat : MonoBehaviour
 
     }
 
+    //protected virtual void Update()
+    //{
+
+    //}
 }

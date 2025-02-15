@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
 using UnityEngine;
 
 public class CoinBonus : Stat
@@ -21,130 +18,63 @@ public class CoinBonus : Stat
     [SerializeField] private Stat _deathWaveCoinBonus;
     [SerializeField] private Stat _spotlightCoinBonus;
     [SerializeField] private Stat _goldenTowerMultiplier;
-    private bool _blackHoleIsOn = false;
-    private bool _deathWaveIsOn = false;
-    private bool _spotlightIsOn = false;
-    private bool _goldenTowerIsOn = false;
+    [SerializeField] private UltimateWeapon _blackHole;
+    [SerializeField] private UltimateWeapon _deathWave;
+    [SerializeField] private UltimateWeapon _spotlight;
+    [SerializeField] private UltimateWeapon _goldenTower;
 
     //tier
 
-    private float _base = 0;
-
-    private new void Start()
+    private void Update()
     {
-        base.Start();
-        EventManager.OnAnyStatChange += UpdateStat;
-        EventManager.OnAnyCardChange += UpdateValue;
-        EventManager.OnPerkStatusChange += UpdateValue;
-        EventManager.OnAnyPackChange += UpdateValue;
-        EventManager.OnThemeBonusChange += UpdateValue;
-        EventManager.OnModuleRarityChange += UpdateValue;
-        EventManager.OnSubEffectLimitChange += UpdateValue;
-        EventManager.OnAnyStatChange += CoinBonusChanged;
-        //EventManager.OnUltimateWeaponStatusChange += UpdateValue;
-    }
-
-    protected void UpdateStat(Stat stat)
-    {
-        if (stat == _coinsCardValue) UpdateValue();
-    }
-
-    private void UpdateValue(Card card)
-    {
-        if (card == _coinsCard) UpdateValue();
-    }
-
-    private void UpdateValue(ModuleSlot slot)
-    {
-        if (slot == _moduleSlot) UpdateValue();
-    }
-
-    private void UpdateValue(ModuleType type, bool isFull)
-    {
-        if (type == _moduleSlot.ModuleType) UpdateValue();
-    }
-
-    private void UpdateValue(Perk perk)
-    {
-        if (perk == _allCoinsBonusMulti) UpdateValue();
-        if (perk == _moreCoinsLessTowerHealth) UpdateValue();
-    }
-
-    private void UpdateValue(Pack pack)
-    {
-        if (pack == _disableAds) UpdateValue();
-        if (pack == _starterPack) UpdateValue();
-        if (pack == _epicPack) UpdateValue();
-    }
-
-    private void CoinBonusChanged(Stat stat)
-    {
-        if (stat == _blackHoleCoinBonus) UpdateValue();
-        if (stat == _deathWaveCoinBonus) UpdateValue();
-        if (stat == _spotlightCoinBonus) UpdateValue();
-        if (stat == _goldenTowerMultiplier) UpdateValue();
-    }
-
-    private void UpdateValue(UltimateWeaponType uwType, bool isOn)
-    {
-        switch (uwType)
-        {
-            case UltimateWeaponType.BLACK_HOLE:
-                _blackHoleIsOn = isOn;
-                break;
-            case UltimateWeaponType.DEATH_WAVE:
-                _deathWaveIsOn = isOn;
-                break;
-            case UltimateWeaponType.SPOTLIGHT:
-                _spotlightIsOn = isOn;
-                break;
-            case UltimateWeaponType.GOLDEN_TOWER:
-                _goldenTowerIsOn = isOn;
-                break;
-        }
-    }
-
-    protected override void UpdateValue()
-    {
-        // calculate value
+        ResetValues();
         UpdateBase();
-        float additional = 0;
-        float multiplier = 1;
-
-        // permanant buffs
-        multiplier *= _enhancement.Value;
-        multiplier *= (1 + _relicManager.CoinBonus);
-        multiplier *= (1 + _themeManager.TotalBonus);
-        if (_moduleSlot.EquippedModule != _moduleSlot.ModuleList[0]) multiplier *= _moduleSlot.Value;
-        if (_disableAds.IsOn) multiplier *= _disableAds.Value;
-        if (_starterPack.IsOn) multiplier *= _starterPack.Value;
-        if (_epicPack.IsOn) multiplier *= _epicPack.Value;
-        if (_coinsCard.IsEquipped) multiplier *= _coinsCardValue.Value;
-
-        _value = multiplier * (_base + additional);
-
-        // in round buffs
-        if (!_allCoinsBonusMulti.IsBanned) 
-            multiplier *= _allCoinsBonusMulti.Value; //check if banned
-
-        if (!_moreCoinsLessTowerHealth.IsBanned) 
-            multiplier *= _moreCoinsLessTowerHealth.Value;
-
-        _inRoundValue = multiplier * (_base + additional);
-
-        // conditional buffs
-        if (_blackHoleIsOn) multiplier *= _blackHoleCoinBonus.Value;
-        if (_deathWaveIsOn) multiplier *= _deathWaveCoinBonus.Value;
-        if (_spotlightIsOn) multiplier *= _spotlightCoinBonus.Value;
-        if (_goldenTowerIsOn) multiplier *= _goldenTowerMultiplier.Value;
-        _conditionalValue = multiplier * (_base + additional);
-
+        PermanentBuffs();
+        InRoundBuffs();
+        ConditionalBuffs();
         CreateDescriptions();
-        EventManager.StatChanged(this);
+    }
+
+    private void PermanentBuffs()
+    {
+        _multiplier *= _enhancement.Value;
+        _multiplier *= (1 + _relicManager.CoinBonus);
+        _multiplier *= (1 + _themeManager.TotalBonus);
+        if (_moduleSlot.EquippedModule != _moduleSlot.ModuleList[0]) _multiplier *= _moduleSlot.Value;
+        if (_disableAds.IsOn) _multiplier *= _disableAds.Value;
+        if (_starterPack.IsOn) _multiplier *= _starterPack.Value;
+        if (_epicPack.IsOn) _multiplier *= _epicPack.Value;
+        if (_coinsCard.IsEquipped) _multiplier *= _coinsCardValue.Value;
+
+        CreateValue();
+    }
+
+    private void InRoundBuffs()
+    {
+        if (!_allCoinsBonusMulti.IsBanned)
+            _multiplier *= _allCoinsBonusMulti.Value; //check if banned
+
+        if (!_moreCoinsLessTowerHealth.IsBanned)
+            _multiplier *= _moreCoinsLessTowerHealth.Value;
+
+        CreateInRoundValue();
+    }
+
+    private void ConditionalBuffs()
+    {
+        if (_blackHole.IsOn) _multiplier *= _blackHoleCoinBonus.Value;
+        if (_deathWave.IsOn) _multiplier *= _deathWaveCoinBonus.Value;
+        if (_spotlight.IsOn) _multiplier *= _spotlightCoinBonus.Value;
+        if (_goldenTower.IsOn) _multiplier *= _goldenTowerMultiplier.Value;
+        CreateConditionalValue();
     }
 
     private void UpdateBase()
     {
-        _base = 1;
+        _newbase = 1;
+    }
+
+    protected override void UpdateValue()
+    {
     }
 }

@@ -1,55 +1,48 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CoinsPerKillBonus : Stat
 {
     [SerializeField] private Stat _coinBonusStat;       // base
 
-    private float _base = 0;
+    // formula from wiki
+    // Coins/Kill (CPK) = (Workshop × CPK lab + CPK mod effect)
+    // × (1 + coin bonus enhancement)                       - already in Coin Bouns Value
+    // × (1 + coin bonus perk base [0.15] × perk quantity)  - already in Coin Bouns Value
+    // × (trade-off perk [1.8] × (1 + trade-off lab))       - already in Coin Bouns Value
 
-    private new void Start()
+    private void Update()
     {
-        base.Start();
-        EventManager.OnAnyStatChange += CoinBonus;
-    }
-
-    private void CoinBonus(Stat stat)
-    {
-        if (stat == _coinBonusStat) UpdateValue();
-    }
-
-    protected override void UpdateValue()
-    {
-        // calculate value
+        ResetValues();
         UpdateBase();
-        float additional = 0;
-        float multiplier = 1;
-
-        // formula from wiki
-        // Coins/Kill (CPK) = (Workshop × CPK lab + CPK mod effect)
-        // × (1 + coin bonus enhancement)                       - already in Coin Bouns Value
-        // × (1 + coin bonus perk base [0.15] × perk quantity)  - already in Coin Bouns Value
-        // × (trade-off perk [1.8] × (1 + trade-off lab))       - already in Coin Bouns Value
-
-        // permanant buffs
-        multiplier *= _lab.Value;
-        if (_subEffect.IsEquipped) additional += _subEffect.Value;
-        //_value = multiplier * (_base + additional);
-        _value = (_base * multiplier + additional) * _coinBonusStat.Value;
-
-        // in round buffs
-        _inRoundValue = (_base * multiplier + additional) * _coinBonusStat.InRoundValue;
-
-        // conditional buffs
-        _conditionalValue = (_base * multiplier + additional) * _coinBonusStat.ConditionalValue;
-
+        PermanentBuffs();
+        InRoundBuffs();
+        ConditionalBuffs();
         CreateDescriptions();
-        EventManager.StatChanged(this);
+    }
+
+    private void PermanentBuffs()
+    {
+        _multiplier *= _lab.Value;
+        if (_subEffect.IsEquipped) _additional += _subEffect.Value;
+        _value = (_newbase * _multiplier + _additional) * _coinBonusStat.Value;
+    }
+
+    private void InRoundBuffs()
+    {
+        _inRoundValue = (_newbase * _multiplier + _additional) * _coinBonusStat.InRoundValue;
+    }
+
+    private void ConditionalBuffs()
+    {
+        _conditionalValue = (_newbase * _multiplier + _additional) * _coinBonusStat.ConditionalValue;
     }
 
     private void UpdateBase()
     {
-        _base = (_upgrade.IsUnlocked) ? _upgrade.Value : _base;
+        _newbase = (_upgrade.IsUnlocked) ? _upgrade.Value : 0;
+    }
+
+    protected override void UpdateValue()
+    {
     }
 }

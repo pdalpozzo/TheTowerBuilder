@@ -1,58 +1,47 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CashPerKillBonus : Stat
 {
     [SerializeField] private Stat _cashBonusStat;                   // base
     [SerializeField] private Perk _moreCashPerWaveNoCashOnKill;     // in round
+    private float _moreMulti = 1;
 
-    private float _base = 1;
-
-    private new void Start()
+    private void Update()
     {
-        base.Start();
-        EventManager.OnAnyStatChange += CoinBonus;
-        EventManager.OnPerkStatusChange += UpdateValue;
-    }
-
-    private void CoinBonus(Stat stat)
-    {
-        if (stat == _cashBonusStat) UpdateValue();
-    }
-
-    private void UpdateValue(Perk perk)
-    {
-        if (perk == _moreCashPerWaveNoCashOnKill) UpdateValue();
-    }
-
-    protected override void UpdateValue()
-    {
-        // calculate value
+        ResetValues();
         UpdateBase();
-        float additional = 0;
-        float multiplier = 1;
-
-        // permanant buffs
-        _value = (_base * multiplier + additional) * _cashBonusStat.Value;
-
-        // in round buffs
-        float more_multi = 1;
-        if (!_moreCashPerWaveNoCashOnKill.IsBanned)
-            more_multi = _moreCashPerWaveNoCashOnKill.NegativeValue; //check if banned
-
-        _inRoundValue = (_base * multiplier + additional) * _cashBonusStat.InRoundValue * more_multi;
-
-        // conditional buffs
-        _conditionalValue = (_base * multiplier + additional) * _cashBonusStat.ConditionalValue * more_multi;
-
+        PermanentBuffs();
+        InRoundBuffs();
+        ConditionalBuffs();
         CreateDescriptions();
-        EventManager.StatChanged(this);
+    }
+
+    private void PermanentBuffs()
+    {
+        _value = (_newbase * _multiplier + _additional) * _cashBonusStat.Value;
+    }
+
+    private void InRoundBuffs()
+    {
+        if (!_moreCashPerWaveNoCashOnKill.IsBanned)
+            _moreMulti = _moreCashPerWaveNoCashOnKill.NegativeValue; //check if banned
+
+        _inRoundValue = (_newbase * _multiplier + _additional) * _cashBonusStat.InRoundValue * _moreMulti;
+    }
+
+    private void ConditionalBuffs()
+    {
+        _conditionalValue = (_newbase * _multiplier + _additional) * _cashBonusStat.ConditionalValue * _moreMulti;
     }
 
     private void UpdateBase()
     {
         // comes from enemies
-        _base = 1;
+        _newbase = 1;
+        _moreMulti = 1;
+    }
+
+    protected override void UpdateValue()
+    {
     }
 }

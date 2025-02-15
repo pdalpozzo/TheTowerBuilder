@@ -1,50 +1,43 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class KnockbackForce : Stat
 {
     [SerializeField] private Perk _moreLifestealLessKnockbackForce;                  // in round
 
-    private float _base = 0;
-
-    private new void Start()
+    private void Update()
     {
-        base.Start();
-        EventManager.OnPerkStatusChange += UpdateValue;
-    }
-
-    private void UpdateValue(Perk perk)
-    {
-        if (perk == _moreLifestealLessKnockbackForce) UpdateValue();
-    }
-
-    protected override void UpdateValue()
-    {
-        // calculate value
+        ResetValues();
         UpdateBase();
-        float additional = 0;
-        float multiplier = 1;
-
-        // permanant buffs
-        if (_subEffect.IsEquipped) additional += _subEffect.Value;
-        _value = multiplier * (_base + additional);
-
-        // in round buffs
-        if (!_moreLifestealLessKnockbackForce.IsBanned) 
-            multiplier *= (1 + _moreLifestealLessKnockbackForce.NegativeValue);   //check if banned
-
-        _inRoundValue = multiplier * (_base + additional);
-
-        // conditional buffs
-        _conditionalValue = multiplier * (_base + additional);
-
+        PermanentBuffs();
+        InRoundBuffs();
+        ConditionalBuffs();
         CreateDescriptions();
-        EventManager.StatChanged(this);
+    }
+
+    private void PermanentBuffs()
+    {
+        if (_subEffect.IsEquipped) _additional += _subEffect.Value;
+        CreateValue();
+    }
+
+    private void InRoundBuffs()
+    {
+        if (!_moreLifestealLessKnockbackForce.IsBanned)
+            _multiplier *= (1 + _moreLifestealLessKnockbackForce.NegativeValue);   //check if banned
+        CreateInRoundValue();
+    }
+
+    private void ConditionalBuffs()
+    {
+        CreateConditionalValue();
     }
 
     private void UpdateBase()
     {
-        _base = (_upgrade.IsUnlocked) ? _upgrade.Value : _base;
+        _newbase = (_upgrade.IsUnlocked) ? _upgrade.Value : 0;
+    }
+
+    protected override void UpdateValue()
+    {
     }
 }

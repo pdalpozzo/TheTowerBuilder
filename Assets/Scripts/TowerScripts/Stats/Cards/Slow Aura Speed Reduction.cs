@@ -1,18 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class SlowAuraSpeedReduction : Stat
 {
-    // Start is called before the first frame update
-    void Start()
+    private void Update()
     {
-        
+        ResetValues();
+        UpdateBase();
+        PermanentBuffs();
+        InRoundBuffs();
+        ConditionalBuffs();
+        CreateDescriptions();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void PermanentBuffs()
     {
-        
+        CreateValue();
+    }
+
+    private void InRoundBuffs()
+    {
+        CreateInRoundValue();
+    }
+
+    private void ConditionalBuffs()
+    {
+        CreateConditionalValue();
+    }
+
+    private void UpdateBase()
+    {
+        _newbase = 1;
+    }
+
+    protected override void UpdateValue()
+    {
     }
 }

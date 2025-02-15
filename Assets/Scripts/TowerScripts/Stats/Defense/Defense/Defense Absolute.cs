@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DefenseAbsolute : Stat
@@ -7,54 +5,43 @@ public class DefenseAbsolute : Stat
     [SerializeField] private Card _fortressCard;        // permanant
     [SerializeField] private Perk _defenseAbsMulti;     // in round
 
-    private float _base = 0;
-
-    private new void Start()
+    private void Update()
     {
-        base.Start();
-        EventManager.OnAnyCardChange += UpdateValue;
-        EventManager.OnPerkStatusChange += UpdateValue;
-        EventManager.OnRelicBonusChange += UpdateValue;
-    }
-
-    private void UpdateValue(Card card)
-    {
-        if (card == _fortressCard) UpdateValue();
-    }
-
-    private void UpdateValue(Perk perk)
-    {
-        if (perk == _defenseAbsMulti) UpdateValue();
-    }
-
-    protected override void UpdateValue()
-    {
-        // calculate value
+        ResetValues();
         UpdateBase();
-        float additional = 0;
-        float multiplier = 1;
-
-        // permanant buffs
-        multiplier *= _enhancement.Value;
-        multiplier *= _lab.Value;
-        multiplier *= (1 + _relicManager.TowerDamage);
-        if (_subEffect.IsEquipped) multiplier *= 1 + _subEffect.Value;
-        if (_fortressCard.IsEquipped) multiplier *= _fortressCard.Value;
-        _value = multiplier * (_base + additional);
-
-        // in round buffs
-        if (!_defenseAbsMulti.IsBanned) multiplier *= _defenseAbsMulti.Value;   //check if banned
-        _inRoundValue = multiplier * (_base + additional);
-
-        // conditional buffs
-        _conditionalValue = multiplier * (_base + additional);
-
+        PermanentBuffs();
+        InRoundBuffs();
+        ConditionalBuffs();
         CreateDescriptions();
-        EventManager.StatChanged(this);
+    }
+
+    private void PermanentBuffs()
+    {
+        _multiplier *= _enhancement.Value;
+        _multiplier *= _lab.Value;
+        _multiplier *= (1 + _relicManager.TowerDamage);
+        if (_subEffect.IsEquipped) _multiplier *= 1 + _subEffect.Value;
+        if (_fortressCard.IsEquipped) _multiplier *= _fortressCard.Value;
+        CreateValue();
+    }
+
+    private void InRoundBuffs()
+    {
+        if (!_defenseAbsMulti.IsBanned) _multiplier *= _defenseAbsMulti.Value;   //check if banned
+        CreateInRoundValue();
+    }
+
+    private void ConditionalBuffs()
+    {
+        CreateConditionalValue();
     }
 
     private void UpdateBase()
     {
-        _base = (_upgrade.IsUnlocked) ? _upgrade.Value : _base;
+        _newbase = (_upgrade.IsUnlocked) ? _upgrade.Value : 0;
+    }
+
+    protected override void UpdateValue()
+    {
     }
 }

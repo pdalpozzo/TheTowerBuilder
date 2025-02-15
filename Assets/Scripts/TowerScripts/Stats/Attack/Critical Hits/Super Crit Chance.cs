@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SuperCritChance : Stat
@@ -7,51 +5,41 @@ public class SuperCritChance : Stat
     [SerializeField] private Card _criticalChanceCard;                  // permanant
     [SerializeField] private CardMastery _criticalChanceCardMastery;    // permanant
 
-    private float _base = 0;
-
-    private new void Start()
+    private void Update()
     {
-        base.Start();
-        EventManager.OnAnyCardChange += UpdateValue;
-        EventManager.OnAnyMasteryChange += UpdateValue;
-    }
-    private void UpdateValue(Card card)
-    {
-        if (card == _criticalChanceCard) UpdateValue();
-    }
-
-    private void UpdateValue(CardMastery mastery)
-    {
-        if (mastery == _criticalChanceCardMastery) UpdateValue();
-    }
-
-    protected override void UpdateValue()
-    {
-        // calculate value
+        ResetValues();
         UpdateBase();
-        float additional = 0;
-        float multiplier = 1;
-
-        // permanant buffs
-        additional += _lab.Value;
-        if (_subEffect.IsEquipped) additional += _subEffect.Value;
-        if (_criticalChanceCard.IsEquipped && _criticalChanceCardMastery.Enabled) 
-            additional += _criticalChanceCardMastery.Value;
-        _value = multiplier * (_base + additional);
-
-        // in round buffs
-        _inRoundValue = multiplier * (_base + additional);
-
-        // conditional buffs
-        _conditionalValue = multiplier * (_base + additional);
-
+        PermanentBuffs();
+        InRoundBuffs();
+        ConditionalBuffs();
         CreateDescriptions();
-        EventManager.StatChanged(this);
+    }
+
+    private void PermanentBuffs()
+    {
+        _additional += _lab.Value;
+        if (_subEffect.IsEquipped) _additional += _subEffect.Value;
+        if (_criticalChanceCard.IsEquipped && _criticalChanceCardMastery.Enabled)
+            _additional += _criticalChanceCardMastery.Value;
+        CreateValue();
+    }
+
+    private void InRoundBuffs()
+    {
+        CreateInRoundValue();
+    }
+
+    private void ConditionalBuffs()
+    {
+        CreateConditionalValue();
     }
 
     private void UpdateBase()
     {
-        _base = (_upgrade.IsUnlocked) ? _upgrade.Value : _base;
-        //_base = _upgrade.Value;
+        _newbase = (_upgrade.IsUnlocked) ? _upgrade.Value : 0;
+    }
+
+    protected override void UpdateValue()
+    {
     }
 }

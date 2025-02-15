@@ -28,6 +28,7 @@ public class Lab : MonoBehaviour
 
     private string GetStringFormat(float value, StringFormatType format, int decimalPlaces)
     {
+        if (_data.IsUnlockedLab) return (IsMaxLevel) ? "Unlocked" : ""; 
         return StringFormating.Format(value, format, decimalPlaces);
     }
 }

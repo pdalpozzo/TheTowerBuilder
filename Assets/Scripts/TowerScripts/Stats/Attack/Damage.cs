@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Damage : Stat
@@ -21,104 +19,62 @@ public class Damage : Stat
     [SerializeField] private CardMastery _demonModeCardMastery;     // conditional
     [SerializeField] private Stat _demonModeDamageMultiplier;       // conditional
 
-    private float _base = 0;
-
-    private new void Start()
+    private void Update()
     {
-        base.Start();
-        EventManager.OnAnyStatChange += UpdateStat;
-        EventManager.OnAnyCardChange += UpdateValue;
-        EventManager.OnAnyMasteryChange += UpdateValue;
-        EventManager.OnPerkStatusChange += UpdateValue;
-        EventManager.OnModuleRarityChange += UpdateValue;
-        EventManager.OnSubEffectLimitChange += UpdateValue;
-    }
-
-    protected void UpdateStat(Stat stat)
-    {
-        if (stat == _damageCardValue) UpdateValue();
-    }
-
-    private void UpdateValue(Card card)
-    {
-        if (card == _damageCard) UpdateValue();
-        if (card == _berserkerCard) UpdateValue();
-        if (card == _energyNetCard) UpdateValue();
-        if (card == _demonModeCard) UpdateValue();
-    }
-
-    private void UpdateValue(CardMastery mastery)
-    {
-        //if (mastery == _damageCardMastery) UpdateValue();
-        if (mastery == _berserkerCardMastery) UpdateValue();
-        if (mastery == _energyNetCardMastery) UpdateValue();
-        if (mastery == _demonModeCardMastery) UpdateValue();
-    }
-
-    private void UpdateValue(ModuleSlot slot)
-    {
-        if (slot == _moduleSlot) UpdateValue();
-    }
-
-    private void UpdateValue(ModuleType type, bool isFull)
-    {
-        if (type == _moduleSlot.ModuleType) UpdateValue();
-    }
-
-    private void UpdateValue(Perk perk)
-    {
-        if (perk == _damageMulti) UpdateValue();
-        if (perk == _moreTowerDamageMoreBossHealth) UpdateValue();
-        if (perk == _lessEnemyDamageLessTowerDamage) UpdateValue();
-    }
-
-    protected override void UpdateValue()
-    {
-        // calculate value
+        ResetValues();
         UpdateBase();
-        float additional = 0;
-        float multiplier = 1;
+        PermanentBuffs();
+        InRoundBuffs();
+        ConditionalBuffs();
+        CreateDescriptions();
+    }
 
-        // permanant buffs
-        multiplier *= _enhancement.Value;
-        multiplier *= _lab.Value;
-        multiplier *= (1 + _relicManager.TowerDamage);
-        if (_moduleSlot.EquippedModule != _moduleSlot.ModuleList[0]) multiplier *= _moduleSlot.Value;
-        if (_damageCard.IsEquipped) multiplier *= _damageCardValue.Value;
-        _value = multiplier * (_base + additional);
+    private void PermanentBuffs()
+    {
+        _multiplier *= _enhancement.Value;
+        _multiplier *= _lab.Value;
+        _multiplier *= (1 + _relicManager.TowerDamage);
+        if (_moduleSlot.EquippedModule != _moduleSlot.ModuleList[0]) _multiplier *= _moduleSlot.Value;
+        if (_damageCard.IsEquipped) _multiplier *= _damageCardValue.Value;
+        CreateValue();
+    }
 
-        // in round buffs
-        if (_berserkerCard.IsEquipped) multiplier *= (1 + _berserkerCard.Value);
-        if (!_damageMulti.IsBanned) multiplier *= _damageMulti.Value;       //check if banned
+    private void InRoundBuffs()
+    {
+        if (_berserkerCard.IsEquipped) _multiplier *= (1 + _berserkerCard.Value);
+        if (!_damageMulti.IsBanned) _multiplier *= _damageMulti.Value;       //check if banned
 
         if (!_moreTowerDamageMoreBossHealth.IsBanned)
-            multiplier *= _moreTowerDamageMoreBossHealth.Value;   //check if banned
+            _multiplier *= _moreTowerDamageMoreBossHealth.Value;   //check if banned
 
         if (!_lessEnemyDamageLessTowerDamage.IsBanned)
-            multiplier *= (1 + _lessEnemyDamageLessTowerDamage.NegativeValue); //check if banned
+            _multiplier *= (1 + _lessEnemyDamageLessTowerDamage.NegativeValue); //check if banned
 
-        _inRoundValue = multiplier * (_base + additional);
+        CreateInRoundValue();
+    }
 
-        // conditional buffs
+    private void ConditionalBuffs()
+    {
         //multiplier *= (1 + _spotlight.Value);
         if (_energyNetCard.IsEquipped && _energyNetCardMastery.Enabled)
-            multiplier *= _energyNetCardMastery.Value;
+            _multiplier *= _energyNetCardMastery.Value;
 
         if (_demonModeCard.IsEquipped)
         {
-            if(_demonModeCardMastery.Enabled)
-                multiplier *= _demonModeCardMastery.Value;
+            if (_demonModeCardMastery.Enabled)
+                _multiplier *= _demonModeCardMastery.Value;
             else
-                multiplier *= _demonModeDamageMultiplier.Value;
+                _multiplier *= _demonModeDamageMultiplier.Value;
         }
-        _conditionalValue = multiplier * (_base + additional);
-
-        CreateDescriptions();
-        EventManager.StatChanged(this);
+        CreateConditionalValue();
     }
 
     private void UpdateBase()
     {
-        _base = _upgrade.Value;
+        _newbase = _upgrade.Value;
+    }
+
+    protected override void UpdateValue()
+    {
     }
 }
