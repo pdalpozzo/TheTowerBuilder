@@ -32,7 +32,7 @@ public class ChronoFieldRange : Stat
 
     private void UpdateBase()
     {
-        _newbase = _towerRange.Value;
+        _base = _towerRange.Value;
     }
 
     protected override void UpdateValue()

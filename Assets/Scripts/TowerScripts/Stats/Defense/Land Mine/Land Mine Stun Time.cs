@@ -31,7 +31,7 @@ public class LandMineStunTime : Stat
 
     private void UpdateBase()
     {
-        _newbase = _landMineStunCard.Value;
+        _base = _landMineStunCard.Value;
     }
 
     protected override void UpdateValue()

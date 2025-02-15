@@ -18,7 +18,7 @@ public class CashPerKillBonus : Stat
 
     private void PermanentBuffs()
     {
-        _value = (_newbase * _multiplier + _additional) * _cashBonusStat.Value;
+        _value = (_base * _multiplier + _additional) * _cashBonusStat.Value;
     }
 
     private void InRoundBuffs()
@@ -26,18 +26,18 @@ public class CashPerKillBonus : Stat
         if (!_moreCashPerWaveNoCashOnKill.IsBanned)
             _moreMulti = _moreCashPerWaveNoCashOnKill.NegativeValue; //check if banned
 
-        _inRoundValue = (_newbase * _multiplier + _additional) * _cashBonusStat.InRoundValue * _moreMulti;
+        _inRoundValue = (_base * _multiplier + _additional) * _cashBonusStat.InRoundValue * _moreMulti;
     }
 
     private void ConditionalBuffs()
     {
-        _conditionalValue = (_newbase * _multiplier + _additional) * _cashBonusStat.ConditionalValue * _moreMulti;
+        _conditionalValue = (_base * _multiplier + _additional) * _cashBonusStat.ConditionalValue * _moreMulti;
     }
 
     private void UpdateBase()
     {
         // comes from enemies
-        _newbase = 1;
+        _base = 1;
         _moreMulti = 1;
     }
 

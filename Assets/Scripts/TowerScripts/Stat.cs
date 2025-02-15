@@ -31,7 +31,7 @@ public class Stat : MonoBehaviour
     public int DecimalPlaces { get { return _decimalPlaces; } }
     public bool NoSymbol { get { return _noSymbol; } }
 
-    protected float _newbase = 0;
+    protected float _base = 0;
     protected float _additional = 0;
     protected float _multiplier = 1;
 
@@ -73,17 +73,17 @@ public class Stat : MonoBehaviour
 
     protected void CreateValue()
     {
-        _value = _multiplier * (_newbase + _additional);
+        _value = _multiplier * (_base + _additional);
     }
 
     protected void CreateInRoundValue()
     {
-        _inRoundValue = _multiplier * (_newbase + _additional);
+        _inRoundValue = _multiplier * (_base + _additional);
     }
 
     protected void CreateConditionalValue()
     {
-        _conditionalValue = _multiplier * (_newbase + _additional);
+        _conditionalValue = _multiplier * (_base + _additional);
     }
 
     private void Awake()
@@ -131,8 +131,4 @@ public class Stat : MonoBehaviour
 
     }
 
-    //protected virtual void Update()
-    //{
-
-    //}
 }

@@ -17,7 +17,7 @@ public class SuperTowerCooldown : Stat
 
     private void PermanentBuffs()
     {
-        if (_mastery.Enabled) _multiplier *= _mastery.Value;
+        if (_mastery.Enabled) _additional += _mastery.Value;
         CreateValue();
     }
 
@@ -33,7 +33,7 @@ public class SuperTowerCooldown : Stat
 
     private void UpdateBase()
     {
-        _newbase = _cooldown;
+        _base = _cooldown;
     }
 
     protected override void UpdateValue()

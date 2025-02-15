@@ -100,7 +100,8 @@ public class CardMasteryVisualControl : MonoBehaviour
 
     public void ForceMaxMasteryLevel()
     {
-        _mastery.SetEnable(true);
+        _masteryToggle.SetToggle(true);
+        _mastery.SetEnable(_masteryToggle.IsOn);
         _mastery.Lab.NewLevel(_mastery.Lab.MaxLevel);
     }
 

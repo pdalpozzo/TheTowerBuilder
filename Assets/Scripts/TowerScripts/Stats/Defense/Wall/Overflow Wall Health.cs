@@ -23,19 +23,19 @@ public class OverflowWallHealth : Stat
 
     private void InRoundBuffs()
     {
-        _newbase = _wallHealth.InRoundValue;
+        _base = _wallHealth.InRoundValue;
         CreateInRoundValue();
     }
 
     private void ConditionalBuffs()
     {
-        _newbase = _wallHealth.ConditionalValue;
+        _base = _wallHealth.ConditionalValue;
         CreateConditionalValue();
     }
 
     private void UpdateBase()
     {
-        _newbase = _wallHealth.Value;
+        _base = _wallHealth.Value;
     }
 
     protected override void UpdateValue()

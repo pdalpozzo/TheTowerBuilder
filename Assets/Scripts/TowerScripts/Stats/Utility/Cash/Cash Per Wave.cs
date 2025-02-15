@@ -20,7 +20,7 @@ public class CashPerWave : Stat
     {
         _multiplier *= _lab.Value;
         if (_subEffect.IsEquipped) _additional += _subEffect.Value;
-        _value = (_newbase * _multiplier + _additional) * _cashBonusStat.Value;
+        _value = (_base * _multiplier + _additional) * _cashBonusStat.Value;
     }
 
     private void InRoundBuffs()
@@ -28,17 +28,17 @@ public class CashPerWave : Stat
         if (!_moreCashPerWaveNoCashOnKill.IsBanned)
             _moreMulti = _moreCashPerWaveNoCashOnKill.Value; //check if banned
 
-        _inRoundValue = (_newbase * _multiplier + _additional) * _cashBonusStat.InRoundValue * _moreMulti;
+        _inRoundValue = (_base * _multiplier + _additional) * _cashBonusStat.InRoundValue * _moreMulti;
     }
 
     private void ConditionalBuffs()
     {
-        _conditionalValue = (_newbase * _multiplier + _additional) * _cashBonusStat.ConditionalValue * _moreMulti;
+        _conditionalValue = (_base * _multiplier + _additional) * _cashBonusStat.ConditionalValue * _moreMulti;
     }
 
     private void UpdateBase()
     {
-        _newbase = (_upgrade.IsUnlocked) ? _upgrade.Value : 0;
+        _base = (_upgrade.IsUnlocked) ? _upgrade.Value : 0;
         _moreMulti = 1;
     }
 

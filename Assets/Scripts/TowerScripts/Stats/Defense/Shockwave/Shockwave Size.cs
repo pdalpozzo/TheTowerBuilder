@@ -12,7 +12,7 @@ public class ShockwaveSize : Stat
 
     private void PermanentBuffs()
     {
-        _multiplier *= _lab.Value;
+        _additional += _lab.Value;
         if (_subEffect.IsEquipped) _additional += _subEffect.Value;
         CreateValue();
     }
@@ -29,7 +29,7 @@ public class ShockwaveSize : Stat
 
     private void UpdateBase()
     {
-        _newbase = (_upgrade.IsUnlocked) ? _upgrade.Value : 0;
+        _base = (_upgrade.IsUnlocked) ? _upgrade.Value : 0;
     }
 
     protected override void UpdateValue()

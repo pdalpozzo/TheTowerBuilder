@@ -23,19 +23,19 @@ public class WallRegen : Stat
 
     private void InRoundBuffs()
     {
-        _newbase = _healthRegen.InRoundValue;
+        _base = _healthRegen.InRoundValue;
         CreateInRoundValue();
     }
 
     private void ConditionalBuffs()
     {
-        _newbase = _healthRegen.ConditionalValue;
+        _base = _healthRegen.ConditionalValue;
         CreateConditionalValue();
     }
 
     private void UpdateBase()
     {
-        _newbase = _healthRegen.Value;
+        _base = _healthRegen.Value;
     }
 
     protected override void UpdateValue()

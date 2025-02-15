@@ -33,7 +33,7 @@ public class HealthRegenCardValue : Stat
 
     private void UpdateBase()
     {
-        _newbase = _card.Value;
+        _base = _card.Value;
     }
 
     protected override void UpdateValue()

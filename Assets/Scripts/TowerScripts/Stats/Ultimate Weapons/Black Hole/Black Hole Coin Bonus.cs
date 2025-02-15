@@ -27,7 +27,7 @@ public class BlackHoleCoinBonus : Stat
 
     private void UpdateBase()
     {
-        _newbase = _lab.Value;
+        _base = _lab.Value;
     }
 
     protected override void UpdateValue()

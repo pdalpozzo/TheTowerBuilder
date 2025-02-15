@@ -32,7 +32,7 @@ public class TotalMitigationPercent : Stat
 
     private void ConditionalBuffs()
     {
-        float subTotal = _multiplier * (_newbase + _additional);
+        float subTotal = _multiplier * (_base + _additional);
 
         if (_chronoField.IsOn)
             subTotal += (1 - subTotal) * _chronoFieldDamageReduction.Value;
@@ -45,7 +45,7 @@ public class TotalMitigationPercent : Stat
 
     private void UpdateBase()
     {
-        _newbase = (_defensePercent.Upgrade.IsUnlocked) ? _defensePercent.ConditionalValue : 0;
+        _base = (_defensePercent.Upgrade.IsUnlocked) ? _defensePercent.ConditionalValue : 0;
     }
 
     protected override void UpdateValue()

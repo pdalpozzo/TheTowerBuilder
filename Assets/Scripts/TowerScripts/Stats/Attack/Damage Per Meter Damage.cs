@@ -36,7 +36,7 @@ public class DamagePerMeterDamage : Stat
 
     private void UpdateBase()
     {
-        _newbase = _projectileDamage.Value;
+        _base = _projectileDamage.Value;
     }
 
     protected override void UpdateValue()

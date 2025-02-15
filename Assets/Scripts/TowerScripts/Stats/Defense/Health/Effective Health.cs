@@ -33,7 +33,7 @@ public class EffectiveHealth : Stat
 
     private void UpdateBase()
     {
-        _newbase =  0;
+        _base =  0;
     }
 
     protected override void UpdateValue()

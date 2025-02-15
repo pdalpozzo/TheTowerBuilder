@@ -13,11 +13,21 @@ MonoBehaviour:
   m_Name: 06 Recharge Second Wind
   m_EditorClassIdentifier: 
   _labName: Recharge Second Wind
-  _tooltipMessage: Not Implemented
   _baseValue: 0
-  _valueIncrement: 500
+  _valueIncrement: 0
   _maxLevel: 7
   _baseLevel: 0
-  _decimalPlaces: 0
+  _incrementType: 1
+  _valueIncrements:
+  - 0
+  - 2000
+  - 1500
+  - 1250
+  - 1000
+  - 750
+  - 550
+  - 400
   _formatType: 0
+  _decimalPlaces: 0
+  _noSymbol: 1
   _isUnlockLab: 0

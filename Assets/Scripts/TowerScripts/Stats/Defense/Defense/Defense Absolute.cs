@@ -38,7 +38,7 @@ public class DefenseAbsolute : Stat
 
     private void UpdateBase()
     {
-        _newbase = (_upgrade.IsUnlocked) ? _upgrade.Value : 0;
+        _base = (_upgrade.IsUnlocked) ? _upgrade.Value : 0;
     }
 
     protected override void UpdateValue()

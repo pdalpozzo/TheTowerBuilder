@@ -12,14 +12,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68c7a64dd34737c4d9368dd3ede1303e, type: 3}
   m_Name: 07 Knockback Force
   m_EditorClassIdentifier: 
-  _upgradeName: Knockback Force
-  _tooltipMessage: 
   _baseValue: 0
   _valueIncrement: 0
   _maxLevel: 40
   _baseLevel: 0
-  _formatType: 0
-  _decimalPlaces: 2
-  _incrementType: 0
-  _brackets: 
-  _valueIncrements: []
+  _incrementType: 1
+  _valueIncrements:
+  - 0
+  - 0.55
+  - 0.7
+  - 0.85
+  - 1
+  - 1.15
+  - 1.3
+  - 1.45
+  - 1.6
+  - 1.75
+  - 1.9
+  - 2.05
+  - 2.2
+  - 2.35
+  - 2.5
+  - 2.65
+  - 2.8
+  - 2.95
+  - 3.1
+  - 3.25
+  - 3.4
+  - 3.55
+  - 3.7
+  - 3.85
+  - 4
+  - 4.15
+  - 4.3
+  - 4.45
+  - 4.6
+  - 0
+  - 0
+  - 4.8
+  - 4.94
+  - 5.08
+  - 5.23
+  - 5.37
+  - 5.51
+  - 5.65
+  - 5.8
+  - 5.94
+  - 6.08

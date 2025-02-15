@@ -34,7 +34,7 @@ public class CriticalChance : Stat
 
     private void UpdateBase()
     {
-        _newbase = _upgrade.Value;
+        _base = _upgrade.Value;
     }
 
     protected override void UpdateValue()

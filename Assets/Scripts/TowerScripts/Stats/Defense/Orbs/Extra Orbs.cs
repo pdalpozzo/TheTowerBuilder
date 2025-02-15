@@ -32,7 +32,7 @@ public class ExtraOrbs : Stat
 
     private void UpdateBase()
     {
-        _newbase = _extraOrbsCard.Value;
+        _base = _extraOrbsCard.Value;
     }
 
     protected override void UpdateValue()

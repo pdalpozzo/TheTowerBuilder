@@ -1,5 +1,7 @@
 using UnityEngine;
 
+public enum IncrementType { INCREMENTAL, ALL_VALUES }; //, CASCADE, FORMULA };
+
 [CreateAssetMenu (fileName ="Upgrade", menuName = "ScriptableObjects/Upgrade")]
 public class UpgradeScriptableObject : ScriptableObject
 {
@@ -8,9 +10,7 @@ public class UpgradeScriptableObject : ScriptableObject
     [SerializeField] private int _maxLevel = 99;
     [SerializeField] private int _baseLevel = 0;    // does not need to be serialized
 
-    [SerializeField] private enum IncrementType { INCREMENTAL, ALL_VALUES }; //, CASCADE, FORMULA };
     [SerializeField] private IncrementType _incrementType;
-
     //[SerializeField] private int[] _brackets;
     [SerializeField] private float[] _valueIncrements;
 

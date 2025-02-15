@@ -13,11 +13,21 @@ MonoBehaviour:
   m_Name: 00 Game Speed
   m_EditorClassIdentifier: 
   _labName: Game Speed
-  _tooltipMessage: 
-  _baseValue: 2
-  _valueIncrement: 0.5
+  _baseValue: 0
+  _valueIncrement: 0
   _maxLevel: 7
   _baseLevel: 0
-  _decimalPlaces: 1
+  _incrementType: 1
+  _valueIncrements:
+  - 1
+  - 2
+  - 2.5
+  - 3
+  - 3.5
+  - 4
+  - 4.5
+  - 5
   _formatType: 1
+  _decimalPlaces: 1
+  _noSymbol: 0
   _isUnlockLab: 0

@@ -27,7 +27,7 @@ public class SlowAuraSpeedReduction : Stat
 
     private void UpdateBase()
     {
-        _newbase = 1;
+        _base = 1;
     }
 
     protected override void UpdateValue()

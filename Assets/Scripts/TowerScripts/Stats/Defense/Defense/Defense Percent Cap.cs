@@ -29,7 +29,7 @@ public class DefensePercentCap : Stat
 
     private void UpdateBase()
     {
-        _newbase = _cap;
+        _base = _cap;
     }
 
     protected override void UpdateValue()

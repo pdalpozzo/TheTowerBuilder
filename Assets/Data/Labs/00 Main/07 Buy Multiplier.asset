@@ -13,11 +13,18 @@ MonoBehaviour:
   m_Name: 07 Buy Multiplier
   m_EditorClassIdentifier: 
   _labName: Buy Multiplier
-  _tooltipMessage: Not Implemented
   _baseValue: 1
-  _valueIncrement: 10
+  _valueIncrement: 0
   _maxLevel: 4
   _baseLevel: 0
-  _decimalPlaces: 0
+  _incrementType: 1
+  _valueIncrements:
+  - 0
+  - 5
+  - 10
+  - 100
+  - 100
   _formatType: 0
+  _decimalPlaces: 0
+  _noSymbol: 0
   _isUnlockLab: 0

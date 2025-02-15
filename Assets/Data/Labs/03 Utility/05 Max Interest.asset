@@ -14,9 +14,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _labName: Max Interest
   _baseValue: 1
-  _valueIncrement: 100
+  _valueIncrement: 0
   _maxLevel: 15
   _baseLevel: 0
-  _decimalPlaces: 2
+  _incrementType: 1
+  _valueIncrements:
+  - 50
+  - 100
+  - 200
+  - 350
+  - 500
+  - 700
+  - 1000
+  - 1500
+  - 2000
+  - 2500
+  - 3500
+  - 5000
+  - 7500
+  - 10000
+  - 12500
+  - 15000
   _formatType: 0
+  _decimalPlaces: 0
+  _noSymbol: 1
   _isUnlockLab: 0

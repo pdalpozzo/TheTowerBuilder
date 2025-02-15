@@ -6,8 +6,6 @@ public class Damage : Stat
     [SerializeField] private Stat _damageCardValue;                 // permanant
     [SerializeField] private ModuleSlot _moduleSlot;                // permanant
 
-    [SerializeField] private Card _berserkerCard;                   // in round
-    [SerializeField] private CardMastery _berserkerCardMastery;     // in round
     [SerializeField] private Perk _damageMulti;                     // in round
     [SerializeField] private Perk _moreTowerDamageMoreBossHealth;   // in round
     [SerializeField] private Perk _lessEnemyDamageLessTowerDamage;  // in round
@@ -15,8 +13,8 @@ public class Damage : Stat
     [SerializeField] private UltimateWeapon _spotlight;             // conditional
     [SerializeField] private Card _energyNetCard;                   // conditional
     [SerializeField] private CardMastery _energyNetCardMastery;     // conditional
-    [SerializeField] private Card _demonModeCard;                   // conditional
-    [SerializeField] private CardMastery _demonModeCardMastery;     // conditional
+    [SerializeField] private CardMastery _berserkerCardMastery;     // conditional
+    [SerializeField] private Stat _berserkMultiplierLimit;          // conditional
     [SerializeField] private Stat _demonModeDamageMultiplier;       // conditional
 
     private void Update()
@@ -41,7 +39,7 @@ public class Damage : Stat
 
     private void InRoundBuffs()
     {
-        if (_berserkerCard.IsEquipped) _multiplier *= (1 + _berserkerCard.Value);
+        _multiplier *= _berserkMultiplierLimit.InRoundValue;
         if (!_damageMulti.IsBanned) _multiplier *= _damageMulti.Value;       //check if banned
 
         if (!_moreTowerDamageMoreBossHealth.IsBanned)
@@ -59,19 +57,14 @@ public class Damage : Stat
         if (_energyNetCard.IsEquipped && _energyNetCardMastery.Enabled)
             _multiplier *= _energyNetCardMastery.Value;
 
-        if (_demonModeCard.IsEquipped)
-        {
-            if (_demonModeCardMastery.Enabled)
-                _multiplier *= _demonModeCardMastery.Value;
-            else
-                _multiplier *= _demonModeDamageMultiplier.Value;
-        }
+        if (_berserkerCardMastery.Enabled) _multiplier *= _berserkMultiplierLimit.ConditionalValue;
+        _multiplier *= _demonModeDamageMultiplier.ConditionalValue;
         CreateConditionalValue();
     }
 
     private void UpdateBase()
     {
-        _newbase = _upgrade.Value;
+        _base = _upgrade.Value;
     }
 
     protected override void UpdateValue()

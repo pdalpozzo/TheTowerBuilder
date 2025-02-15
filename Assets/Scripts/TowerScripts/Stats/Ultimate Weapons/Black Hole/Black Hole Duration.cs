@@ -34,7 +34,7 @@ public class BlackHoleDuration : Stat
 
     private void UpdateBase()
     {
-        _newbase = _effect.Value;
+        _base = _effect.Value;
     }
 
     protected override void UpdateValue()

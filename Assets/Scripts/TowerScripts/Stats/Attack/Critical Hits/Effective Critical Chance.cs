@@ -19,23 +19,23 @@ public class EffectiveCriticalChance : Stat
 
     private void PermanentBuffs()
     {
-        _value = 1 - _newbase - _effectiveSuperCritChance.Value;
+        _value = 1 - _base - _effectiveSuperCritChance.Value;
     }
 
     private void InRoundBuffs()
     {
-        _inRoundValue = 1 - _newbase - _effectiveSuperCritChance.Value;
+        _inRoundValue = 1 - _base - _effectiveSuperCritChance.Value;
     }
 
     private void ConditionalBuffs()
     {
-        _conditionalValue = 1 - _newbase - _effectiveSuperCritChance.Value;
+        _conditionalValue = 1 - _base - _effectiveSuperCritChance.Value;
     }
 
     private void UpdateBase()
     {
         float critChance = (_criticalChance.Value > _cap) ? _cap : _criticalChance.Value;
-        _newbase = 1 - critChance;
+        _base = 1 - critChance;
     }
 
     protected override void UpdateValue()
