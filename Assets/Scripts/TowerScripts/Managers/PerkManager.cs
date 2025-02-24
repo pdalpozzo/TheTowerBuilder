@@ -46,14 +46,13 @@ public class PerkManager : MonoBehaviour
         EventManager.OnUltimateWeaponStatusChange += UltimateWeaponsUnlocked;       // triggered by ultimate weapon
         EventManager.OnPerkBanChange += BanPerk;                                    // triggered by perk status control
         EventManager.OnPerkPriorityChange += PriorityPerk;                          // triggered by perk status control
-        EventManager.OnAnyStatChange += StatChanged;
         EventManager.OnPerkPresetChange += ChangePresetSelection;
     }
 
-    private void StatChanged(Stat stat)
+    private void Update()
     {
-        if (stat == _banPerks) UpdateBanLimit(stat.Value);
-        if (stat == _autoPickRanking) UpdatePriorityLimit(stat.Value);
+        if (_unlockedBans != _banPerks.Value) UpdateBanLimit(_banPerks.Value);
+        if (_unlockedPriority != _autoPickRanking.Value) UpdatePriorityLimit(_autoPickRanking.Value);
     }
 
     private void UpdateBanLimit(float newLimit)
