@@ -22,7 +22,7 @@ MonoBehaviour:
   _increment: 0.15
   _negativeValue: 0
   _maxStacks: 5
-  _icon: {fileID: 0}
+  _icon: {fileID: 21300000, guid: 4c3b269e61de00645a7d6e1cbe818413, type: 3}
   _showValue: 1
   _showNegValue: 0
   _isRangedTradeOff: 0
