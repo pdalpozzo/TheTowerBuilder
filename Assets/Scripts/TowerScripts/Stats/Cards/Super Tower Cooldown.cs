@@ -35,8 +35,4 @@ public class SuperTowerCooldown : Stat
     {
         _base = _cooldown;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

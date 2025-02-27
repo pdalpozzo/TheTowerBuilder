@@ -36,8 +36,4 @@ public class DemonModeDamageMultiplier : Stat
     {
         _base = (_card.IsEquipped)? _demonModeMultiplier : 1;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

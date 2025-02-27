@@ -41,8 +41,4 @@ public class CashPerWave : Stat
         _base = (_upgrade.IsUnlocked) ? _upgrade.Value : 0;
         _moreMulti = 1;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

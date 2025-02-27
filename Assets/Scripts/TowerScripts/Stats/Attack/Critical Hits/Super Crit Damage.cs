@@ -37,8 +37,4 @@ public class SuperCritDamage : Stat
     {
         _base = _projectileDamage.Value;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

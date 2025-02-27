@@ -37,8 +37,4 @@ public class WallRegen : Stat
     {
         _base = _healthRegen.Value;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

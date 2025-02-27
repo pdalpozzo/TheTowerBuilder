@@ -29,8 +29,4 @@ public class RapidFireMultiplier : Stat
     {
         _base = 4;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

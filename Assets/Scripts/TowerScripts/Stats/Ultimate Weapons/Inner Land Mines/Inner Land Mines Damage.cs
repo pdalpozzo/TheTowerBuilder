@@ -30,8 +30,4 @@ public class InnerLandMinesDamage : Stat
     {
         _base = _effect.Value;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

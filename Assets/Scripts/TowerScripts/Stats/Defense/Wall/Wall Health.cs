@@ -37,8 +37,4 @@ public class WallHealth : Stat
     {
         _base = _health.Value;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

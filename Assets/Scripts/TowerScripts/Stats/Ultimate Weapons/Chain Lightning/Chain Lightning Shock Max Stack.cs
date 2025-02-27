@@ -29,8 +29,4 @@ public class ChainLightningShockMaxStack : Stat
     {
         _base = 1;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

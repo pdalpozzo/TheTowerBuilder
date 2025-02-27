@@ -15,8 +15,9 @@ public class RelicMassControl : MonoBehaviour
     //[SerializeField] private TextMeshProUGUI _superCritFactorText;
 
     [SerializeField] private TextMeshProUGUI _towerHealthText;
-    //[SerializeField] private TextMeshProUGUI _healthRegenText;
+    [SerializeField] private TextMeshProUGUI _healthRegenText;
     [SerializeField] private TextMeshProUGUI _defenseAbsoluteText;
+    [SerializeField] private TextMeshProUGUI _thornsText;
     //[SerializeField] private TextMeshProUGUI _deathDefyText;
     //[SerializeField] private TextMeshProUGUI _wallHealthText;
     //[SerializeField] private TextMeshProUGUI _wallRebuildText;
@@ -50,8 +51,9 @@ public class RelicMassControl : MonoBehaviour
         //_superCritFactorText.text = GetStringFormat(_relics.SuperCritFactor, format, decimals);
 
         _towerHealthText.text = GetStringFormat(_relics.TowerHealth, format, decimals);
-        //_healthRegenText.text = GetStringFormat(_relics.HealthRegen, format, decimals);
+        _healthRegenText.text = GetStringFormat(_relics.HealthRegen, format, decimals);
         _defenseAbsoluteText.text = GetStringFormat(_relics.DefenseAbsolute, format, decimals);
+        _thornsText.text = GetStringFormat(_relics.Thorns, format, decimals);
         //_deathDefyText.text = GetStringFormat(_relics.DeathDefy, format, decimals);
         //_wallHealthText.text = GetStringFormat(_relics.WallHealth, format, decimals);
         //_wallRebuildText.text = GetStringFormat(_relics.WallRebuild, format, decimals);

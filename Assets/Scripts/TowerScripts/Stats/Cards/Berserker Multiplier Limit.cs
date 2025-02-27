@@ -37,8 +37,4 @@ public class BerserkerMultiplierLimit : Stat
     {
         _base = (_card.IsEquipped) ? _berserkerMultiplierLimit : 1;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

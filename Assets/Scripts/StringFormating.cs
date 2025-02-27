@@ -32,8 +32,16 @@ public class StringFormating : MonoBehaviour
                 return value.ToString("N0") + "s";
             case 1:
                 return value.ToString("N1") + "s";
-            default:
+            case 2:
                 return value.ToString("N2") + "s";
+            case 3:
+                return value.ToString("N3") + "s";
+            case 4:
+                return value.ToString("N4") + "s";
+            case 5:
+                return value.ToString("N5") + "s";
+            default:
+                return value.ToString("N0") + "s";
         }
     }
 
@@ -45,8 +53,16 @@ public class StringFormating : MonoBehaviour
                 return "x" + value.ToString("N0");
             case 1:
                 return "x" + value.ToString("N1");
-            default:
+            case 2:
                 return "x" + value.ToString("N2");
+            case 3:
+                return "x" + value.ToString("N3");
+            case 4:
+                return "x" + value.ToString("N4");
+            case 5:
+                return "x" + value.ToString("N5");
+            default:
+                return "x" + value.ToString("N0");
         }
     }
 
@@ -58,8 +74,16 @@ public class StringFormating : MonoBehaviour
                 return value.ToString("N0") + "m";
             case 1:
                 return value.ToString("N1") + "m";
-            default:
+            case 2:
                 return value.ToString("N2") + "m";
+            case 3:
+                return value.ToString("N3") + "m";
+            case 4:
+                return value.ToString("N4") + "m";
+            case 5:
+                return value.ToString("N5") + "m";
+            default:
+                return value.ToString("N0") + "m";
         }
     }
 
@@ -70,8 +94,16 @@ public class StringFormating : MonoBehaviour
                 return value.ToString("P0");
             case 1: 
                 return value.ToString("P1");
-            default :
+            case 2:
                 return value.ToString("P2");
+            case 3:
+                return value.ToString("P3");
+            case 4:
+                return value.ToString("P4");
+            case 5:
+                return value.ToString("P5");
+            default:
+                return value.ToString("P0");
         }
     }
 
@@ -91,8 +123,16 @@ public class StringFormating : MonoBehaviour
                 return value.ToString("N0") + _thousandSymbols[counter];
             case 1:
                 return value.ToString("N1") + _thousandSymbols[counter];
-            default:
+            case 2:
                 return value.ToString("N2") + _thousandSymbols[counter];
+            case 3:
+                return value.ToString("N3") + _thousandSymbols[counter];
+            case 4:
+                return value.ToString("N4") + _thousandSymbols[counter];
+            case 5:
+                return value.ToString("N5") + _thousandSymbols[counter];
+            default:
+                return value.ToString("N0") + _thousandSymbols[counter];
         }
     }
 
@@ -104,8 +144,16 @@ public class StringFormating : MonoBehaviour
                 return value.ToString("N0");
             case 1:
                 return value.ToString("N1");
-            default:
+            case 2:
                 return value.ToString("N2");
+            case 3:
+                return value.ToString("N3");
+            case 4:
+                return value.ToString("N4");
+            case 5:
+                return value.ToString("N5");
+            default:
+                return value.ToString("N0");
         }
     }
 }

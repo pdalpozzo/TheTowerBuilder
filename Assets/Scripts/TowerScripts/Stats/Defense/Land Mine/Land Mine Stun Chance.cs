@@ -34,8 +34,4 @@ public class LandMineStunChance : Stat
     {
         _base = 0;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

@@ -38,9 +38,5 @@ public class EffectiveSuperCritChance : Stat
         float critChance = (_criticalChance.Value > _cap) ? _cap : _criticalChance.Value;
         _base = critChance;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }
 

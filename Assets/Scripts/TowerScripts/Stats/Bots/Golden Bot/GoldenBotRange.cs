@@ -30,8 +30,4 @@ public class GoldenBotRange : Stat
     {
         _base = _effect.Value;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

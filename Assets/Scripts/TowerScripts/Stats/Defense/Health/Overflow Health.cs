@@ -38,9 +38,5 @@ public class OverflowHealth : Stat
     {
         _base = _health.Value;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }
 

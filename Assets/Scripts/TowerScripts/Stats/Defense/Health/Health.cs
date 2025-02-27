@@ -56,8 +56,4 @@ public class Health : Stat
     {
         _base = _upgrade.Value;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

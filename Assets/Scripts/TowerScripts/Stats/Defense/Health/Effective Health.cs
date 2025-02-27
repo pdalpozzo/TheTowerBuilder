@@ -35,9 +35,5 @@ public class EffectiveHealth : Stat
     {
         _base =  0;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }
 

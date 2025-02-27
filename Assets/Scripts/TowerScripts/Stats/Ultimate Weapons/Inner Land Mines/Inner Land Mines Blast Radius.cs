@@ -29,8 +29,4 @@ public class InnerLandMinesBlastRadius : Stat
     {
         _base = _lab.Value;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

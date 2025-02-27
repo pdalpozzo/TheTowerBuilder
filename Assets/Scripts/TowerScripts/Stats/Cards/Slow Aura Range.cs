@@ -29,8 +29,4 @@ public class SlowAuraRange : Stat
     {
         _base = 0;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

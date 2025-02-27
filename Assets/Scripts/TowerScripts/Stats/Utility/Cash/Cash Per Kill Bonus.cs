@@ -40,8 +40,4 @@ public class CashPerKillBonus : Stat
         _base = 1;
         _moreMulti = 1;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

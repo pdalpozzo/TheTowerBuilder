@@ -35,8 +35,4 @@ public class HealthRegenCardValue : Stat
     {
         _base = _card.Value;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

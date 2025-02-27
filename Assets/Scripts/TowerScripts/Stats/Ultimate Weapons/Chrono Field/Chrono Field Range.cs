@@ -34,8 +34,4 @@ public class ChronoFieldRange : Stat
     {
         _base = _towerRange.Value;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

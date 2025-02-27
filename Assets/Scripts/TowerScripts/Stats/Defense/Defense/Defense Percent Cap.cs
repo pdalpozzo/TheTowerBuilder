@@ -31,8 +31,4 @@ public class DefensePercentCap : Stat
     {
         _base = _cap;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

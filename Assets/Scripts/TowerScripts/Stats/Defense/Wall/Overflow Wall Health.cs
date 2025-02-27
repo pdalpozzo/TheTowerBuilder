@@ -37,9 +37,5 @@ public class OverflowWallHealth : Stat
     {
         _base = _wallHealth.Value;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }
 

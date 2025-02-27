@@ -37,8 +37,4 @@ public class GoldenTowerMultiplier : Stat
     {
         _base = _effect.Value;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

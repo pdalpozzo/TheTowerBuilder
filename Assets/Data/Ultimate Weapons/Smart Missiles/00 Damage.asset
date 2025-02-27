@@ -13,43 +13,40 @@ MonoBehaviour:
   m_Name: 00 Damage
   m_EditorClassIdentifier: 
   _effectName: Damage
-  _tooltipMessage: 
   _baseValue: 0
   _valueIncrement: 0
   _values:
   - 10
   - 11
-  - 12
   - 13
-  - 14
-  - 15
-  - 17
+  - 16
   - 20
-  - 22
   - 26
-  - 31
-  - 37
-  - 45
-  - 54
-  - 66
-  - 80
-  - 98
-  - 119
-  - 146
-  - 178
-  - 216
-  - 264
-  - 320
-  - 389
-  - 472
-  - 572
-  - 692
-  - 837
-  - 1011
-  - 1221
-  - 1473
+  - 34
+  - 43
+  - 55
+  - 69
+  - 87
+  - 108
+  - 134
+  - 164
+  - 200
+  - 243
+  - 293
+  - 352
+  - 421
+  - 502
+  - 597
+  - 708
+  - 838
+  - 989
+  - 1165
+  - 1370
+  - 1608
+  - 1886
+  - 2209
+  - 2585
+  - 3021
   _noIncrement: 1
   _maxLevel: 30
   _baseLevel: 0
-  _formatType: 1
-  _decimalPlaces: 0

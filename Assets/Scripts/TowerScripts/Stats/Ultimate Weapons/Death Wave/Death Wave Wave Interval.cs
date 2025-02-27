@@ -29,8 +29,4 @@ public class DeathWaveWaveInterval : Stat
     {
         _base = 4;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

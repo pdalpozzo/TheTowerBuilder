@@ -34,8 +34,4 @@ public class ExtraOrbs : Stat
     {
         _base = _extraOrbsCard.Value;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

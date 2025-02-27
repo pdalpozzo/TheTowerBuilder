@@ -29,8 +29,4 @@ public class SmartMissilesBarrage : Stat
     {
         _base = _lab.Value;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

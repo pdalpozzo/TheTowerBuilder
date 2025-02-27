@@ -35,8 +35,4 @@ public class InnerLandMinesSets : Stat
     {
         _base = 1;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

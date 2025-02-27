@@ -29,8 +29,4 @@ public class SpotlightLightRange : Stat
     {
         _base = _effect.Value;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

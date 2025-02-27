@@ -35,8 +35,4 @@ public class CoinsCardValue : Stat
     {
         _base = _card.Value;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

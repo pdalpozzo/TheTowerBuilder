@@ -41,8 +41,4 @@ public class AttackSpeed : Stat
     {
         _base = _upgrade.Value;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

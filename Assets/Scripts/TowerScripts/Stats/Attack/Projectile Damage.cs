@@ -35,8 +35,4 @@ public class ProjectileDamage : Stat
     {
         _base = _damageStat.Value;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

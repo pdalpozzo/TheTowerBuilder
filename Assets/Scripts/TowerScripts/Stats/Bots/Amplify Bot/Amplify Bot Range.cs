@@ -34,8 +34,4 @@ public class AmplifyBotRange : Stat
     {
         _base = _effect.Value;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

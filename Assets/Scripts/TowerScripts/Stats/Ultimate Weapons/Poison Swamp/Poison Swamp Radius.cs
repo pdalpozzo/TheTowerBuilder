@@ -36,8 +36,4 @@ public class PoisonSwampRadius : Stat
     {
         _base = 5; // not sure what the base radius is
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

@@ -47,8 +47,4 @@ public class TotalMitigationPercent : Stat
     {
         _base = (_defensePercent.Upgrade.IsUnlocked) ? _defensePercent.ConditionalValue : 0;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

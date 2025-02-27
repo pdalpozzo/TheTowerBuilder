@@ -41,8 +41,4 @@ public class DamagePerMeter : Stat
     {
         _base = (_upgrade.IsUnlocked) ? _upgrade.Value : 0;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

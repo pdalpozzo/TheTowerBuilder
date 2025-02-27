@@ -30,8 +30,4 @@ public class CellsPerKillBonus : Stat
     {
         _base = 1;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

@@ -37,8 +37,4 @@ public class MaxDamageAbsorbed : Stat
     {
         _base = 0;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

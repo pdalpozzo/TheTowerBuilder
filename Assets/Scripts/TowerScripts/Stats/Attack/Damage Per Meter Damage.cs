@@ -38,8 +38,4 @@ public class DamagePerMeterDamage : Stat
     {
         _base = _projectileDamage.Value;
     }
-
-    protected override void UpdateValue()
-    {
-    }
 }

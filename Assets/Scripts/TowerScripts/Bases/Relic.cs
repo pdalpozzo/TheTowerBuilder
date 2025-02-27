@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public enum RelicType { DAMAGE, ATTACK_SPEED, CRIT_CHANCE, CRIT_FACTOR, RANGE, DAMAGE_PER_METER, SUPER_CRIT_CHANCE, SUPER_CRIT_MULTI,
     HEALTH, HEALTH_REGEN, DEFENSE_ABSOLUTE, DEATH_DEFY, WALL_HEALTH, WALL_REBUILD,
@@ -129,6 +130,9 @@ public class Relic : MonoBehaviour
                 break;
             case RelicType.ULTIMATE_DAMAGE:
                 message = "Increase ultimate damage by ";
+                break;
+            case RelicType.THRONS:
+                message = "Increase thorns by ";
                 break;
             default:
                 message = "Not Implemented Yet.";
