@@ -13,6 +13,7 @@ public class ThornDamage : Stat
     private void PermanentBuffs()
     {
         if (_subEffect.IsEquipped) _additional += _subEffect.Value;
+        _additional += _relicManager.Thorns;
         CreateValue();
     }
 

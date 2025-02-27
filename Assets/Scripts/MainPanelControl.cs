@@ -7,7 +7,7 @@ public class MainPanelControl : MonoBehaviour
     [SerializeField] private Toggle[] _panelButtons;
     [SerializeField] private PANEL _startPanel = PANEL.WORKSHOP;
 
-    public enum PANEL { WORKSHOP, ULTIMATEWEAPONS, LAB, MODULES, CARDS,PERKS, THEMES, BOTSPACKS, RELICS};
+    public enum PANEL { WORKSHOP, ULTIMATEWEAPONS, LAB, MODULES, CARDS,PERKS, THEMES, BOTSPACKS, RELICS, ABOUT};
     private int _pageSelected = 0;
 
     private void Start()
@@ -78,6 +78,12 @@ public class MainPanelControl : MonoBehaviour
     public void BotsPacksPressed()
     {
         _pageSelected = (int)PANEL.BOTSPACKS;
+        UpdatePanel();
+    }
+
+    public void AboutPressed()
+    {
+        _pageSelected = (int)PANEL.ABOUT;
         UpdatePanel();
     }
 }

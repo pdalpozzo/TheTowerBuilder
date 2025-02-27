@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: 01 Non-Epic
   m_EditorClassIdentifier: 
   _moduleName: Non-Epic
-  _tooltipMessage: 
   _baseRarity: 1
   _uniqueValues:
   - 0
@@ -23,3 +22,4 @@ MonoBehaviour:
   _decimalPlaces: 0
   _isNone: 0
   _isNonEpic: 1
+  _icon: {fileID: 21300000, guid: 22a0c66f17aa9884ca9f5decaff87df2, type: 3}

@@ -17,7 +17,8 @@ public class SuperCritChance : Stat
 
     private void PermanentBuffs()
     {
-        _additional += _lab.Value;
+        _additional += _lab.Value; 
+        _additional += _relicManager.SuperCritChance;
         if (_subEffect.IsEquipped) _additional += _subEffect.Value;
         if (_criticalChanceCard.IsEquipped && _criticalChanceCardMastery.Enabled)
             _additional += _criticalChanceCardMastery.Value;

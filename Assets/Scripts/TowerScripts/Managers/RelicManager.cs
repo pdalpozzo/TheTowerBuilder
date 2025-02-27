@@ -14,6 +14,7 @@ public class RelicManager : MonoBehaviour
     private float _towerHealth = 0f;
     private float _healthRegen = 0f;
     private float _defenseAbsolute = 0f;
+    private float _thorns = 0f;
     private float _deathDefy = 0f;
     private float _wallHealth = 0f;
     private float _wallRebuild = 0f;
@@ -51,6 +52,7 @@ public class RelicManager : MonoBehaviour
     public float TowerHealth { get { return _towerHealth; } }
     public float HealthRegen {  get { return _healthRegen; } }
     public float DefenseAbsolute { get { return _defenseAbsolute; } }
+    public float Thorns { get { return _thorns; } }
     public float DeathDefy {  get { return _deathDefy; } }
     public float WallHealth { get { return _wallHealth; } }
     public float WallRebuild { get { return _wallHealth; } }
@@ -95,6 +97,7 @@ public class RelicManager : MonoBehaviour
         _towerHealth = 0f;
         _healthRegen = 0f;
         _defenseAbsolute = 0f;
+        _thorns = 0f;
         _deathDefy = 0f;
         _wallHealth = 0f;
         _wallRebuild = 0f;
@@ -204,6 +207,9 @@ public class RelicManager : MonoBehaviour
                     break;
                 case RelicType.ULTIMATE_DAMAGE:
                     _ultimateDamage += item.Value;
+                    break;
+                case RelicType.THRONS:
+                    _thorns += item.Value;
                     break;
                 default:
                     break;

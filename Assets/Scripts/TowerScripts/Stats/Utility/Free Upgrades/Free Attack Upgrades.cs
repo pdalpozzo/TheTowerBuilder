@@ -21,6 +21,7 @@ public class FreeAttackUpgrades : Stat
         _multiplier *= _freeUpgradeStat.Value;
         if (_subEffect.IsEquipped) _additional += _subEffect.Value;
         if (_freeUpgradesCard.IsEquipped) _additional += _freeUpgradesCard.Value;
+        _additional += _relicManager.FreeAttackUpgrade;
         CreateValue();
     }
 

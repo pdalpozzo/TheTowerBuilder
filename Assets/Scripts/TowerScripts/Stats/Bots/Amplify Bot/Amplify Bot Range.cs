@@ -16,6 +16,7 @@ public class AmplifyBotRange : Stat
 
     private void PermanentBuffs()
     {
+        _additional += _relicManager.BotRange;
         CreateValue();
     }
 

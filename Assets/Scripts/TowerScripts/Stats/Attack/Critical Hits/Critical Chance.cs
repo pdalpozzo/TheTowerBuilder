@@ -19,6 +19,7 @@ public class CriticalChance : Stat
     {
         if (_subEffect.IsEquipped) _additional += _subEffect.Value;
         if (_criticalChanceCard.IsEquipped) _additional += _criticalChanceCardValue.Value;
+        _additional += _relicManager.CritChance;
         CreateValue();
     }
 

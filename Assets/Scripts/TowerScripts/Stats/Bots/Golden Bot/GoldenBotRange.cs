@@ -12,6 +12,7 @@ public class GoldenBotRange : Stat
 
     private void PermanentBuffs()
     {
+        _additional += _relicManager.BotRange;
         CreateValue();
     }
 

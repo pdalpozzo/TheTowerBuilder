@@ -26,6 +26,7 @@ public class HealthRegen : Stat
     {
         _multiplier *= _enhancement.Value;
         _multiplier *= _lab.Value;
+        _multiplier *= (1 + _relicManager.HealthRegen);
         if (_subEffect.IsEquipped) _multiplier *= 1 + _subEffect.Value;
         if (_healthRegenCard.IsEquipped) _multiplier *= _healthRegenCardValue.Value;
         CreateValue();
