@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68c7a64dd34737c4d9368dd3ede1303e, type: 3}
   m_Name: 03 Defense Absolute
   m_EditorClassIdentifier: 
-  _baseValue: 2
+  _baseValue: 0
   _valueIncrement: 2
   _maxLevel: 5000
   _baseLevel: 0
-  _incrementType: 0
+  _incrementType: 2
   _valueIncrements: []
+  _workshopFormula: 3

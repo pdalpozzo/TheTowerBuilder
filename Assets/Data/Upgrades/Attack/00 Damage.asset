@@ -16,6 +16,6 @@ MonoBehaviour:
   _valueIncrement: 1
   _maxLevel: 6000
   _baseLevel: 0
-  _incrementType: 0
-  _brackets: 
+  _incrementType: 2
   _valueIncrements: []
+  _workshopFormula: 0
