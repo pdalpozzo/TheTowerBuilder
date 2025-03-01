@@ -5,6 +5,7 @@ public class WorkshopPanelControl : MonoBehaviour
 {
     [SerializeField] private GameObject _upgradePanel;
     [SerializeField] private GameObject _enhancementPanel;
+    [SerializeField] private GameObject _contentPanel;
 
     [SerializeField] private Toggle _upgradeButton;
     [SerializeField] private Toggle _enhancementButton;
@@ -27,6 +28,14 @@ public class WorkshopPanelControl : MonoBehaviour
     private void Start()
     {
         ToggleWorkshop();
+    }
+
+    private void Update()
+    {
+        Vector2 targetRect = _upgradePanel.GetComponent<RectTransform>().sizeDelta;
+        if (_enhancementButton.isOn) targetRect = _enhancementPanel.GetComponent<RectTransform>().sizeDelta;
+
+        _contentPanel.GetComponent<RectTransform>().sizeDelta = targetRect;
     }
 
     public void ToggleWorkshop()
