@@ -1,54 +1,23 @@
-using Unity.Collections.LowLevel.Unsafe;
-using UnityEngine;
+﻿using UnityEngine;
 
-public enum IncrementType { INCREMENTAL, ALL_VALUES, FORMULA }; //, CASCADE };
-
-[CreateAssetMenu (fileName ="Upgrade", menuName = "ScriptableObjects/Upgrade")]
-public class UpgradeScriptableObject : ScriptableObject
+[CreateAssetMenu(fileName = "Formula", menuName = "ScriptableObjects/Values/Formula")]
+public class FormulaValue : ValueCalculation
 {
-    [SerializeField] private float _baseValue = 0;
-    [SerializeField] private float _valueIncrement;
     [SerializeField] private int _maxLevel = 99;
-    [SerializeField] private int _baseLevel = 0;    // does not need to be serialized
 
-    [SerializeField] private IncrementType _incrementType;
-    //[SerializeField] private int[] _brackets;
-    [SerializeField] private float[] _valueIncrements;
-
-    private enum WorkshopFormula { DAMAGE, HEALTH, HEALTH_REGEN, DEFENSE_ABSOLUTE};
+    private enum WorkshopFormula { DAMAGE, HEALTH, HEALTH_REGEN, DEFENSE_ABSOLUTE };
     [SerializeField] private WorkshopFormula _workshopFormula;
 
-    public int BaseLevel { get { return _baseLevel; } }
-    public int MaxLevel { get { return _maxLevel; } }
-
-    public float GetValue(int level)
+    public override int GetMaxLevel()
     {
-        switch(_incrementType)
-        {
-            case IncrementType.INCREMENTAL:
-                return IncrementalValue(level);
-            case IncrementType.ALL_VALUES:
-                return AllValues(level);
-            case IncrementType.FORMULA:
-                return FormulaValues(level);
-            default:
-                return IncrementalValue(level);
-        }
+        return _maxLevel;
     }
 
-    private float IncrementalValue(int level)
+    public override float Value(int level)
     {
-        return (_baseValue + (_valueIncrement * level));
-    }
+        if (level < 0) level = 0;
+        if (level > _maxLevel) level = _maxLevel;
 
-    private float AllValues(int level)
-    {
-        if (_valueIncrements.Length < level) return 0;
-        return _valueIncrements[level];
-    }
-
-    private float FormulaValues(int level)
-    {
         float value = 0;
         switch (_workshopFormula)
         {
@@ -73,7 +42,7 @@ public class UpgradeScriptableObject : ScriptableObject
 
     private float HealthValue(int level)
     {
-        if (level == 0) return _baseValue;
+        //if (level == 0) return _baseValue;
 
         float value;
         float multiplier = 1;
@@ -97,7 +66,7 @@ public class UpgradeScriptableObject : ScriptableObject
 
     private float HealthRegenValue(int level)
     {
-        if (level == 0) return _baseValue;
+        //if (level == 0) return _baseValue;
 
         float value;
         float multiplier = 1;
@@ -117,7 +86,7 @@ public class UpgradeScriptableObject : ScriptableObject
 
     private float DefenseAbsoluteValue(int level)
     {
-        if (level == 0) return _baseValue;
+        //if (level == 0) return _baseValue;
 
         float value;
         float multiplier = 1;
@@ -144,7 +113,7 @@ public class UpgradeScriptableObject : ScriptableObject
 
     private float DamageValue(int level)
     {
-        if (level == 0) return _baseValue;
+        //if (level == 0) return _baseValue;
 
         float value;
         float multiplier = 1;
@@ -163,4 +132,5 @@ public class UpgradeScriptableObject : ScriptableObject
 
         return value * multiplier;
     }
+
 }
