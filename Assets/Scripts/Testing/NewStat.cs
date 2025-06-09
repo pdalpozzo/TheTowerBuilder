@@ -13,8 +13,10 @@ public class NewStat : Modifier
 
     public void SetLevel(int level)
     {
-        if (level > _data.MaxLevel) level = _data.MaxLevel; // check new level is not above max level
-        if (level < 0) level = 0;                               // check new level is not below base level
+        // check new level is not above max level
+        if (level > _data.MaxLevel) level = _data.MaxLevel; 
+        // check new level is not below base level
+        if (level < 0) level = 0;
         _currentLevel = level;
     }
 

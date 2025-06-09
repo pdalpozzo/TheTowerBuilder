@@ -2,36 +2,39 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class WorkshopDisplay : MonoBehaviour
+public class MasteryDisplay : MonoBehaviour
 {
     [SerializeField] private ModifiedStat _modStat; // one to display
 
+    // mastery fields
     [SerializeField] private TextMeshProUGUI _nameText;         // stat name
     [SerializeField] private TextMeshProUGUI _valueText;        // modified stat value
     [SerializeField] private TextMeshProUGUI _levelText;        // stat level
     [SerializeField] private TextMeshProUGUI _placeholderText;  // stat max level
+    [SerializeField] private TextMeshProUGUI _descriptionText;  // card description
     [SerializeField] private TMP_InputField _levelInput;        // stat current level
     [SerializeField] private OnOffToggleControl _toggle;        // stat in use toggle
-                                                                //[SerializeField] private UnlockCategory _category;
+    [SerializeField] private Button _resetLevel;                // set stat to level 1
+    [SerializeField] private Button _setToMaxLevel;             // set stat to max level
 
     private NewStat _stat;      // one to edit
     private Color _defaultColour;
     private Color _maxLevelColour;
-    private Color _disabledColor;
-    private Color _enabledColor;
 
-    private void Awake()
+    public NewStat Stat {  get { return _stat; } }
+
+    private void Start()
     {
         _stat = (NewStat)_modStat.BaseStat;
-        _nameText.text = _stat.Name + ":";
-        _levelInput.characterLimit = CountMaxLevelCharcters(_stat.MaxLevel);
+
+        _nameText.text = _stat.Name;
+        _levelInput.characterLimit = 1;
 
         _defaultColour = RarityColors.GetColor(Rarity.COMMON);
         _maxLevelColour = RarityColors.GetMax();
-        _disabledColor = RarityColors.GetInputDisable();
-        _enabledColor = RarityColors.GetInputEnable();
 
-        //_toggle.SetToggle(false);
+        _placeholderText.text = _stat.MaxLevel.ToString();
+
         _toggle.SetToggle(_stat.IsInUse);
         Unlock();
     }
@@ -62,17 +65,6 @@ public class WorkshopDisplay : MonoBehaviour
         _levelInput.enabled = _stat.IsInUse;
     }
 
-    private int CountMaxLevelCharcters(int max)
-    {
-        int count = 0;
-        while (max != 0)
-        {
-            max = max / 10;
-            count++;
-        }
-        return count;
-    }
-
     private int ValidateInput(int input, int max)
     {
         if (input < 0) input = 0;
@@ -92,9 +84,16 @@ public class WorkshopDisplay : MonoBehaviour
         _valueText.color = (isMaxLevel) ? _maxLevelColour : _defaultColour;
         // update the input field text and colours
         _levelInput.text = (_stat.Level == 0) ? "" : _stat.Level.ToString();
-        _levelInput.GetComponent<Image>().color = (_stat.IsInUse) ? _enabledColor : _disabledColor;
-        _levelText.color = (isMaxLevel) ? _maxLevelColour : _defaultColour;
         // set name text colour
         _nameText.color = (isMaxLevel) ? _maxLevelColour : _defaultColour;
+
+        // work out the colour based on level
+        Color assignColour = _defaultColour;
+        if (isMaxLevel) assignColour = _maxLevelColour;
+        _levelText.color = assignColour;
+
+        // button interactions
+        if (_resetLevel != null) _resetLevel.interactable = (_stat.Level != 0);
+        if (_setToMaxLevel != null) _setToMaxLevel.interactable = (!isMaxLevel);
     }
 }

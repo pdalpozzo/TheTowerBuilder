@@ -258,10 +258,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5364004254092232454}
-  - component: {fileID: 1768605675985476324}
   - component: {fileID: 2615889697489375337}
   - component: {fileID: 4357160533427101371}
   - component: {fileID: 5209895572922675987}
+  - component: {fileID: 4757527179897716089}
+  - component: {fileID: 199786407856996799}
+  - component: {fileID: 4332960706964045441}
   m_Layer: 5
   m_Name: Card Mastery Display
   m_TagString: Untagged
@@ -291,51 +293,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 300, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1768605675985476324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 406164253224872425}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d12b1c6f548ab4644a56c8ae550c99f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _card: {fileID: 0}
-  _mastery: {fileID: 0}
-  _masteryToggle: {fileID: 820765309465590830}
-  _cardNameText: {fileID: 2361623810893138607}
-  _masteryNameText: {fileID: 5963119229511055831}
-  _cardDescriptionText: {fileID: 1345390915018655388}
-  _masteryDescriptionText: {fileID: 4646643727995008705}
-  _cardLevelText: {fileID: 6161517914542597244}
-  _masteryLevelText: {fileID: 7433346835386962796}
-  _slotNumberText: {fileID: 7910112148911239554}
-  _slot: {fileID: 1794829653600496933}
-  _fade: {fileID: 3530108089151423410}
-  _cardInput: {fileID: 6447055008507738867}
-  _masteryInput: {fileID: 8730971115903945218}
-  _cardLevelReset: {fileID: 8072070246627716528}
-  _cardLevelMax: {fileID: 1965884507885706424}
-  _masteryLevelReset: {fileID: 5464615262478515215}
-  _masteryLevelMax: {fileID: 340925081882794357}
-  _border: {fileID: 4357160533427101371}
-  _icon: {fileID: 5273629595482014731}
-  _iconBorder: {fileID: 204032428082958049}
-  _outlines:
-  - {fileID: 6328480791848016836}
-  - {fileID: 6021405719234744952}
-  - {fileID: 1174722274274082888}
-  - {fileID: 4970665027354771834}
-  - {fileID: 4450291093345371717}
-  _stars:
-  - {fileID: 3725067570678599314}
-  - {fileID: 5815713369182359194}
-  - {fileID: 3926119277431565008}
-  - {fileID: 7580460361574457940}
-  - {fileID: 2131881279832171985}
 --- !u!114 &2615889697489375337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -383,9 +340,9 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1768605675985476324}
-        m_TargetAssemblyTypeName: CardMasteryVisualControl, Assembly-CSharp
-        m_MethodName: EquipChange
+      - m_Target: {fileID: 4757527179897716089}
+        m_TargetAssemblyTypeName: CardDisplay, Assembly-CSharp
+        m_MethodName: Unlock
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -434,6 +391,83 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 406164253224872425}
   m_CullTransparentMesh: 1
+--- !u!114 &4757527179897716089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406164253224872425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12a29f1a14f7423449e51e0c2c75544c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _modStat: {fileID: 0}
+  _card: {fileID: 4332960706964045441}
+  _masteryDisplay: {fileID: 199786407856996799}
+  _nameText: {fileID: 2361623810893138607}
+  _valueText: {fileID: 1345390915018655388}
+  _levelText: {fileID: 6161517914542597244}
+  _placeholderText: {fileID: 5170547261530706962}
+  _descriptionText: {fileID: 0}
+  _levelInput: {fileID: 6447055008507738867}
+  _toggle: {fileID: 2615889697489375337}
+  _resetLevel: {fileID: 8072070246627716528}
+  _setToMaxLevel: {fileID: 1965884507885706424}
+  _border: {fileID: 4357160533427101371}
+  _icon: {fileID: 5273629595482014731}
+  _iconBorder: {fileID: 204032428082958049}
+  _outlines:
+  - {fileID: 6328480791848016836}
+  - {fileID: 6021405719234744952}
+  - {fileID: 1174722274274082888}
+  - {fileID: 4970665027354771834}
+  - {fileID: 4450291093345371717}
+  _stars:
+  - {fileID: 3725067570678599314}
+  - {fileID: 5815713369182359194}
+  - {fileID: 3926119277431565008}
+  - {fileID: 7580460361574457940}
+  - {fileID: 2131881279832171985}
+  _fade: {fileID: 3530108089151423410}
+  _equippedBorder: {fileID: 1794829653600496933}
+--- !u!114 &199786407856996799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406164253224872425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f034b33f0687afe4c83006fb0f798762, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _modStat: {fileID: 0}
+  _nameText: {fileID: 5963119229511055831}
+  _valueText: {fileID: 6558029631394533152}
+  _levelText: {fileID: 7433346835386962796}
+  _placeholderText: {fileID: 3213074083163575870}
+  _descriptionText: {fileID: 4646643727995008705}
+  _levelInput: {fileID: 8730971115903945218}
+  _toggle: {fileID: 820765309465590830}
+  _resetLevel: {fileID: 5464615262478515215}
+  _setToMaxLevel: {fileID: 340925081882794357}
+--- !u!114 &4332960706964045441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406164253224872425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc0a1143a2634ad409c48b3e6c67eb1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rarity: 0
+  _icon: {fileID: 0}
 --- !u!1 &590886217716764301
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,9 +1010,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1768605675985476324}
-        m_TargetAssemblyTypeName: CardMasteryVisualControl, Assembly-CSharp
-        m_MethodName: ForceMaxMasteryLevel
+      - m_Target: {fileID: 199786407856996799}
+        m_TargetAssemblyTypeName: MasteryDisplay, Assembly-CSharp
+        m_MethodName: ForceToMax
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1242,19 +1276,7 @@ MonoBehaviour:
   m_CharacterLimit: 1
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1768605675985476324}
-        m_TargetAssemblyTypeName: CardMasteryVisualControl, Assembly-CSharp
-        m_MethodName: ChangeCardLevel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
+      m_Calls: []
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []
@@ -1272,7 +1294,19 @@ MonoBehaviour:
       m_Calls: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4757527179897716089}
+        m_TargetAssemblyTypeName: CardDisplay, Assembly-CSharp
+        m_MethodName: LevelChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnTouchScreenKeyboardStatusChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2350,9 +2384,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1768605675985476324}
-        m_TargetAssemblyTypeName: CardMasteryVisualControl, Assembly-CSharp
-        m_MethodName: ForceMasteryReset
+      - m_Target: {fileID: 199786407856996799}
+        m_TargetAssemblyTypeName: MasteryDisplay, Assembly-CSharp
+        m_MethodName: ForceReset
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2691,9 +2725,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1768605675985476324}
-        m_TargetAssemblyTypeName: CardMasteryVisualControl, Assembly-CSharp
-        m_MethodName: ForceCardReset
+      - m_Target: {fileID: 4757527179897716089}
+        m_TargetAssemblyTypeName: CardDisplay, Assembly-CSharp
+        m_MethodName: ForceReset
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3177,19 +3211,7 @@ MonoBehaviour:
   m_CharacterLimit: 1
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 499529392184209055}
-        m_TargetAssemblyTypeName: LabVisualControl, Assembly-CSharp
-        m_MethodName: LevelChange
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 1
+      m_Calls: []
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []
@@ -3207,7 +3229,19 @@ MonoBehaviour:
       m_Calls: []
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 199786407856996799}
+        m_TargetAssemblyTypeName: MasteryDisplay, Assembly-CSharp
+        m_MethodName: LevelChange
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnTouchScreenKeyboardStatusChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -3960,9 +3994,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1768605675985476324}
-        m_TargetAssemblyTypeName: CardMasteryVisualControl, Assembly-CSharp
-        m_MethodName: ForceMaxCardLevel
+      - m_Target: {fileID: 4757527179897716089}
+        m_TargetAssemblyTypeName: CardDisplay, Assembly-CSharp
+        m_MethodName: ForceToMax
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4246,18 +4280,18 @@ PrefabInstance:
     - target: {fileID: 3856871132662549331, guid: f1f96574623f883488b45c9258931fb8, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1768605675985476324}
+      objectReference: {fileID: 199786407856996799}
     - target: {fileID: 3856871132662549331, guid: f1f96574623f883488b45c9258931fb8, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3856871132662549331, guid: f1f96574623f883488b45c9258931fb8, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: ToggleMastery
+      value: Unlock
       objectReference: {fileID: 0}
     - target: {fileID: 3856871132662549331, guid: f1f96574623f883488b45c9258931fb8, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: CardMasteryVisualControl, Assembly-CSharp
+      value: MasteryDisplay, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3856871132662549331, guid: f1f96574623f883488b45c9258931fb8, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName

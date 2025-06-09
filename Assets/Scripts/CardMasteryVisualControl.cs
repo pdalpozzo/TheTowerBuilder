@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class CardMasteryVisualControl : MonoBehaviour
 {
+    [SerializeField] private ModifiedStat _modStat; // one to display
+
     [SerializeField] private Card _card;
     [SerializeField] private CardMastery _mastery;
     [SerializeField] private Stat _stat;
@@ -12,10 +14,13 @@ public class CardMasteryVisualControl : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI _cardNameText;
     [SerializeField] private TextMeshProUGUI _masteryNameText;
+
     [SerializeField] private TextMeshProUGUI _cardDescriptionText;
     [SerializeField] private TextMeshProUGUI _masteryDescriptionText;
+
     [SerializeField] private TextMeshProUGUI _cardLevelText;
     [SerializeField] private TextMeshProUGUI _masteryLevelText;
+
     [SerializeField] private TextMeshProUGUI _slotNumberText;
 
     [SerializeField] private GameObject _slot;
@@ -35,6 +40,7 @@ public class CardMasteryVisualControl : MonoBehaviour
     [SerializeField] private Image[] _outlines;
     [SerializeField] private Image[] _stars;
 
+    private NewStat _statNew;      // one to edit
     private Color _defaultColour;
     private Color _fiveStarColour;
     private Color _maxLevelColour;
@@ -48,6 +54,8 @@ public class CardMasteryVisualControl : MonoBehaviour
 
     private void Start()
     {
+        _statNew = (NewStat)_modStat.BaseStat;
+
         _cardNameText.text = _card.Name;
         _masteryNameText.text = _mastery.Name;
         _icon.sprite = _card.Icon;
