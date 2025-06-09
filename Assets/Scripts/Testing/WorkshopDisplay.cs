@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NewUpgradeDisplay : MonoBehaviour
+public class WorkshopDisplay : MonoBehaviour
 {
     [SerializeField] private ModifiedStat _modStat; // one to display
 

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8912a3bc35d3eb45a5e8822261b45b8, type: 3}
+  m_Name: Energy Shield Mastery
+  m_EditorClassIdentifier: 
+  _maxLevel: 9
+  _baseValue: 0.05
+  _valueIncrement: 0.05

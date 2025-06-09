@@ -4,6 +4,7 @@
 public class ModifiedStat : Modifier
 {
     [SerializeField] private Modifier _baseStat;
+    [SerializeField] private Modifier _limitStat;
 
     [SerializeField] private Modifier[] _additionalModifiers;
     [SerializeField] private Modifier[] _multiplicativeModifiers;
@@ -30,6 +31,11 @@ public class ModifiedStat : Modifier
         CalculateMultiplicative();
         CalculateBaseZeroMultiplicative();
         _value = _multiplier * (_baseStat.Value() + _additional);
+        if (_limitStat != null)
+        {
+            if (_value >  _limitStat.Value())
+                _value = _limitStat.Value();
+        }
     }
 
     private void CalculateAdditional()
