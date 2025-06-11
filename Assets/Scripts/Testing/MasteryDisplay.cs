@@ -17,25 +17,22 @@ public class MasteryDisplay : MonoBehaviour
     [SerializeField] private Button _resetLevel;                // set stat to level 1
     [SerializeField] private Button _setToMaxLevel;             // set stat to max level
 
-    private NewStat _stat;      // one to edit
     private Color _defaultColour;
     private Color _maxLevelColour;
 
-    public NewStat Stat {  get { return _stat; } }
+    public ModifiedStat Stat {  get { return _modStat; } }
 
     private void Start()
     {
-        _stat = (NewStat)_modStat.BaseStat;
-
-        _nameText.text = _stat.Name;
+        _nameText.text = _modStat.Name;
         _levelInput.characterLimit = 1;
 
         _defaultColour = RarityColors.GetColor(Rarity.COMMON);
         _maxLevelColour = RarityColors.GetMax();
 
-        _placeholderText.text = _stat.MaxLevel.ToString();
+        _placeholderText.text = _modStat.MaxLevel.ToString();
 
-        _toggle.SetToggle(_stat.IsInUse);
+        _toggle.SetToggle(_modStat.IsInUse);
         Unlock();
     }
 
@@ -43,26 +40,26 @@ public class MasteryDisplay : MonoBehaviour
     {
         int input = 0;
         if (_levelInput.text != null) input = int.Parse(_levelInput.text);
-        input = ValidateInput(input, _stat.MaxLevel);
-        _stat.SetLevel(input);
-        _levelInput.text = (_stat.Level == 0) ? "" : _stat.Level.ToString();
+        input = ValidateInput(input, _modStat.MaxLevel);
+        _modStat.SetLevel(input);
+        _levelInput.text = (_modStat.Level == 0) ? "" : _modStat.Level.ToString();
     }
 
     public void ForceToMax()
     {
         _toggle.SetToggle(true);
-        _stat.SetToMaxLevel();
+        _modStat.SetToMaxLevel();
     }
 
     public void ForceReset()
     {
-        _stat.ResetStat();
+        _modStat.ResetStat();
     }
 
     public void Unlock()
     {
-        _stat.SetInUse(_toggle.IsOn);
-        _levelInput.enabled = _stat.IsInUse;
+        _modStat.SetInUse(_toggle.IsOn);
+        _levelInput.enabled = _modStat.IsInUse;
     }
 
     private int ValidateInput(int input, int max)
@@ -75,15 +72,15 @@ public class MasteryDisplay : MonoBehaviour
     private void Update()
     {
         // elevated values that are used multiple times
-        bool isMaxLevel = _stat.IsMaxLevel;
+        bool isMaxLevel = _modStat.IsMaxLevel;
         // set placeholder text
-        string placeholder = (_stat.IsInUse) ? _stat.MaxLevel.ToString() : "";
+        string placeholder = (_modStat.IsInUse) ? _modStat.MaxLevel.ToString() : "";
         _placeholderText.text = placeholder;
         // show the modified stats value and colour
         _valueText.text = _modStat.ToString();
         _valueText.color = (isMaxLevel) ? _maxLevelColour : _defaultColour;
         // update the input field text and colours
-        _levelInput.text = (_stat.Level == 0) ? "" : _stat.Level.ToString();
+        _levelInput.text = (_modStat.Level == 0) ? "" : _modStat.Level.ToString();
         // set name text colour
         _nameText.color = (isMaxLevel) ? _maxLevelColour : _defaultColour;
 
@@ -93,7 +90,7 @@ public class MasteryDisplay : MonoBehaviour
         _levelText.color = assignColour;
 
         // button interactions
-        if (_resetLevel != null) _resetLevel.interactable = (_stat.Level != 0);
+        if (_resetLevel != null) _resetLevel.interactable = (_modStat.Level != 0);
         if (_setToMaxLevel != null) _setToMaxLevel.interactable = (!isMaxLevel);
     }
 }

@@ -12,9 +12,8 @@ public class WorkshopDisplay : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _placeholderText;  // stat max level
     [SerializeField] private TMP_InputField _levelInput;        // stat current level
     [SerializeField] private OnOffToggleControl _toggle;        // stat in use toggle
-                                                                //[SerializeField] private UnlockCategory _category;
+    //[SerializeField] private UnlockCategory _category;
 
-    private NewStat _stat;      // one to edit
     private Color _defaultColour;
     private Color _maxLevelColour;
     private Color _disabledColor;
@@ -22,9 +21,8 @@ public class WorkshopDisplay : MonoBehaviour
 
     private void Awake()
     {
-        _stat = (NewStat)_modStat.BaseStat;
-        _nameText.text = _stat.Name + ":";
-        _levelInput.characterLimit = CountMaxLevelCharcters(_stat.MaxLevel);
+        _nameText.text = _modStat.Name + ":";
+        _levelInput.characterLimit = CountMaxLevelCharcters(_modStat.MaxLevel);
 
         _defaultColour = RarityColors.GetColor(Rarity.COMMON);
         _maxLevelColour = RarityColors.GetMax();
@@ -32,7 +30,7 @@ public class WorkshopDisplay : MonoBehaviour
         _enabledColor = RarityColors.GetInputEnable();
 
         //_toggle.SetToggle(false);
-        _toggle.SetToggle(_stat.IsInUse);
+        _toggle.SetToggle(_modStat.IsInUse);
         Unlock();
     }
 
@@ -40,26 +38,26 @@ public class WorkshopDisplay : MonoBehaviour
     {
         int input = 0;
         if (_levelInput.text != null) input = int.Parse(_levelInput.text);
-        input = ValidateInput(input, _stat.MaxLevel);
-        _stat.SetLevel(input);
-        _levelInput.text = (_stat.Level == 0) ? "" : _stat.Level.ToString();
+        input = ValidateInput(input, _modStat.MaxLevel);
+        _modStat.SetLevel(input);
+        _levelInput.text = (_modStat.Level == 0) ? "" : _modStat.Level.ToString();
     }
 
     public void ForceToMax()
     {
         _toggle.SetToggle(true);
-        _stat.SetToMaxLevel();
+        _modStat.SetToMaxLevel();
     }
 
     public void ForceReset()
     {
-        _stat.ResetStat();
+        _modStat.ResetStat();
     }
 
     public void Unlock()
     {
-        _stat.SetInUse(_toggle.IsOn);
-        _levelInput.enabled = _stat.IsInUse;
+        _modStat.SetInUse(_toggle.IsOn);
+        _levelInput.enabled = _modStat.IsInUse;
     }
 
     private int CountMaxLevelCharcters(int max)
@@ -83,16 +81,16 @@ public class WorkshopDisplay : MonoBehaviour
     private void Update()
     {
         // elevated values that are used multiple times
-        bool isMaxLevel = _stat.IsMaxLevel;
+        bool isMaxLevel = _modStat.IsMaxLevel;
         // set placeholder text
-        string placeholder = (_stat.IsInUse) ? _stat.MaxLevel.ToString() : "";
+        string placeholder = (_modStat.IsInUse) ? _modStat.MaxLevel.ToString() : "";
         _placeholderText.text = placeholder;
         // show the modified stats value and colour
         _valueText.text = _modStat.ToString();
         _valueText.color = (isMaxLevel) ? _maxLevelColour : _defaultColour;
         // update the input field text and colours
-        _levelInput.text = (_stat.Level == 0) ? "" : _stat.Level.ToString();
-        _levelInput.GetComponent<Image>().color = (_stat.IsInUse) ? _enabledColor : _disabledColor;
+        _levelInput.text = (_modStat.Level == 0) ? "" : _modStat.Level.ToString();
+        _levelInput.GetComponent<Image>().color = (_modStat.IsInUse) ? _enabledColor : _disabledColor;
         _levelText.color = (isMaxLevel) ? _maxLevelColour : _defaultColour;
         // set name text colour
         _nameText.color = (isMaxLevel) ? _maxLevelColour : _defaultColour;

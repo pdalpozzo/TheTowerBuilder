@@ -40,7 +40,6 @@ public class CardMasteryVisualControl : MonoBehaviour
     [SerializeField] private Image[] _outlines;
     [SerializeField] private Image[] _stars;
 
-    private NewStat _statNew;      // one to edit
     private Color _defaultColour;
     private Color _fiveStarColour;
     private Color _maxLevelColour;
@@ -54,8 +53,6 @@ public class CardMasteryVisualControl : MonoBehaviour
 
     private void Start()
     {
-        _statNew = (NewStat)_modStat.BaseStat;
-
         _cardNameText.text = _card.Name;
         _masteryNameText.text = _mastery.Name;
         _icon.sprite = _card.Icon;

@@ -1,47 +1,89 @@
 ﻿using UnityEngine;
 
+public enum CalculationType : byte { BASE, IN_ROUND, CONDITIONAL }
 
-public class ModifiedStat : Modifier
+public class ModifiedStat : MonoBehaviour
 {
-    [SerializeField] private Modifier _baseStat;
-    [SerializeField] private Modifier _limitStat;
+    [SerializeField] private string _name;
+    [SerializeField] private ValueCalculation _data;
+    [SerializeField] private ModifiedStat _limitStat;
 
-    [SerializeField] private Modifier[] _additionalModifiers;
-    [SerializeField] private Modifier[] _multiplicativeModifiers;
-    [SerializeField] private Modifier[] _base0MultiplicativeModifiers;
+    [SerializeField] private ModifiedStat[] _additionalModifiers;
+    [SerializeField] private ModifiedStat[] _multiplicativeModifiers;
+    [SerializeField] private ModifiedStat[] _base0MultiplicativeModifiers;
 
-    [SerializeField] private float _value = 0f;
+    [SerializeField] private int _currentLevel = 0; // deserialize
+    [SerializeField] private float _value = 0f;     // deserialize
     private float _additional = 0;
     private float _multiplier = 1;
 
+    [SerializeField] private CalculationType _type = CalculationType.BASE;
     [SerializeField] private StringFormatType _formatType;
     [SerializeField] private int _decimalPlaces = 2;
     [SerializeField] private bool _noSymbol = false;
+    [SerializeField] private bool _isInUse = false;     // deserialize
 
-    public Modifier BaseStat { get { return _baseStat; } }
+    public CalculationType Type { get { return _type; } }
+    public string Name { get { return _name; } }
+    public int Level { get { return _currentLevel; } }
+    public int MaxLevel { get { return _data.MaxLevel; } }
+    public float Value { get { return _value; } }
+    public bool IsMaxLevel { get { return (_currentLevel == _data.MaxLevel); } }
+    public bool IsInUse { get { return _isInUse; } }
 
     private void Update()
     {
         // make sure we have a base stat to calculate with
-        if (_baseStat == null) return;
-        // check is the base stat is in use
-        this._isInUse = _baseStat.IsInUse;
+        if (_data == null) return;
 
         CalculateAdditional();
         CalculateMultiplicative();
         CalculateBaseZeroMultiplicative();
-        _value = _multiplier * (_baseStat.Value() + _additional);
+        _value = _multiplier * (_data.Value(_currentLevel) + _additional);
         if (_limitStat != null)
         {
-            if (_value >  _limitStat.Value())
-                _value = _limitStat.Value();
+            if (_value > _limitStat.Value)
+                _value = _limitStat.Value;
         }
+    }
+
+    public void SetLevel(int level)
+    {
+        // check new level is not above max level
+        if (level > _data.MaxLevel) level = _data.MaxLevel;
+        // check new level is not below base level
+        if (level < 0) level = 0;
+        _currentLevel = level;
+    }
+
+    public void SetInUse(bool inUse)
+    {
+        this._isInUse = inUse;
+        if (!inUse) _currentLevel = 0;
+    }
+
+    public void SetToMaxLevel()
+    {
+        _currentLevel = _data.MaxLevel;
+        this._isInUse = true;
+    }
+
+    public void ResetStat()
+    {
+        _currentLevel = 0;
+        this._isInUse = false;
+    }
+
+    public override string ToString()
+    {
+        string text = StringFormating.Format(_value, _formatType, _decimalPlaces, _noSymbol);
+        return text;
     }
 
     private void CalculateAdditional()
     {
         _additional = 0;
-        if (_additionalModifiers.Length <= 0 ) return; 
+        if (_additionalModifiers.Length <= 0) return;
         if (!this._isInUse) return;
 
         foreach (var item in _additionalModifiers)
@@ -50,7 +92,7 @@ public class ModifiedStat : Modifier
             // change this to reference a global value of what to display
             // then copy to all calculation functions in this file
             if (item.Type != CalculationType.BASE) continue;
-            _additional += item.Value();
+            _additional += item.Value;
         }
     }
 
@@ -63,7 +105,7 @@ public class ModifiedStat : Modifier
         foreach (var item in _multiplicativeModifiers)
         {
             if (!item.IsInUse) continue;
-            _multiplier *= item.Value();
+            _multiplier *= item.Value;
         }
     }
 
@@ -75,18 +117,7 @@ public class ModifiedStat : Modifier
         foreach (var item in _base0MultiplicativeModifiers)
         {
             if (!item.IsInUse) continue;
-            _multiplier *= 1 + item.Value();
+            _multiplier *= 1 + item.Value;
         }
-    }
-
-    public override float Value()
-    {
-        return _value;
-    }
-
-    public override string ToString()
-    {
-        string text = StringFormating.Format(_value, _formatType, _decimalPlaces, _noSymbol);
-        return text;
     }
 }

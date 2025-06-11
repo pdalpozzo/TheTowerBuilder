@@ -26,8 +26,7 @@ public class CardDisplay : MonoBehaviour
     [SerializeField] private GameObject _fade;                  // use to fade card
     [SerializeField] private GameObject _equippedBorder;        // use to show equipped
 
-    private NewStat _stat;      // one to edit
-    private NewStat _mastery;
+    private ModifiedStat _mastery;
     private Color _defaultColour;
     private Color _fiveStarColour;
     private Color _maxLevelColour;
@@ -35,10 +34,9 @@ public class CardDisplay : MonoBehaviour
 
     private void Start()
     {
-        _stat = (NewStat)_modStat.BaseStat;
         _mastery = _masteryDisplay.Stat;
 
-        _nameText.text = _stat.Name;
+        _nameText.text = _modStat.Name;
         _levelInput.characterLimit = 1;
         _icon.sprite = _card.Icon;
         _iconBorder.color = RarityColors.GetColor(_card.Rarity);
@@ -49,9 +47,9 @@ public class CardDisplay : MonoBehaviour
         _maxLevelColour = RarityColors.GetColor(Rarity.EPIC);
         _masteryColour = RarityColors.GetColor(Rarity.ANCESTRAL);
 
-        _placeholderText.text = _stat.MaxLevel.ToString();
+        _placeholderText.text = _modStat.MaxLevel.ToString();
 
-        _toggle.isOn = _stat.IsInUse;
+        _toggle.isOn = _modStat.IsInUse;
         Unlock();
     }
 
@@ -59,27 +57,27 @@ public class CardDisplay : MonoBehaviour
     {
         int input = 0;
         if (_levelInput.text != null) input = int.Parse(_levelInput.text);
-        input = ValidateInput(input, _stat.MaxLevel);
-        _stat.SetLevel(input);
-        _levelInput.text = (_stat.Level == 0) ? "" : _stat.Level.ToString();
+        input = ValidateInput(input, _modStat.MaxLevel);
+        _modStat.SetLevel(input);
+        _levelInput.text = (_modStat.Level == 0) ? "" : _modStat.Level.ToString();
     }
 
     public void ForceToMax()
     {
         _toggle.isOn = true;
-        _stat.SetToMaxLevel();
+        _modStat.SetToMaxLevel();
     }
 
     public void ForceReset()
     {
-        _stat.ResetStat();
+        _modStat.ResetStat();
         _mastery.ResetStat();
     }
 
     public void Unlock()
     {
-        _stat.SetInUse(_toggle.isOn);
-        _levelInput.enabled = _stat.IsInUse;
+        _modStat.SetInUse(_toggle.isOn);
+        _levelInput.enabled = _modStat.IsInUse;
     }
 
     private int ValidateInput(int input, int max)
@@ -92,24 +90,24 @@ public class CardDisplay : MonoBehaviour
     private void Update()
     {
         // elevated values that are used multiple times
-        bool isMaxLevel = _stat.IsMaxLevel;
+        bool isMaxLevel = _modStat.IsMaxLevel;
         // set placeholder text
-        string placeholder = (_stat.IsInUse) ? _stat.MaxLevel.ToString() : "";
+        string placeholder = (_modStat.IsInUse) ? _modStat.MaxLevel.ToString() : "";
         _placeholderText.text = placeholder;
         // show the modified stats value and colour
         _valueText.text = _modStat.ToString();
         _valueText.color = (isMaxLevel) ? _maxLevelColour : _defaultColour;
         // update the input field text and colours
-        _levelInput.text = (_stat.Level == 0) ? "" : _stat.Level.ToString();
+        _levelInput.text = (_modStat.Level == 0) ? "" : _modStat.Level.ToString();
         // set name text colour
         _nameText.color = (isMaxLevel) ? _maxLevelColour : _defaultColour;
         // set equipped border and fade
-        _equippedBorder.SetActive(_stat.IsInUse);
-        _fade.SetActive((_stat.Level == 0));
+        _equippedBorder.SetActive(_modStat.IsInUse);
+        _fade.SetActive((_modStat.Level == 0));
 
         // work out the colour based on level
         Color assignColour = _defaultColour;
-        if (_stat.Level == _stat.MaxLevel - 1) assignColour = _fiveStarColour;
+        if (_modStat.Level == _modStat.MaxLevel - 1) assignColour = _fiveStarColour;
         if (isMaxLevel) assignColour = _maxLevelColour;
         if (_mastery.IsInUse) assignColour = _masteryColour;
         _levelText.color = assignColour;
@@ -120,11 +118,11 @@ public class CardDisplay : MonoBehaviour
             _stars[i].gameObject.SetActive(true);
             _outlines[i].color = assignColour;
             _stars[i].color = assignColour;
-            if (i >= _stat.Level) _stars[i].gameObject.SetActive(false);
+            if (i >= _modStat.Level) _stars[i].gameObject.SetActive(false);
         }
 
         // button interactions
-        if (_resetLevel != null) _resetLevel.interactable = (_stat.Level != 0);
+        if (_resetLevel != null) _resetLevel.interactable = (_modStat.Level != 0);
         if (_setToMaxLevel != null) _setToMaxLevel.interactable = (!isMaxLevel);
     }
 }
