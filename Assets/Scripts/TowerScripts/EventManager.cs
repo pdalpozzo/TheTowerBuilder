@@ -3,6 +3,11 @@ using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
+    // new events
+    public static event Action<UnlockCategory, bool> OnUpgradeCategoryUnlock;   // triggered by workshop display
+
+
+    // old events
     // card events
     public static event Action<int, int> OnCardUnlockedLimitChange; // triggered by card manager
     public static event Action OnEquippedCardsChange;               // triggered by card manager
@@ -26,7 +31,7 @@ public class EventManager : MonoBehaviour
     // upgrade events
     public static event Action OnUpgradeForceUnlock;                    // triggered by workshop panel control
     public static event Action OnUpgradeForceReset;                     // triggered by workshop panel control
-    public static event Action<UnlockCategory, bool> OnUpgradeUnlock;   // triggered by workshop upgrade display
+    //public static event Action<UnlockCategory, bool> OnUpgradeUnlock;   // triggered by workshop upgrade display
     public static event Action OnUpgradeForceMax;                       // triggered by workshop upgrade display
 
     // enhancement events
@@ -62,7 +67,14 @@ public class EventManager : MonoBehaviour
     // bot events
     public static event Action<Bot> OnAnyBotChange;             // triggered by bot
 
+    // new
+    public static void UpgradeCategoryUnlock(UnlockCategory group, bool isUnlocked)
+    {
+        OnUpgradeCategoryUnlock?.Invoke(group, isUnlocked);
+    }
 
+
+    // old
     public static void CardUnlockedLimitChange(int max, int unlocked)
     {
         OnCardUnlockedLimitChange?.Invoke(max, unlocked);
@@ -143,10 +155,10 @@ public class EventManager : MonoBehaviour
         OnUpgradeForceReset?.Invoke();
     }
 
-    public static void UpgradeUnlock(UnlockCategory group, bool isUnlocked)
-    {
-        OnUpgradeUnlock?.Invoke(group, isUnlocked);
-    }
+    //public static void UpgradeUnlock(UnlockCategory group, bool isUnlocked)
+    //{
+    //    OnUpgradeUnlock?.Invoke(group, isUnlocked);
+    //}
 
     public static void UpgradeForceMax()
     {

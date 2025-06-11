@@ -50,7 +50,6 @@ public class CardDisplay : MonoBehaviour
         _placeholderText.text = _modStat.MaxLevel.ToString();
 
         _toggle.isOn = _modStat.IsInUse;
-        Unlock();
     }
 
     public void LevelChange()
@@ -96,11 +95,8 @@ public class CardDisplay : MonoBehaviour
         _placeholderText.text = placeholder;
         // show the modified stats value and colour
         _valueText.text = _modStat.ToString();
-        _valueText.color = (isMaxLevel) ? _maxLevelColour : _defaultColour;
         // update the input field text and colours
         _levelInput.text = (_modStat.Level == 0) ? "" : _modStat.Level.ToString();
-        // set name text colour
-        _nameText.color = (isMaxLevel) ? _maxLevelColour : _defaultColour;
         // set equipped border and fade
         _equippedBorder.SetActive(_modStat.IsInUse);
         _fade.SetActive((_modStat.Level == 0));
@@ -120,6 +116,9 @@ public class CardDisplay : MonoBehaviour
             _stars[i].color = assignColour;
             if (i >= _modStat.Level) _stars[i].gameObject.SetActive(false);
         }
+        // set name text colour
+        _nameText.color = assignColour;
+        _valueText.color = assignColour;
 
         // button interactions
         if (_resetLevel != null) _resetLevel.interactable = (_modStat.Level != 0);

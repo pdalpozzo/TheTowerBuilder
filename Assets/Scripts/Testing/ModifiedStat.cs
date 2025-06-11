@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public enum CalculationType : byte { BASE, IN_ROUND, CONDITIONAL }
 
@@ -35,6 +34,7 @@ public class ModifiedStat : MonoBehaviour
 
     private void Awake()
     {
+        if (_limitStat == this) _limitStat = null;
         CheckForModifierLoops(_additionalModifiers);
         CheckForModifierLoops(_multiplicativeModifiers);
         CheckForModifierLoops(_base0MultiplicativeModifiers);
@@ -80,13 +80,11 @@ public class ModifiedStat : MonoBehaviour
     public void SetInUse(bool inUse)
     {
         this._isInUse = inUse;
-        if (!inUse) _currentLevel = 0;
     }
 
     public void SetToMaxLevel()
     {
         _currentLevel = _data.MaxLevel;
-        this._isInUse = true;
     }
 
     public void ResetStat()
@@ -105,7 +103,6 @@ public class ModifiedStat : MonoBehaviour
     {
         _additional = 0;
         if (_additionalModifiers.Count <= 0) return;
-        if (!this._isInUse) return;
 
         foreach (var item in _additionalModifiers)
         {
@@ -121,7 +118,6 @@ public class ModifiedStat : MonoBehaviour
     {
         _multiplier = 1;
         if (_multiplicativeModifiers.Count <= 0) return;
-        if (!this._isInUse) return;
 
         foreach (var item in _multiplicativeModifiers)
         {
@@ -133,7 +129,6 @@ public class ModifiedStat : MonoBehaviour
     private void CalculateBaseZeroMultiplicative()
     {
         if (_base0MultiplicativeModifiers.Count <= 0) return;
-        if (!this._isInUse) return;
 
         foreach (var item in _base0MultiplicativeModifiers)
         {

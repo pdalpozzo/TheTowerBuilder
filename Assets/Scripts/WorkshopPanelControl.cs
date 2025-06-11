@@ -6,23 +6,28 @@ public class WorkshopPanelControl : MonoBehaviour
     [SerializeField] private GameObject _upgradePanel;
     [SerializeField] private GameObject _enhancementPanel;
     [SerializeField] private GameObject _contentPanel;
-
+    // tab buttons
     [SerializeField] private Toggle _upgradeButton;
     [SerializeField] private Toggle _enhancementButton;
-
+    // upgrade buttons
     [SerializeField] private Button _unlockAllUpgradesButton;
     [SerializeField] private Button _resetUpgradesButton;
     [SerializeField] private Button _maxUpgradesButton;
+    // enhancement buttons
     [SerializeField] private Button _unlockAllEnhancementsButton;
     [SerializeField] private Button _resetEnhancementsButton;
-
-    [SerializeField] private WorkshopUpgradeDisplay[] _attack;
-    [SerializeField] private WorkshopUpgradeDisplay[] _defense;
-    [SerializeField] private WorkshopUpgradeDisplay[] _utility;
+    // upgrade lists
+    [SerializeField] private WorkshopDisplay[] _attackUpgrades;
+    [SerializeField] private WorkshopDisplay[] _defenseUpgrades;
+    [SerializeField] private WorkshopDisplay[] _utilityUpgrades;
+    // enhancement lists
+    [SerializeField] private WorkshopDisplay[] _attackEnhancements;
+    [SerializeField] private WorkshopDisplay[] _defenseEnhancements;
+    [SerializeField] private WorkshopDisplay[] _utilityEnhancements;
 
     private void Awake()
     {
-        EventManager.OnUpgradeUnlock += HandleGroupUnlocking;
+        EventManager.OnUpgradeCategoryUnlock += HandleGroupUnlocking;
     }
 
     private void Start()
@@ -52,27 +57,44 @@ public class WorkshopPanelControl : MonoBehaviour
 
     public void ResetUpgrade()
     {
-        EventManager.UpgradeForceReset();
+        LockUpgradeGroups(_attackUpgrades, UnlockCategory.START);
+        LockUpgradeGroups(_defenseUpgrades, UnlockCategory.START);
+        LockUpgradeGroups(_utilityUpgrades, UnlockCategory.START);
     }
 
     public void UnlockAllUpgrades()
     {
-        EventManager.UpgradeForceUnlock();
+        UnlockUpgradeGroups(_attackUpgrades, UnlockCategory.REND);
+        UnlockUpgradeGroups(_defenseUpgrades, UnlockCategory.WALL);
+        UnlockUpgradeGroups(_utilityUpgrades, UnlockCategory.ENEMY_LEVEL_SKIP);
     }
 
     public void MaxAllUpgrades()
     {
-        EventManager.UpgradeForceMax();
+        SetGroupToMaxLevel(_attackUpgrades);
+        SetGroupToMaxLevel(_defenseUpgrades);
+        SetGroupToMaxLevel(_utilityUpgrades);
     }
 
     public void ResetEnhancements()
     {
-        EventManager.EnhancementForceReset();
+        LockEnhancementGroups(_attackEnhancements);
+        LockEnhancementGroups(_defenseEnhancements);
+        LockEnhancementGroups(_utilityEnhancements);
     }
 
     public void UnlockAllEnhancements()
     {
-        EventManager.EnhancementForceUnlock();
+        UnlockEnhancementGroups(_attackEnhancements);
+        UnlockEnhancementGroups(_defenseEnhancements);
+        UnlockEnhancementGroups(_utilityEnhancements);
+    }
+
+    public void MaxAllEnhancements()
+    {
+        SetGroupToMaxLevel(_attackEnhancements);
+        SetGroupToMaxLevel(_defenseEnhancements);
+        SetGroupToMaxLevel(_utilityEnhancements);
     }
 
     private void HandleGroupUnlocking(UnlockCategory category, bool isUnlocked)
@@ -83,31 +105,55 @@ public class WorkshopPanelControl : MonoBehaviour
 
         if (isUnlocked)
         {
-            if (baseNumber == (int)UnlockCategory.RANGE) UnlockGroups(_attack, category);
-            if (baseNumber == (int)UnlockCategory.DEFENSE) UnlockGroups(_defense, category);
-            if (baseNumber == (int)UnlockCategory.CASH) UnlockGroups(_utility, category);
+            if (baseNumber == (int)UnlockCategory.RANGE) UnlockUpgradeGroups(_attackUpgrades, category);
+            if (baseNumber == (int)UnlockCategory.DEFENSE) UnlockUpgradeGroups(_defenseUpgrades, category);
+            if (baseNumber == (int)UnlockCategory.CASH) UnlockUpgradeGroups(_utilityUpgrades, category);
         }
         else
         {
-            if (baseNumber == (int)UnlockCategory.RANGE) LockGroups(_attack, category);
-            if (baseNumber == (int)UnlockCategory.DEFENSE) LockGroups(_defense, category);
-            if (baseNumber == (int)UnlockCategory.CASH) LockGroups(_utility, category);
+            if (baseNumber == (int)UnlockCategory.RANGE) LockUpgradeGroups(_attackUpgrades, category);
+            if (baseNumber == (int)UnlockCategory.DEFENSE) LockUpgradeGroups(_defenseUpgrades, category);
+            if (baseNumber == (int)UnlockCategory.CASH) LockUpgradeGroups(_utilityUpgrades, category);
         }
     }
 
-    private void UnlockGroups(WorkshopUpgradeDisplay[] upgrades, UnlockCategory category)
+    private void UnlockUpgradeGroups(WorkshopDisplay[] upgrades, UnlockCategory category)
     {
-        foreach (WorkshopUpgradeDisplay upgrade in upgrades)
+        foreach (WorkshopDisplay upgrade in upgrades)
         {
-            if (upgrade.Category <= category) upgrade.ForceUpgradeUnlock();
+            if (upgrade.Category <= category) upgrade.ForceUnlock();
         }
     }
 
-    private void LockGroups(WorkshopUpgradeDisplay[] upgrades, UnlockCategory category)
+    private void LockUpgradeGroups(WorkshopDisplay[] upgrades, UnlockCategory category)
     {
-        foreach (WorkshopUpgradeDisplay upgrade in upgrades)
+        foreach (WorkshopDisplay upgrade in upgrades)
         {
-            if (upgrade.Category >= category) upgrade.ForceUpgradeReset();
+            if (upgrade.Category >= category) upgrade.ForceReset();
+        }
+    }
+
+    private void UnlockEnhancementGroups(WorkshopDisplay[] enhancements)
+    {
+        foreach (WorkshopDisplay enhancement in enhancements)
+        {
+            enhancement.ForceUnlock();
+        }
+    }
+
+    private void LockEnhancementGroups(WorkshopDisplay[] enhancements)
+    {
+        foreach (WorkshopDisplay enhancement in enhancements)
+        {
+            enhancement.ForceReset();
+        }
+    }
+
+    private void SetGroupToMaxLevel(WorkshopDisplay[] upgrades)
+    {
+        foreach (WorkshopDisplay upgrade in upgrades)
+        {
+            upgrade.ForceToMax();
         }
     }
 }

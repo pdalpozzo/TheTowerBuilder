@@ -2,10 +2,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum UnlockCategory { START, RANGE, MULTISHOT, RAPID_FIRE, BOUNCE_SHOT, SUPER_CRIT, REND, 
-    DEFENSE, THORNS, LIFESTEAL, KNOCKBACK, ORBS, SHOCKWAVE, LANDMINE, DEATH_DEFY, WALL, 
-    CASH, COIN, FREE_UPGRADE, INTEREST, PACKAGE, ENEMY_LEVEL_SKIP};
-
 public class WorkshopUpgradeDisplay : MonoBehaviour
 {
     [SerializeField] private Stat _stat;
@@ -74,7 +70,7 @@ public class WorkshopUpgradeDisplay : MonoBehaviour
     public void UnlockGroup()
     {
         _stat.Upgrade.SetUnlock(_toggle.IsOn);
-        EventManager.UpgradeUnlock(_category, _toggle.IsOn);
+        EventManager.UpgradeCategoryUnlock(_category, _toggle.IsOn);
     }
 
     public void ForceUpgradeUnlock()

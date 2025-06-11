@@ -33,7 +33,6 @@ public class MasteryDisplay : MonoBehaviour
         _placeholderText.text = _modStat.MaxLevel.ToString();
 
         _toggle.SetToggle(_modStat.IsInUse);
-        Unlock();
     }
 
     public void LevelChange()

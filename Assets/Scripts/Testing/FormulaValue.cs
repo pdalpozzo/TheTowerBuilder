@@ -42,7 +42,7 @@ public class FormulaValue : ValueCalculation
 
     private float HealthValue(int level)
     {
-        //if (level == 0) return _baseValue;
+        if (level == 0) return 10f;
 
         float value;
         float multiplier = 1;
@@ -66,7 +66,7 @@ public class FormulaValue : ValueCalculation
 
     private float HealthRegenValue(int level)
     {
-        //if (level == 0) return _baseValue;
+        if (level == 0) return 0f;
 
         float value;
         float multiplier = 1;
@@ -86,7 +86,7 @@ public class FormulaValue : ValueCalculation
 
     private float DefenseAbsoluteValue(int level)
     {
-        //if (level == 0) return _baseValue;
+        if (level == 0) return 0f;
 
         float value;
         float multiplier = 1;
@@ -113,7 +113,7 @@ public class FormulaValue : ValueCalculation
 
     private float DamageValue(int level)
     {
-        //if (level == 0) return _baseValue;
+        if (level == 0) return 3f;
 
         float value;
         float multiplier = 1;

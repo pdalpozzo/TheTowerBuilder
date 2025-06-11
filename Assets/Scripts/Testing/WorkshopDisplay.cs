@@ -2,6 +2,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum UnlockCategory
+{
+    START, RANGE, MULTISHOT, RAPID_FIRE, BOUNCE_SHOT, SUPER_CRIT, REND,
+    DEFENSE, THORNS, LIFESTEAL, KNOCKBACK, ORBS, SHOCKWAVE, LANDMINE, DEATH_DEFY, WALL,
+    CASH, COIN, FREE_UPGRADE, INTEREST, PACKAGE, ENEMY_LEVEL_SKIP,
+    ENHANCEMENT
+};
+
 public class WorkshopDisplay : MonoBehaviour
 {
     [SerializeField] private ModifiedStat _modStat; // one to display
@@ -12,12 +20,14 @@ public class WorkshopDisplay : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _placeholderText;  // stat max level
     [SerializeField] private TMP_InputField _levelInput;        // stat current level
     [SerializeField] private OnOffToggleControl _toggle;        // stat in use toggle
-    //[SerializeField] private UnlockCategory _category;
+    [SerializeField] private UnlockCategory _category;
 
     private Color _defaultColour;
     private Color _maxLevelColour;
     private Color _disabledColor;
     private Color _enabledColor;
+
+    public UnlockCategory Category { get { return _category; } }
 
     private void Awake()
     {
@@ -29,9 +39,26 @@ public class WorkshopDisplay : MonoBehaviour
         _disabledColor = RarityColors.GetInputDisable();
         _enabledColor = RarityColors.GetInputEnable();
 
-        //_toggle.SetToggle(false);
         _toggle.SetToggle(_modStat.IsInUse);
         Unlock();
+    }
+
+    private void Start()
+    {
+        if (_category == UnlockCategory.START)
+        {
+            _toggle.SetToggle(true);
+            _toggle.gameObject.SetActive(false);
+        }
+    }
+
+    private void Update()
+    {
+        // show the modified stats value and colour
+        _valueText.text = _modStat.ToString();
+        // update the input field text and colours
+        _levelInput.text = (_modStat.Level == 0) ? "" : _modStat.Level.ToString();
+        _levelInput.GetComponent<Image>().color = (_modStat.IsInUse) ? _enabledColor : _disabledColor;
     }
 
     public void LevelChange()
@@ -40,24 +67,49 @@ public class WorkshopDisplay : MonoBehaviour
         if (_levelInput.text != null) input = int.Parse(_levelInput.text);
         input = ValidateInput(input, _modStat.MaxLevel);
         _modStat.SetLevel(input);
-        _levelInput.text = (_modStat.Level == 0) ? "" : _modStat.Level.ToString();
+        AssignColours();
     }
 
     public void ForceToMax()
     {
         _toggle.SetToggle(true);
+        _modStat.SetInUse(true);
         _modStat.SetToMaxLevel();
+        _placeholderText.text = _modStat.MaxLevel.ToString();
+        AssignColours();
+    }
+
+    public void ForceUnlock()
+    {
+        _toggle.SetToggle(true);
+        _modStat.SetInUse(true);
+        _levelInput.enabled = _modStat.IsInUse;
+        _placeholderText.text = _modStat.MaxLevel.ToString();
+        AssignColours();
     }
 
     public void ForceReset()
     {
-        _modStat.ResetStat();
+        if (_category != UnlockCategory.START)
+        {
+            _modStat.ResetStat();
+            _toggle.SetToggle(false);
+        }
+        else
+        {
+            _modStat.SetLevel(0);
+        }
+        AssignColours();
     }
 
     public void Unlock()
     {
         _modStat.SetInUse(_toggle.IsOn);
         _levelInput.enabled = _modStat.IsInUse;
+        if (!_modStat.IsInUse) _modStat.ResetStat();
+        _placeholderText.text = (_modStat.IsInUse) ? _modStat.MaxLevel.ToString() : "";
+        AssignColours();
+        EventManager.UpgradeCategoryUnlock(_category, _modStat.IsInUse);
     }
 
     private int CountMaxLevelCharcters(int max)
@@ -78,21 +130,12 @@ public class WorkshopDisplay : MonoBehaviour
         return input;
     }
 
-    private void Update()
+    private void AssignColours()
     {
-        // elevated values that are used multiple times
         bool isMaxLevel = _modStat.IsMaxLevel;
-        // set placeholder text
-        string placeholder = (_modStat.IsInUse) ? _modStat.MaxLevel.ToString() : "";
-        _placeholderText.text = placeholder;
-        // show the modified stats value and colour
-        _valueText.text = _modStat.ToString();
         _valueText.color = (isMaxLevel) ? _maxLevelColour : _defaultColour;
-        // update the input field text and colours
-        _levelInput.text = (_modStat.Level == 0) ? "" : _modStat.Level.ToString();
-        _levelInput.GetComponent<Image>().color = (_modStat.IsInUse) ? _enabledColor : _disabledColor;
         _levelText.color = (isMaxLevel) ? _maxLevelColour : _defaultColour;
-        // set name text colour
         _nameText.color = (isMaxLevel) ? _maxLevelColour : _defaultColour;
     }
+
 }
