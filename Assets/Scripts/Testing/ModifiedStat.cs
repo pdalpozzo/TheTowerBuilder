@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using static UnityEditor.Progress;
 
 public enum CalculationType : byte { BASE, IN_ROUND, CONDITIONAL }
 
@@ -8,9 +10,9 @@ public class ModifiedStat : MonoBehaviour
     [SerializeField] private ValueCalculation _data;
     [SerializeField] private ModifiedStat _limitStat;
 
-    [SerializeField] private ModifiedStat[] _additionalModifiers;
-    [SerializeField] private ModifiedStat[] _multiplicativeModifiers;
-    [SerializeField] private ModifiedStat[] _base0MultiplicativeModifiers;
+    [SerializeField] private List<ModifiedStat> _additionalModifiers;
+    [SerializeField] private List<ModifiedStat> _multiplicativeModifiers;
+    [SerializeField] private List<ModifiedStat> _base0MultiplicativeModifiers;
 
     [SerializeField] private int _currentLevel = 0; // deserialize
     [SerializeField] private float _value = 0f;     // deserialize
@@ -30,6 +32,25 @@ public class ModifiedStat : MonoBehaviour
     public float Value { get { return _value; } }
     public bool IsMaxLevel { get { return (_currentLevel == _data.MaxLevel); } }
     public bool IsInUse { get { return _isInUse; } }
+
+    private void Awake()
+    {
+        CheckForModifierLoops(_additionalModifiers);
+        CheckForModifierLoops(_multiplicativeModifiers);
+        CheckForModifierLoops(_base0MultiplicativeModifiers);
+    }
+
+    private void CheckForModifierLoops(List<ModifiedStat> modifiers)
+    {
+        for (int i = modifiers.Count-1 ; i >= 0; i--)
+        {
+            // remove from the array is modifier in the list matches this modifier
+            if (modifiers[i] == this)
+            {
+                modifiers.RemoveAt(i);
+            }
+        }
+    }
 
     private void Update()
     {
@@ -83,7 +104,7 @@ public class ModifiedStat : MonoBehaviour
     private void CalculateAdditional()
     {
         _additional = 0;
-        if (_additionalModifiers.Length <= 0) return;
+        if (_additionalModifiers.Count <= 0) return;
         if (!this._isInUse) return;
 
         foreach (var item in _additionalModifiers)
@@ -99,7 +120,7 @@ public class ModifiedStat : MonoBehaviour
     private void CalculateMultiplicative()
     {
         _multiplier = 1;
-        if (_multiplicativeModifiers.Length <= 0) return;
+        if (_multiplicativeModifiers.Count <= 0) return;
         if (!this._isInUse) return;
 
         foreach (var item in _multiplicativeModifiers)
@@ -111,7 +132,7 @@ public class ModifiedStat : MonoBehaviour
 
     private void CalculateBaseZeroMultiplicative()
     {
-        if (_base0MultiplicativeModifiers.Length <= 0) return;
+        if (_base0MultiplicativeModifiers.Count <= 0) return;
         if (!this._isInUse) return;
 
         foreach (var item in _base0MultiplicativeModifiers)
